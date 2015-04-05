@@ -198,7 +198,7 @@ $pdf->Ellipse($xc, $yc, 30, 15, 45, 45, 90, 'D', array(), array(), 2);
 // ---------------------------------------------------------
 
 //Close and output PDF document
-$pdf->Output('example_012.pdf', 'I');
+$pdf->Output('example_012.pdf', 'O');
 
 //============================================================+
 // END OF FILE
