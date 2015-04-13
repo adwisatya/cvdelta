@@ -6,7 +6,6 @@
 <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}" />
 <link rel="stylesheet" href="{{ asset('/css/style.css') }}" />
 <script src="{{ asset('/js/bootstrap.min.js') }}"></script>
-<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
 
 </head>
 <body>	

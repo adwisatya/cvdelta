@@ -2,6 +2,10 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\TeknisiSeeder;
+use Illuminate\Database\AdministrasiSeeder;
+use Illuminate\Database\BarangSeeder;
+use Illuminate\Database\TagihanSeeder;
+use Illuminate\Database\KomponenSeeder;
 use Illuminate\Database\Eloquent\Model;
 
 class DatabaseSeeder extends Seeder {
@@ -17,8 +21,14 @@ class DatabaseSeeder extends Seeder {
 
 		$this->call('TeknisiSeeder');
 		$this->call('AdministrasiSeeder');
+		$this->call('BarangSeeder');
+		$this->call('KomponenSeeder');
+		$this->call('TagihanSeeder');
 		$this->command->info('Teknisi table seeded!');
 		$this->command->info('Admin table seeded!');
+		$this->command->info('Barang table seeded!');
+		$this->command->info('Komponen table seeded!');
+		$this->command->info('Tagihan table seeded!');
 	}
 
 }
