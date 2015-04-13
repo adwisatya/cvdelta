@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="css/bootstrap.min.css" />
 <link rel="stylesheet" href="css/style.css" />
 <script src="js/bootstrap.min.js"></script>
-<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+<!-- <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script> -->
 
 </head>
 <body class="index_content">
