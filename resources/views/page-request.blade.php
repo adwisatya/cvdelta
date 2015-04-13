@@ -2,7 +2,7 @@
 
 @section('content')
 	<div class="row">
-		<p>Requested Componentasdada</p>	
+		<p>Requested Component</p>	
 	</div>
 	
 @endsection

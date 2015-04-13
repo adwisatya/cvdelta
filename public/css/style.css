@@ -4,7 +4,10 @@
 }
 @font-face{
 	font-family: textfont;
-	src:url('fonts/NEOTERIC-bold.otf');
+	src:url('fonts/NEOTERIC.otf');
+}
+h2,h3{
+	font-family: arial;
 }
 html{
 	position: relative;
@@ -12,6 +15,9 @@ html{
 }
 .index_content{
 	background-image: url("../images/bg.jpg");
+}
+.content{
+	padding-top: 10%;
 }
 body{
 	/*background-image: url("../images/bg.jpg");*/
@@ -32,6 +38,7 @@ body{
 }
 .navbar{
 	font-size: 15px;
+	display: block;
 }
 .navbar-header{
 	width: 50%;
@@ -60,5 +67,5 @@ label{
 	font-size: 25px;
 }
 form{
-	font-family: textfont;
+	font-family: arial;
 }
