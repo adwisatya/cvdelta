@@ -16,4 +16,8 @@ class SiteController extends Controller {
 	public function adminPage(){
 		return view('page-admin');
 	}
+
+	public function request(){
+		return view('page-request');
+	}
 }
