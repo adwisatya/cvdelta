@@ -15,7 +15,7 @@
 				<div class="navbar-header">
 					<!-- Button for smallest screens -->
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-					<a class="navbar-brand indexlogo" href="index.html"><img src="images/logo.png" alt="CV. Delta logo"></a>
+					<a class="navbar-brand indexlogo" href="#"><img src="images/logo.png" alt="CV. Delta logo"></a>
 				</div>
 			</div>
 		</div> 

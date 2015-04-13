@@ -15,34 +15,34 @@
 			<div class="navbar-header">
 				<!-- Button for smallest screens -->
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-				<a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="CV. Delta logo"></a>
+				<a class="navbar-brand" href="#"><img src="images/logo.png" alt="CV. Delta logo"></a>
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav pull-right">
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Component<b class="caret"></b></a>
 						<ul class="dropdown-menu">
-							<li><a href="sidebar-left.html">Requested Component</a></li>
-							<li><a href="sidebar-right.html">stocks</a></li>
-							<li><a href="sidebar-right.html">stocks run out</a></li>
-							<li><a href="sidebar-right.html">add stock</a></li>
+							<li><a href="#">Requested Component</a></li>
+							<li><a href="#">stocks</a></li>
+							<li><a href="#">stocks run out</a></li>
+							<li><a href="#">add stock</a></li>
 						</ul>
 					</li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Invoice<b class="caret"></b></a>
 						<ul class="dropdown-menu">
-							<li><a href="sidebar-left.html">Per Customer</a></li>
-							<li><a href="sidebar-right.html">Per Month</a></li>
-							<li><a href="sidebar-right.html">All</a></li>
+							<li><a href="#">Per Customer</a></li>
+							<li><a href="#">Per Month</a></li>
+							<li><a href="#">All</a></li>
 						</ul>
 					</li>
-					<li><a href="about.html">Customer</a></li>
-					<li><a href="about.html">Report</a></li>
+					<li><a href="#">Customer</a></li>
+					<li><a href="#">Report</a></li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Hi namanya! <b class="caret"></b></a>
 						<ul class="dropdown-menu">
-							<li><a href="sidebar-left.html">profil</a></li>
-							<li><a href="sidebar-right.html">logout</a></li>
+							<li><a href="#">profil</a></li>
+							<li><a href="#">logout</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -59,7 +59,5 @@
         <p class="text-muted">Copyright 2015</p>
       </div>
     </footer>
-
-
 </body>
 </html>

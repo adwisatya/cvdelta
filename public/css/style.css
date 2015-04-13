@@ -1,0 +1,64 @@
+@font-face{
+	font-family: defaultfont;
+	src:url('fonts/Bizon.otf');
+}
+@font-face{
+	font-family: textfont;
+	src:url('fonts/NEOTERIC-bold.otf');
+}
+html{
+	position: relative;
+	min-height: 100%;
+}
+.index_content{
+	background-image: url("../images/bg.jpg");
+}
+body{
+	/*background-image: url("../images/bg.jpg");*/
+	background-color: #D7D2CF;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	font-family: defaultfont;
+	margin-bottom: 80px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  /* Set the fixed height of the footer here */
+  height: 80px;
+}
+.navbar{
+	font-size: 15px;
+}
+.navbar-header{
+	width: 50%;
+}
+.navbar-brand{
+	width: inherit;
+}
+.navbar-brand .indexlogo img{
+	display: inline-block;
+	width: 204%;
+}
+.navbar-brand img{
+	display: inline-block;
+	width: 90%;
+}
+li .active{
+	background-color:none;
+	color: red;
+}
+.indexpage{
+	margin-top: 20%;
+	color: white;
+}
+label{
+	text-shadow: 2px 2px #2E2E2E;
+	font-size: 25px;
+}
+form{
+	font-family: textfont;
+}

@@ -15,18 +15,18 @@
 			<div class="navbar-header">
 				<!-- Button for smallest screens -->
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-				<a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="CV. Delta logo"></a>
+				<a class="navbar-brand" href="index"><img src="images/logo.png" alt="CV. Delta logo"></a>
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav pull-right">
 					<li><a href="#">Request Komponen</a></li>
-					<li><a href="about.html">On Progress</a></li>
+					<li><a href="#">On Progress</a></li>
 					<li><a href="#">History</a></li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Hi namanya! <b class="caret"></b></a>
 						<ul class="dropdown-menu">
-							<li><a href="sidebar-left.html">profil</a></li>
-							<li><a href="sidebar-right.html">logout</a></li>
+							<li><a href="#">profil</a></li>
+							<li><a href="#">logout</a></li>
 						</ul>
 					</li>
 				</ul>
