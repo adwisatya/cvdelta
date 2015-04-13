@@ -50,8 +50,9 @@
 		</div>
 	</div> 
 	<div class="container">
-		
-
+		<div class="content">
+			@yield('content')
+		</div>
 	</div>
 	<footer class="footer">
       <div class="container">
