@@ -22,7 +22,7 @@
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Component<b class="caret"></b></a>
 						<ul class="dropdown-menu">
-							<li><a href="#">Requested Component</a></li>
+							<li><a href="{{ url('/parkir') }}">Requested Component</a></li>
 							<li><a href="#">stocks</a></li>
 							<li><a href="#">stocks run out</a></li>
 							<li><a href="#">add stock</a></li>
@@ -51,6 +51,7 @@
 	</div> 
 	<div class="container">
 		
+	@yield('content')
 
 	</div>
 	<footer class="footer">
