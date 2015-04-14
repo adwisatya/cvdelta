@@ -36,7 +36,7 @@
 						<label for="password">Password</label>
 						<input type="password" class="form-control" id="password" placeholder="Enter password" name="password">
 					</div><br><br>
-					<input type="submit" name="submit">
+					<input type="submit" name="submit" class="form-control" value="Login">
 				</form>
 			</div>
 		</div>

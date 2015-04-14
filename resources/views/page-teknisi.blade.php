@@ -24,10 +24,10 @@
 						<li><a href="#">On Progress</a></li>
 						<li><a href="#">History</a></li>
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Hi namanya! <b class="caret"></b></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo Session::get('username'); ?> <b class="caret"></b></a>
 							<ul class="dropdown-menu">
 								<li><a href="#">profil</a></li>
-								<li><a href="#">logout</a></li>
+								<li><a href="/logout">logout</a></li>
 							</ul>
 						</li>
 					</ul>
