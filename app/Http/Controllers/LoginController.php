@@ -47,9 +47,15 @@ class LoginController extends Controller {
 
 		$inputUsername = Input::get('username');
 		$inputPassword = Input::get('password');
-
-		$results = DB::select('select password from teknisi where username=?',array($inputUsername));
-		print_r($results);
+		
+		$user = DB::table('teknisi')->where('username',$inputUsername)->first();		
+		if($user->password == $inputPassword){
+			Session::put('username', $inputUsername);
+			Session::put('role', 'teknisi');
+			return redirect('/teknisi');
+		}else{
+			return redirect('/index');
+		}
 		
 	}
 

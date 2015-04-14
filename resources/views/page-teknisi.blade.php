@@ -38,6 +38,8 @@
 	<div class="container">
 		<div class="content">
 			@yield('content')
+			Selamat datang <?php echo Session::get('username'); ?>
+			Anda adalah seorang <?php echo Session::get('role'); ?>
 		</div>
 	</div>
 	<footer class="footer">
