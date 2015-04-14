@@ -3,10 +3,9 @@
 <title>CV. Delta</title>
 <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<link rel="stylesheet" href="css/bootstrap.min.css" />
-<link rel="stylesheet" href="css/style.css" />
-<script src="js/bootstrap.min.js"></script>
-<!-- <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script> -->
+<link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}" />
+<link rel="stylesheet" href="{{ asset('/css/style.css') }}" />
+<script src="{{ asset('/js/bootstrap.min.js') }}"></script>
 
 </head>
 <body>	
@@ -15,14 +14,14 @@
 			<div class="navbar-header">
 				<!-- Button for smallest screens -->
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-				<a class="navbar-brand" href="#"><img src="images/logo.png" alt="CV. Delta logo"></a>
+				<a class="navbar-brand" href="#"><img src="{{ asset('/images/logo.png') }}" alt="CV. Delta logo"></a>
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav pull-right">
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Component<b class="caret"></b></a>
 						<ul class="dropdown-menu">
-							<li><a href="#">Requested Component</a></li>
+							<li><a href="{{ url('/admin/request') }}">Requested Component</a></li>
 							<li><a href="#">stocks</a></li>
 							<li><a href="#">stocks run out</a></li>
 							<li><a href="#">add stock</a></li>

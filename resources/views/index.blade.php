@@ -26,16 +26,17 @@
 				<h3>Silahkan login menggunakan akun yang sudah terdaftar untuk mengakses layanan aplikasi</h3>
 			</div>
 			<div class="col-md-5">
-				<form>
+				<form method="post" action="/index">
+				    <input name="_token" hidden value="{!! csrf_token() !!}" />
 					<div class="form-group">
 						<label for="username">Username</label>
-						<input type="input" class="form-control" id="username" placeholder="Enter username">
+						<input type="input" class="form-control" id="username" placeholder="Enter username" name="username">
 					</div>
 					<div class="form-group">
 						<label for="password">Password</label>
-						<input type="password" class="form-control" id="password" placeholder="Enter password">
+						<input type="password" class="form-control" id="password" placeholder="Enter password" name="password">
 					</div><br><br>
-					<button type="button" class="btn btn-info"><b>LOGIN</b></button>
+					<input type="submit" name="submit" class="form-control" value="Login">
 				</form>
 			</div>
 		</div>

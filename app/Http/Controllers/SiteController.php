@@ -11,9 +11,13 @@ class SiteController extends Controller {
 		return view('index');
 	}
 	public function teknisiPage(){
-		return view('page-teknisi');
+		return view('dashboard-teknisi');
 	}
 	public function adminPage(){
 		return view('page-admin');
+	}
+
+	public function request(){
+		return view('page-request');
 	}
 }

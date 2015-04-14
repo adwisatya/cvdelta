@@ -21,5 +21,8 @@ Route::controllers([
 ]);
 
 Route::get('index','SiteController@index');
+Route::post('index','LoginController@validateLogin');
+Route::get('logout','LoginController@logout');
 Route::get('teknisi','SiteController@teknisiPage');
 Route::get('admin','SiteController@adminPage');
+Route::get('admin/request', 'SiteController@request');
