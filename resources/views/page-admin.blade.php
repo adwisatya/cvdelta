@@ -51,6 +51,7 @@
 	</div> 
 	<div class="container">
 		<div class="content">
+			tes lagi
 			@yield('content')
 		</div>
 	</div>

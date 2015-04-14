@@ -1,11 +1,11 @@
-@font-face{
+/*@font-face{
 	font-family: defaultfont;
 	src:url('fonts/Bizon.otf');
-}
-@font-face{
+}*/
+/*@font-face{
 	font-family: textfont;
 	src:url('fonts/NEOTERIC.otf');
-}
+}*/
 h2,h3{
 	font-family: arial;
 }
@@ -25,7 +25,7 @@ body{
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
-	font-family: defaultfont;
+	font-family: arial;
 	margin-bottom: 80px;
 }
 .footer {
