@@ -21,4 +21,8 @@ class ComponentController extends Controller {
 		$datas = database::getMinStock();
 		return view('page-minstock')->with('datas', $datas);
 	}
+
+	public function add(){
+		return view('page-addstock');
+	}
 }

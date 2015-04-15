@@ -28,3 +28,4 @@ Route::get('admin','SiteController@adminPage');
 Route::get('admin/request', 'ComponentController@request');
 Route::get('admin/stock', 'ComponentController@stock');
 Route::get('admin/minimum', 'ComponentController@min');
+Route::get('admin/add', 'ComponentController@add');
