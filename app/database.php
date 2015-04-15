@@ -21,7 +21,21 @@ class database extends Model{
 
 	public static function getMinStock(){
 		return DB::table('komponen')
-				->where('jumlah','<=','min_jumlah')
+				->where('jumlah','<=', array('min_jumlah'))
 				->get();
+	}
+
+	public static function saveComponent($no, $nama, $jumlah, $lokasi, $keterangan, $supplier, $harga){
+		DB::table('komponen')->insert(
+			[
+				'supplier' => $supplier,
+				'nama_komponen' => $nama,
+				'no_seri_komponen' => $no,
+				'harga' => $harga,
+				'jumlah' => $jumlah,
+				'lokasi' => $lokasi,
+				'keterangan' => $keterangan,
+				'min_jumlah' => 10,
+			]);
 	}
 }
