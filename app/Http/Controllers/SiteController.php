@@ -17,7 +17,7 @@ class SiteController extends Controller {
 		return view('dashboard-teknisi');
 	}
 	public function historyPage(){
-		return view('page-history');
+		return view('historyPage');
 	}
 	public function requestKomponenPage(){
 		return view('request-komponen');

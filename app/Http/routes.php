@@ -29,6 +29,7 @@ Route::get('history','SiteController@historyPage');
 Route::get('admin','SiteController@adminPage');
 Route::get('profile','SiteController@profilePage');
 Route::post('profile','SiteController@profileUpdate');
+
 Route::get('invoice','SiteController@invoice');
 
 Route::get('admin/request', 'ComponentController@request');
