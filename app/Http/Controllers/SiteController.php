@@ -19,6 +19,9 @@ class SiteController extends Controller {
 	public function historyPage(){
 		return view('historyPage');
 	}
+	public function onprogressPage(){
+		return view('onprogressPage');
+	}
 	public function requestKomponenPage(){
 		return view('request-komponen');
 	}

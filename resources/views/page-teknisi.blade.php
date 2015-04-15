@@ -21,8 +21,8 @@
 				<div class="navbar-collapse collapse">
 					<ul class="nav navbar-nav pull-right">
 						<li><a href="/request_komponen">Request Komponen</a></li>
-						<li><a href="#">On Progress</a></li>
-						<li><a href="history">History</a></li>
+						<li><a href="/onprogress">On Progress</a></li>
+						<li><a href="/history">History</a></li>
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo Session::get('username'); ?> <b class="caret"></b></a>
 							<ul class="dropdown-menu">
