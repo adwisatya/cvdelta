@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}" />
 <link rel="stylesheet" href="{{ asset('/css/style.css') }}" />
 <script src="{{ asset('/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('/js/addRow.js') }}"></script>
 
 </head>
 <body>	
@@ -22,9 +23,9 @@
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Component<b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li><a href="{{ url('/admin/request') }}">Requested Component</a></li>
-							<li><a href="#">stocks</a></li>
-							<li><a href="#">stocks run out</a></li>
-							<li><a href="#">add stock</a></li>
+							<li><a href="{{ url('/admin/stock') }}">stocks</a></li>
+							<li><a href="{{ url('/admin/minimum') }}">stocks run out</a></li>
+							<li><a href="{{ url('/admin/add') }}">add stock</a></li>
 						</ul>
 					</li>
 					<li class="dropdown">
@@ -50,7 +51,6 @@
 	</div> 
 	<div class="container">
 		<div class="content">
-			tes lagi
 			@yield('content')
 		</div>
 	</div>

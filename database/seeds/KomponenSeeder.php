@@ -64,5 +64,27 @@ class KomponenSeeder extends Seeder {
             'keterangan' => 'komponen yang namanya komponen E',
             'min_jumlah' => '5',
         ] );
+
+        Komponen::create( [
+            'supplier' => 'PT. A' ,
+            'nama_komponen' => 'komponen F' ,
+            'no_seri_komponen' => 'k010203-6' ,
+            'harga' => '500000',
+            'jumlah' => '5',
+            'lokasi' => 'gudang1',
+            'keterangan' => 'komponen yang namanya komponen F',
+            'min_jumlah' => '5',
+        ] );
+
+        Komponen::create( [
+            'supplier' => 'PT. B' ,
+            'nama_komponen' => 'komponen G' ,
+            'no_seri_komponen' => 'k010203-7' ,
+            'harga' => '500000',
+            'jumlah' => '4',
+            'lokasi' => 'gudang1',
+            'keterangan' => 'komponen yang namanya komponen G',
+            'min_jumlah' => '5',
+        ] );
     }
 }
