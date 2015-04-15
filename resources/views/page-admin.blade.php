@@ -22,8 +22,8 @@
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Component<b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li><a href="{{ url('/admin/request') }}">Requested Component</a></li>
-							<li><a href="#">stocks</a></li>
-							<li><a href="#">stocks run out</a></li>
+							<li><a href="{{ url('/admin/stock') }}">stocks</a></li>
+							<li><a href="{{ url('/admin/minimum') }}">stocks run out</a></li>
 							<li><a href="#">add stock</a></li>
 						</ul>
 					</li>
