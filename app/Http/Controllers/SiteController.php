@@ -20,4 +20,8 @@ class SiteController extends Controller {
 	public function request(){
 		return view('page-request');
 	}
+
+	public function invoice(){
+		return view('invoice');
+	}
 }

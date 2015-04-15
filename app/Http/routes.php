@@ -26,3 +26,5 @@ Route::get('logout','LoginController@logout');
 Route::get('teknisi','SiteController@teknisiPage');
 Route::get('admin','SiteController@adminPage');
 Route::get('admin/request', 'SiteController@request');
+
+Route::get('invoice','SiteController@invoice');
