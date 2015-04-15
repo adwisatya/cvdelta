@@ -24,7 +24,11 @@ Route::get('index','SiteController@index');
 Route::post('index','LoginController@validateLogin');
 Route::get('logout','LoginController@logout');
 Route::get('teknisi','SiteController@teknisiPage');
+Route::get('request_komponen','SiteController@requestKomponenPage');
 Route::get('admin','SiteController@adminPage');
+
+Route::get('invoice','SiteController@invoice');
+
 Route::get('admin/request', 'ComponentController@request');
 Route::get('admin/stock', 'ComponentController@stock');
 Route::get('admin/minimum', 'ComponentController@min');

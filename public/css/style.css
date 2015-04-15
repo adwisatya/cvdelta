@@ -69,3 +69,33 @@ label{
 form{
 	font-family: arial;
 }
+
+
+/*PDF FORMAT*/
+.kop{
+	margin-top: 2%;
+ 	text-align: center;
+ 	font-size: 16px;
+}
+.kop img{
+	height: 60px;
+	margin-bottom: 1%;
+}
+.invoiceHeader{
+	margin-top: 5%;
+	margin-bottom: 2%;
+}
+table{
+	width: 400px;
+}
+namabarang{
+	font-size: 20px;
+	font-weight: bold;
+}
+.invoiceBarang{
+	margin-bottom: 2%;
+}
+.sign{
+	margin-top: 20%;
+	text-align: right;
+}
