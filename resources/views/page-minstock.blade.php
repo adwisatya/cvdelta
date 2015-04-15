@@ -3,14 +3,17 @@
 @section('content')
 	<div class="row">
 		<table class="table table-hover table-responsive"> 
-			<caption><h2>Requested Component</h2></caption>
+			<caption><h2>Stock Minimum</h2></caption>
 			<thead> 
 				<tr> 
 					<th>No Seri Komponen</th> 
 					<th>Nama Komponen</th> 
-					<th>Barang Terkait</th>
-					<th>Teknisi</th> 
-					<th>Approve</th>
+					<th>Jumlah</th>
+					<th>Jumlah Minimal</th>
+					<th>Lokasi</th> 
+					<th>Keterangan</th>
+					<th>Supplier</th>
+					<th>Harga</th>
 				</tr> 
 			</thead> 
 			<tbody>
@@ -18,16 +21,16 @@
 					<tr>
 						<td>{{$data->no_seri_komponen}}</td>
 						<td>{{$data->nama_komponen}}</td>
-						<td>{{$data->no_seri_barang_rusak}}</td>
-						<td>{{$data->username}}</td>
-						<td>
-							<a href="#" class="btn btn-success" role="button"> Approve </a>
-							<a href="#" class="btn btn-danger" role="button"> Decline </a>
-						</td>
+						<td>{{$data->jumlah}}</td>
+						<td>{{$data->min_jumlah}}</td>
+						<td>{{$data->lokasi}}</td>
+						<td>{{$data->keterangan}}</td>
+						<td>{{$data->supplier}}</td>
+						<td>Rp. {{$data->harga}},00</td>
 					</tr>
 				@endforeach
 			</tbody> 
-		</table><br>	
+		</table><br>
 	</div>
 	
 @endsection
