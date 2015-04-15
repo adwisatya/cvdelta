@@ -13,6 +13,9 @@ class SiteController extends Controller {
 	public function teknisiPage(){
 		return view('dashboard-teknisi');
 	}
+	public function requestKomponenPage(){
+		return view('request-komponen');
+	}
 	public function adminPage(){
 		return view('page-admin');
 	}
