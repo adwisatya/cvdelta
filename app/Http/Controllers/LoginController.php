@@ -39,7 +39,7 @@ class LoginController extends Controller {
 	}
 	
 	/**
-	* Login has several role : dinas, UKM, industri
+	* Login has several role : 
 	* @redirect
 	*/
 	public function validateLogin()

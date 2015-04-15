@@ -25,8 +25,10 @@ Route::post('index','LoginController@validateLogin');
 Route::get('logout','LoginController@logout');
 Route::get('teknisi','SiteController@teknisiPage');
 Route::get('request_komponen','SiteController@requestKomponenPage');
+Route::get('history','SiteController@historyPage');
 Route::get('admin','SiteController@adminPage');
-
+Route::get('profile','SiteController@profilePage');
+Route::post('profile','SiteController@profileUpdate');
 Route::get('invoice','SiteController@invoice');
 
 Route::get('admin/request', 'ComponentController@request');
