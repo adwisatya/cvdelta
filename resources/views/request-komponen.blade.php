@@ -1,15 +1,20 @@
 @extends('page-teknisi')
 @section('content')
-		<form method="post" action="/request_komponen">
-			<input name="_token" hidden value="{!! csrf_token() !!}" />
-			<div class="form-group">
-				<label for="username">Username</label>
-				<input type="input" class="form-control" id="username" placeholder="Enter username" name="username">
-			</div>
-			<div class="form-group">
-				<label for="password">Password</label>
-				<input type="password" class="form-control" id="password" placeholder="Enter password" name="password">
-			</div><br><br>
-			<input type="submit" name="submit" class="form-control" value="Login">
-		</form>
+	<form method="post" action="/request_komponen">
+			Nama barang: 
+		<select name="barang">
+
+		<?php 
+			$nama_komponen = DB::table('komponen')->select('nama_komponen','no_seri_komponen')->get();
+			$nama_komponen = json_decode(json_encode($nama_komponen), true);
+			foreach($nama_komponen as $data){
+				echo '<option value="'.$data['no_seri_komponen'].'">'.$data['nama_komponen'].'</option>';
+			}
+
+		?>	
+		</select>
+		<br/>
+		Jumlah barang:<input type="text" name="jumlah" placeholder="3" size="1"><br/>
+		<input type="submit" name="request" value="Request Barang">
+	</form>
 @stop

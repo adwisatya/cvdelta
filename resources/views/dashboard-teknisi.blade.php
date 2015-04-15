@@ -1,5 +1,7 @@
 @extends('page-teknisi')
 @section('content')
-			Selamat datang <?php echo Session::get('username'); ?>
-			Anda adalah seorang <?php echo Session::get('role'); ?>
+	<form method="post" action="/teknisi">
+		<input type="text" name="jumlah">
+		<input type="submit" name="request" value="Request">
+	</form>
 @stop
