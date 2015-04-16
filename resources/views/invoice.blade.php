@@ -22,13 +22,6 @@ body {background-color:white}
 		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
 	</div>
 	<?php $i = 0; ?>
-	<?php echo sizeof($nKomp) ?>
-	<br>
-
-	@foreach($nKomp as $komp)
-		<?php echo sizeof($komp); ?>
-	@endforeach
-
 	@foreach($barang_rusak as $barang)
 	<!-- diulang dari sini -->
 	<div class="invoiceBarang">
@@ -39,30 +32,24 @@ body {background-color:white}
 					<td colspan="5">Jasa perbaikan</td>
 					<td>harga</td>
 				</tr>
-				<!-- diulang dari sini -->
-					
-					{{--@foreach($komponens as $komponen)--}}
-							@for($j=0;$j<sizeof($komponens[$i]);$j++)
-								<tr>
-									<td>{{$nKomp[$i]}}</td>
-									<td>pcs</td>
-									<td class="komp">{{$komponens[$i][$j]->no_seri_komponen}}</td>
-									<td>@</td>
-									<td>harga</td>
-									<td>subtotal</td>
-								</tr>
-							@endfor
-							<?php $i++; ?>
-					{{--@endforeach--}}
-				
-				<!-- diulang sampe sini -->
+					@for($j=0;$j<sizeof($komponens[$i]);$j++)
+						<tr>
+							<td>{{$komponens[$i][$j]['jumlah']}}</td>
+							<td>pcs</td>
+							<td class="komp">{{$komponens[$i][$j]['no_seri_komponen']}}</td>
+							<td>@</td>
+							<td>Rp. {{$komponens[$i][$j]['harga'][0]->harga}},00</td>
+							<td>Rp. {{$komponens[$i][$j]['subtotal']}},00</td>
+						</tr>
+					@endfor
 				<tr>
 					<td colspan="5"><b>Subtotal</b></td>
-					<td>harga</td>
+					<td>Rp. <?php echo array_sum(array_column($komponens[$i],'subtotal')) ?>,00</td>
 				</tr>
 			</table>
 		</div>
 	</div>
+	<?php $i++; ?>
 	<!-- diulang sampe sini -->
 	@endforeach
 	<div class="sign">

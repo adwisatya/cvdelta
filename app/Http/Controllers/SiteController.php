@@ -95,7 +95,7 @@ class SiteController extends Controller {
 				echo "alert('Password Baru dan Konfirmasi Tidak Sama');";
 				return redirect('/adminprofile');
 			}else{
-				$update = DB::update('update `teknisi` set `password` = ? where `username`=?',array($newPassword,Session::get('username')));
+				$update = DB::update('update `administrasi` set `password` = ? where `username`=?',array($newPassword,Session::get('username')));
 				echo "alert('Password berhasil diubah');";
 				return redirect('/adminprofile');
 			}
@@ -113,34 +113,23 @@ class SiteController extends Controller {
 		$i = 0;
 		foreach($barang_rusak as $b){;
 			$k = database::getComponentUsed($b->no_seri_barang_rusak);
-			
-			foreach ($k as $singK) {
-				$foo = (array)$singK;
-				$foo['bar'] = '1234';
-				$singK = (object)$foo;
-			}
-
 			$komponens[$i] = $k;
-			$nama_komponen = json_decode(json_encode($komponens[$i]), true);
-			print_r($nama_komponen);
-
-			echo "<br><br>";
-
 			$i++;
 		}
 
-		$i = 0;
-		foreach($komponens as $komponen){
-			foreach ($komponen as $komp) {
-				$nKomp[$i] = database::getNKomponen($komp->no_seri_barang_rusak, $komp->no_seri_komponen);
+		$nama_komponen = json_decode(json_encode($komponens), true);
+
+		foreach ($nama_komponen as &$komponen) {
+			foreach ($komponen as &$komp) {
+				$komp['jumlah'] = database::getNKomponen($komp['no_seri_barang_rusak'], $komp['no_seri_komponen']);
+				$komp['harga'] = database::getPrice($komp['no_seri_komponen']);
+				$komp['subtotal'] = $komp['jumlah']*$komp['harga'][0]->harga;
 			}
-			$i++;
 		}
 
-		echo "uigckg ".sizeof($nKomp);
-		// echo "oinlhk ".$nKomp[2];
-		// echo "asdaefvd ".sizeof($nKomp[2]);
-		return view('invoice',compact('barang_rusak','komponens','k', 'nKomp'));
+		$komponens = $nama_komponen;
+		
+		return view('invoice',compact('barang_rusak','komponens'));
 	}
 
 }
