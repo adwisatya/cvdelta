@@ -2,32 +2,32 @@
 @section('content')
 	<?php 
 		$Barang = DB::table('barang_rusak')->where('status','Onprogress')->get();
-		echo "Sedang dalam proses";
-		echo '<table style="width:1050px;" border="1">
+		echo "<h3>Perbaikan Yang Sedang Dalam Proses</h3><hr/>";
+		echo '<table class="table table-hover table-responsive">
 				<tr>
-					<td width="200px">
-						Nama Barang Rusak
+					<td>
+						<b>Nama Barang Rusak</b>
 					</td>
-					<td width="200px">
-						Nama Perusahaan
+					<td>
+						<b>Nama Perusahaan</b>
 					</td>
-					<td width="200px">
-						No Seri Barang Rusak
+					<td>
+						<b>No Seri Barang Rusak</b>
 					</td>
-					<td width="150px">
-						Tanggal Datang
+					<td>
+						<b>Tanggal Datang</b>
 					</td>
-					<td width="150px">
-						Harga
+					<td>
+						<b>Harga</b>
 					</td>
-					<td width="100px">
-						Status
+					<td>
+						<b>Status</b>
 					</td>
-					<td width="150px">
-						Tanggal Diperbaiki
+					<td>
+						<b>Tanggal Diperbaiki</b>
 					</td>
-					<td width="150px">
-						Teknisi
+					<td>
+						<b>Teknisi</b>
 					</td>
 				</tr>';
 		foreach($Barang as $barang){
