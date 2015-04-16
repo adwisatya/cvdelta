@@ -3,6 +3,7 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\database;
+use Input;
 
 use Illuminate\Http\Request;
 
@@ -24,5 +25,21 @@ class ComponentController extends Controller {
 
 	public function add(){
 		return view('page-addstock');
+	}
+
+	public function input(){
+		$no = Input::get('no');
+		$nama = Input::get('nama');
+		$jumlah = Input::get('jumlah');
+		$lokasi = Input::get('lokasi');
+		$keterangan = Input::get('keterangan');
+		$supplier = Input::get('supplier');
+		$harga = Input::get('harga');
+
+		for ($i=0; $i < sizeof($no); $i++) { 
+			database::saveComponent($no[$i], $nama[$i], $jumlah[$i], $lokasi[$i], $keterangan[$i], $supplier[$i], $harga[$i]);
+		}
+
+		return redirect('/admin');
 	}
 }

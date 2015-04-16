@@ -21,8 +21,8 @@
 				<div class="navbar-collapse collapse">
 					<ul class="nav navbar-nav pull-right">
 						<li><a href="/request_komponen">Request Komponen</a></li>
-						<li><a href="/onprogress">On Progress</a></li>
-						<li><a href="/history">History</a></li>
+						<li><a href="#">On Progress</a></li>
+						<li><a href="#">History</a></li>
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo Session::get('username'); ?> <b class="caret"></b></a>
 							<ul class="dropdown-menu">
@@ -37,7 +37,24 @@
 	</div>
 	<div class="container">
 		<div class="content">
-			@yield('content')
+			Selamat datang, <?php echo Session::get('username'); ?>
+			<br/>Silahkan ganti password Anda melalui form berikut ini<br/>
+			<form method="post" action="">
+				<input name="_token" hidden value="{!! csrf_token() !!}" />
+				<label>
+					Password lama:
+				</label>
+				<input type="password" name="oldpwd"><br/>
+				<label>
+					Password baru:
+				</label>
+				<input type="password" name="newpwd"><br/>
+				<label>
+					Konfirmasi Password Baru:
+				</label>
+				<input type="password" name="newpwdconfirmation"><br/>
+				<input type="submit" name="changepwd" value="Ubah Password">
+			</form>
 		</div>
 	</div>
 	<footer class="footer">
