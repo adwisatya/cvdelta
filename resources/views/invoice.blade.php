@@ -7,6 +7,7 @@ body {background-color:white}
 </style>
 </head>
 <body>
+	<!-- <a href="{{ url('admin/pilih-customer/pdf', $nama_perus, $barang_rusak) }}"<button id="btnSub"  class="btn" role="button"> pdf</button></a> -->
 	<div class="kop">
 		<img src="{{url('images/logo_biru.png')}}"><br>
 		Taman Kopo Indah II 1A no. 10 Bandung <br>
@@ -42,7 +43,7 @@ body {background-color:white}
 					@endfor
 				<tr>
 					<td colspan="5"><b>Subtotal</b></td>
-					<td>Rp. <?php echo array_sum(array_column($komponens[$i],'subtotal')) ?>,00</td>
+					<td><b>Rp. <?php echo array_sum(array_column($komponens[$i],'subtotal')) ?>,00</b></td>
 				</tr>
 			</table>
 		</div>
@@ -51,7 +52,7 @@ body {background-color:white}
 	<!-- diulang sampe sini -->
 	@endforeach
 	<div class="sign">
-		Bandung, Bulan tahun
+		Bandung, April 2015
 		<br><br><br><br><br>
 		Sonny Tjahjadi
 	</div>

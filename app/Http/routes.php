@@ -56,4 +56,6 @@ Route::post('admin/customer','ComponentController@addCustomer');
 Route::post('admin/barang-masuk','BarangRusakController@addBarang');
 Route::get('admin/barang-masuk/view','BarangRusakController@viewBarang');
 Route::post('admin/barang-masuk/perbaiki','BarangRusakController@perbaiki');
-Route::post('admin/pilih-customer','SiteController@invoice');
+Route::post('admin/pilih-customer','PrintController@showPDF');
+// Route::get('admin/pilih-customer/pdf','PrintController@showPDF');
+
