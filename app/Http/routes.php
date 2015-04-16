@@ -47,7 +47,7 @@ Route::post('admin/stock-baru','ComponentController@addNewStock');
 Route::post('admin/stock','ComponentController@addStock');
 
 
-Route::get('admin/invoice-per-customer','SiteController@invoice');
+Route::get('admin/invoice-per-customer','SiteController@chooseCustomer');
 
 Route::post('admin', 'ComponentController@input');
 
@@ -56,4 +56,4 @@ Route::post('admin/customer','ComponentController@addCustomer');
 Route::post('admin/barang-masuk','BarangRusakController@addBarang');
 Route::get('admin/barang-masuk/view','BarangRusakController@viewBarang');
 Route::post('admin/barang-masuk/perbaiki','BarangRusakController@perbaiki');
-
+Route::post('admin/pilih-customer','SiteController@invoice');
