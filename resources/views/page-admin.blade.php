@@ -25,7 +25,6 @@
 							<li><a href="{{ url('/admin/request') }}">Requested Component</a></li>
 							<li><a href="{{ url('/admin/stock') }}">stocks</a></li>
 							<li><a href="{{ url('/admin/minimum') }}">stocks run out</a></li>
-							<li><a href="{{ url('/admin/add') }}">add stock</a></li>
 						</ul>
 					</li>
 					<li class="dropdown">
