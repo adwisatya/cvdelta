@@ -22,16 +22,32 @@ class SiteController extends Controller {
 		return view('index');
 	}
 	public function teknisiPage(){
-		return view('dashboard-teknisi');
+		if (Session::get('role')=="teknisi"){
+			return view('request-komponen');
+		}else{
+			return view('index');
+		}
 	}
 	public function historyPage(){
-		return view('historyPage');
+		if (Session::get('role')=="teknisi"){
+			return view('historyPage');
+		}else{
+			return view('index');
+		}		
 	}
 	public function onprogressPage(){
-		return view('onprogressPage');
+		if (Session::get('role')=="teknisi"){
+			return view('onprogressPage');
+		}else{
+			return view('index');
+		}
 	}
 	public function requestKomponenPage(){
-		return view('request-komponen');
+		if (Session::get('role')=="teknisi"){
+			return view('request-komponen');
+		}else{
+			return view('index');
+		}
 	}
 	public function requestKomponen(){
 		$no_seri_barang_rusak = Input::get('no_seri_barang_rusak');
@@ -49,13 +65,26 @@ class SiteController extends Controller {
 		return view('request-komponen');
 	}
 	public function adminPage(){
-		return view('page-admin');
+		if (Session::get('role')=="admin"){
+			return view('admin-index');
+		}else{
+			return view('index');
+		}
 	}
 	public function profilePage(){
-		return view('page-profile');
+		if (Session::get('role')=="teknisi"){
+			return view('page-profile');
+		}else{
+			return view('index');
+		}
 	}
 	public function adminprofilePage(){
-		return view('page-adminprofile');
+		if (Session::get('role')=="admin"){
+			return view('page-adminprofile');
+		}else{
+			return view('index');
+		}
+
 	}
 	public function profileUpdate(){
 		$oldPassword = Input::get('oldpwd');
@@ -102,7 +131,11 @@ class SiteController extends Controller {
 		}
 	}
 	public function request(){
-		return view('page-request');
+		if (Session::get('role')=="admin"){
+			return view('page-request');
+		}else{
+			return view('index');
+		}
 	}
 
 	public function invoice(){
