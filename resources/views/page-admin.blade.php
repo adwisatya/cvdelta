@@ -8,6 +8,7 @@
 <script src="{{ asset('/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('/js/addRow.js') }}"></script>
 <script src="{{ asset('/js/fix.js') }}"></script>
+<script src="{{ asset('/js/approval.js') }}"></script>
 
 </head>
 <body>	

@@ -57,3 +57,4 @@ Route::post('admin/barang-masuk','BarangRusakController@addBarang');
 Route::get('admin/barang-masuk/view','BarangRusakController@viewBarang');
 Route::post('admin/barang-masuk/perbaiki','BarangRusakController@perbaiki');
 Route::post('admin/pilih-customer','SiteController@invoice');
+Route::post('admin/request/approval','ComponentController@approval');
