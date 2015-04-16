@@ -51,19 +51,31 @@
 	</div>
 	<div class="container">
 		<div class="content">
-			<h2>Selamat datang, <?php echo Session::get('username'); ?></h2>
-			<hr/>
-			Silahkan ganti password Anda melalui form berikut ini<br/>
-			<form method="post" action="">
-				<input name="_token" hidden value="{!! csrf_token() !!}" />
-				Password lama:
-				<input type="password" name="oldpwd" style="margin-left:35px;"><br/>
-				Password baru:
-				<input type="password" name="newpwd"><br/>
-				Konfirmasi Password Baru:
-				<input type="password" name="newpwdconfirmation"><br/>
-				<input type="submit" name="changepwd" value="Ubah Password">
-			</form>
+			
+			<h3>Silahkan Ubah Kata Sandi Anda</h3><hr/>
+			<table class="table table-hover table-responsive">
+				<form method="post" action="">
+					<input name="_token" hidden value="{!! csrf_token() !!}" />
+					<tr>
+						<td>Password Lama</td>
+						<td><input type="password" name="oldpwd"></td>
+					</tr>
+					<tr>
+						<td>Password Baru</td>
+						<td><input type="password" name="newpwd"></td>
+					</tr>
+					<tr>
+						<td>Konfirmasi Password</td>
+						<td><input type="password" name="newpwdconfirmation"></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>
+							<input type="submit" name="changepwd" value="Ubah Password">
+						</td>
+					</tr>
+				</form>
+			</table>
 		</div>
 	</div>
 	<footer class="footer">
