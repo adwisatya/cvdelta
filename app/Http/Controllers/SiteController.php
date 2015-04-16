@@ -78,61 +78,32 @@ class SiteController extends Controller {
 
 		$nama_perus="PT. ABC";
 		$barang_rusak = database::getBarangSelesai($nama_perus);
-		// $komponens = new array();
-		// echo sizeof($barang_rusak);
+
 		$i = 0;
-		foreach($barang_rusak as $b){
-			$nKomp[$i] = 0;
+		foreach($barang_rusak as $b){;
 			$k = database::getComponentUsed($b->no_seri_barang_rusak);
-			
-			// print_r($result);
-			// echo $k[0]->no_seri_komponen;
-			
+			// $k->tes = 0;
+
 			$komponens[$i] = $k;
 			$nama_komponen = json_decode(json_encode($komponens[$i]), true);
 			print_r($nama_komponen);
 
-			// if ($nama_komponen[0]['no_seri_komponen']=="k010203-5"){
-			// 	echo "tesasdasdasd";
-			// }
-
-			
-			if (in_array("k010203-5",$nama_komponen[0])){
-				echo "lplmlmplmpm";
-			}
-
-			foreach ($nama_komponen as $komponen) {
-				
-			}
-
-			// print_r($komponens[$i]);
 			echo "<br><br>";
 
-			// if (in_array('k010203-5', $komponens[$i])){
-			// 	echo "true";
-			// } else{
-			// 	echo "false";
-			// }
-
-			foreach($komponens[$i] as $singK){
-				$nKomp[$i] = database::getNKomponen($b->no_seri_barang_rusak, $singK->no_seri_komponen);
-			}
-
 			$i++;
-			// echo ("   tes   ");
 		}
 
-			// print_r($komponens[1]);
+		$i = 0;
+		foreach($komponens as $komponen){
+			foreach ($komponen as $komp) {
+				$nKomp[$i] = database::getNKomponen($komp->no_seri_barang_rusak, $komp->no_seri_komponen);
+			}
+			$i++;
+		}
 
-		// echo sizeof($komponens);
-		// $components = database::getUsedComponent();
-			// echo "hhhhhhhhhhhhhhhh";
-			// echo database::getNKomponen('12345-7', 'k010203-5');
-
-		$nama_komponen = json_decode(json_encode($komponens[0]), true);
-
-		// echo "tes ".$nama_komponen[0]['no_seri_komponen'];
-
+		echo "uigckg ".sizeof($nKomp);
+		// echo "oinlhk ".$nKomp[2];
+		// echo "asdaefvd ".sizeof($nKomp[2]);
 		return view('invoice',compact('barang_rusak','komponens','k', 'nKomp'));
 	}
 

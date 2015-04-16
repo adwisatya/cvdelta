@@ -53,7 +53,7 @@ class database extends Model{
 		return DB::table('tagihan')
 					->where('no_seri_barang_rusak','=',$id_barang)
 					// ->orderBy('no_seri_komponen','asc')
-					// ->distinct()
+					->distinct()
 					->get();
 	}
 

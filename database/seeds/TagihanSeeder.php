@@ -81,5 +81,21 @@ class TagihanSeeder extends Seeder {
             'no_tagihan' => '234',
             'status' => 'billed',
         ] );
+
+        Tagihan::create( [
+            'no_seri_komponen' => 'k010203-2' ,
+            'no_seri_barang_rusak' => '12345-1' ,
+            'tgl' => '2015-04-13' ,
+            'no_tagihan' => '234',
+            'status' => 'billed',
+        ]);
+
+        Tagihan::create( [
+            'no_seri_komponen' => 'k010203-5' ,
+            'no_seri_barang_rusak' => '12345-6' ,
+            'tgl' => '2015-04-13' ,
+            'no_tagihan' => '234',
+            'status' => 'billed',
+        ] );
     }
 }
