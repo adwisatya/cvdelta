@@ -36,8 +36,7 @@
 							<li><a href="#">All</a></li>
 						</ul>
 					</li>
-					<li><a href="#">Customer</a></li>
-					<li><a href="#">Report</a></li>
+					<li><a href="{{ url('/admin/customer') }}">Customer</a></li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Hi namanya! <b class="caret"></b></a>
 						<ul class="dropdown-menu">

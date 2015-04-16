@@ -42,4 +42,20 @@ class ComponentController extends Controller {
 
 		return redirect('/admin');
 	}
+
+	public function customer(){
+		$customer=database::customer();
+		return view('customer', compact('customer'));
+	}
+
+	public function addCustomer(){
+		$nama = Input::get('nama_perusahaan');
+		$alamat = Input::get('alamat');
+		$telepon = Input::get('telepon');
+		$cp = Input::get('contact_person');
+
+		database::saveCustomer($nama,$alamat,$telepon,$cp);
+		return redirect('/admin/customer');
+	}
+
 }

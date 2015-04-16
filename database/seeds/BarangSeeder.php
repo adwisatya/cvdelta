@@ -18,6 +18,7 @@ class BarangSeeder extends Seeder {
             'harga_jasa' => '2000000',
             'status' => 'Pending',
             'tgl_diperbaiki' => '2015-04-11',
+            'username' => 'teknisi1',
         ] );
 
         Barang::create( [
@@ -28,6 +29,7 @@ class BarangSeeder extends Seeder {
             'harga_jasa' => '2000000',
             'status' => 'Pending',
             'tgl_diperbaiki' => '2015-04-11',
+            'username' => 'teknisi2',
         ] );
 
         Barang::create( [
@@ -48,6 +50,7 @@ class BarangSeeder extends Seeder {
             'harga_jasa' => '2000000',
             'status' => 'Pending',
             'tgl_diperbaiki' => '2015-04-11',
+            'username' => 'teknisi3',
         ] );
 
         Barang::create( [
@@ -58,6 +61,7 @@ class BarangSeeder extends Seeder {
             'harga_jasa' => '2000000',
             'status' => 'Pending',
             'tgl_diperbaiki' => '2015-04-11',
+            'username' => 'teknisi1',
         ] );
         
         

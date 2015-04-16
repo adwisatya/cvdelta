@@ -41,3 +41,6 @@ Route::get('admin/add', 'ComponentController@add');
 Route::get('admin/invoice-per-customer','SiteController@invoice');
 
 Route::post('admin', 'ComponentController@input');
+
+Route::get('admin/customer','ComponentController@customer');
+Route::post('admin/customer','ComponentController@addCustomer');
