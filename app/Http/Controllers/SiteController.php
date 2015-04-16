@@ -89,7 +89,7 @@ class SiteController extends Controller {
 				echo "alert('Password Baru dan Konfirmasi Tidak Sama');";
 				return redirect('/adminprofile');
 			}else{
-				$update = DB::update('update `teknisi` set `password` = ? where `username`=?',array($newPassword,Session::get('username')));
+				$update = DB::update('update `administrasi` set `password` = ? where `username`=?',array($newPassword,Session::get('username')));
 				echo "alert('Password berhasil diubah');";
 				return redirect('/adminprofile');
 			}
