@@ -51,7 +51,7 @@ class LoginController extends Controller {
 		$user = DB::table('teknisi')->where('username',$inputUsername)->first();		
 		if($user->password == $inputPassword){
 			Session::put('username', $inputUsername);
-			if($user->role==1){
+			if($user->role=="admin"){
 				Session::put('role', 'admin');
 				return redirect('/admin');
 			}else{

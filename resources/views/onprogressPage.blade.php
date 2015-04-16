@@ -1,10 +1,16 @@
 @extends('page-teknisi')
 @section('content')
 	<?php 
-		$Barang = DB::table('barang_rusak')->where('status','1')->get();
-		echo "Selesai diproses";
+		$Barang = DB::table('barang_rusak')->where('status','Onprogress')->get();
+		echo "Sedang dalam proses";
 		echo '<table style="width:1050px;" border="1">
 				<tr>
+					<td width="200px">
+						Nama Barang Rusak
+					</td>
+					<td width="200px">
+						Nama Perusahaan
+					</td>
 					<td width="200px">
 						No Seri Barang Rusak
 					</td>
@@ -21,15 +27,18 @@
 						Tanggal Diperbaiki
 					</td>
 					<td width="150px">
-						Tanggal Selesai
-					</td>
-					<td width="150px">
 						Teknisi
 					</td>
 				</tr>';
 		foreach($Barang as $barang){
 			echo '
 				<tr>
+					<td>
+						'.$barang->nama_barang_rusak.'
+					</td>
+					<td>
+						'.$barang->nama_perusahaan.'
+					</td>
 					<td>
 						'.$barang->no_seri_barang_rusak.'
 					</td>
@@ -44,9 +53,6 @@
 					</td>
 					<td>
 						'.$barang->tgl_diperbaiki.'
-					</td>
-					<td>
-						'.$barang->tgl_selesai.'
 					</td>
 					<td>
 						'.$barang->username.'

@@ -21,8 +21,9 @@ body {background-color:white}
 		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
 	</div>
-	<!-- diulang dari sini -->
+	<?php $i = 0; ?>
 	@foreach($barang_rusak as $barang)
+	<!-- diulang dari sini -->
 	<div class="invoiceBarang">
 		<namabarang>{{$barang->no_seri_barang_rusak}}</namabarang>
 		<div class="komponen">
@@ -32,47 +33,21 @@ body {background-color:white}
 					<td>harga</td>
 				</tr>
 				<!-- diulang dari sini -->
+					
+					{{--@foreach($komponens as $komponen)--}}
+							@for($j=0;$j<sizeof($komponens[$i]);$j++)
+								<tr>
+									<td>{{$nKomp[$j]}}</td>
+									<td>pcs</td>
+									<td class="komp">{{$komponens[$i][$j]->no_seri_komponen}}</td>
+									<td>@</td>
+									<td>harga</td>
+									<td>subtotal</td>
+								</tr>
+							@endfor
+							<?php $i++; ?>
+					{{--@endforeach--}}
 				
-					<tr>
-						<td>2</td>
-						<td>pcs</td>
-						<td class="komp">nama komponennya panjang banget jadinya gini</td>
-						<td>@</td>
-						<td>harga</td>
-						<td>subtotal</td>
-					</tr>
-				<tr>
-					<td>2</td>
-					<td>pcs</td>
-					<td class="komp">nama komponennya panjang banget jadinya gini</td>
-					<td>@</td>
-					<td>harga</td>
-					<td>subtotal</td>
-				</tr>
-				<tr>
-					<td>2</td>
-					<td>sat</td>
-					<td class="komp">nama komponennya </td>
-					<td>@</td>
-					<td>harga</td>
-					<td>subtotal</td>
-				</tr>
-				<tr>
-					<td>2</td>
-					<td>sat</td>
-					<td class="komp">nama komponennya </td>
-					<td>@</td>
-					<td>harga</td>
-					<td>subtotal</td>
-				</tr>
-				<tr>
-					<td>2</td>
-					<td>sat</td>
-					<td class="komp">nama komponennya </td>
-					<td>@</td>
-					<td>harga</td>
-					<td>subtotal</td>
-				</tr>
 				<!-- diulang sampe sini -->
 				<tr>
 					<td colspan="5"><b>Subtotal</b></td>
@@ -83,7 +58,6 @@ body {background-color:white}
 	</div>
 	<!-- diulang sampe sini -->
 	@endforeach
-
 	<div class="sign">
 		Bandung, Bulan tahun
 		<br><br><br><br><br>

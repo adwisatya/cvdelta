@@ -22,6 +22,26 @@ class BarangSeeder extends Seeder {
         ] );
 
         Barang::create( [
+            'nama_perusahaan' => 'PT. ABC',
+            'nama_barang_rusak' => 'barang A',
+            'no_seri_barang_rusak' => '12345-6',
+            'tgl_datang' => '2015-04-10',
+            'harga_jasa' => '2000000',
+            'status' => 'Pending',
+            'tgl_diperbaiki' => '2015-04-11',
+        ] );
+
+        Barang::create( [
+            'nama_perusahaan' => 'PT. ABC',
+            'nama_barang_rusak' => 'barang A',
+            'no_seri_barang_rusak' => '12345-7',
+            'tgl_datang' => '2015-04-10',
+            'harga_jasa' => '2000000',
+            'status' => 'Pending',
+            'tgl_diperbaiki' => '2015-04-11',
+        ] );
+
+        Barang::create( [
             'nama_perusahaan' => 'PT. DEF',
             'nama_barang_rusak' => 'barang B',
             'no_seri_barang_rusak' => '12345-2',
