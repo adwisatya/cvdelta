@@ -47,11 +47,24 @@
 					</li>
 				</ul>
 			</div> <!--/.nav-collapse-->
+			</div>
 		</div>
-	</div> 
+	</div>
 	<div class="container">
 		<div class="content">
-			@yield('content')
+			<h2>Selamat datang, <?php echo Session::get('username'); ?></h2>
+			<hr/>
+			Silahkan ganti password Anda melalui form berikut ini<br/>
+			<form method="post" action="">
+				<input name="_token" hidden value="{!! csrf_token() !!}" />
+				Password lama:
+				<input type="password" name="oldpwd" style="margin-left:35px;"><br/>
+				Password baru:
+				<input type="password" name="newpwd"><br/>
+				Konfirmasi Password Baru:
+				<input type="password" name="newpwdconfirmation"><br/>
+				<input type="submit" name="changepwd" value="Ubah Password">
+			</form>
 		</div>
 	</div>
 	<footer class="footer">
@@ -60,5 +73,7 @@
         <p class="text-muted">Copyright 2015</p>
       </div>
     </footer>
+
+
 </body>
 </html>

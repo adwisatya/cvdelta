@@ -36,6 +36,8 @@ Route::get('onprogress','SiteController@onprogressPage');
 Route::get('admin','SiteController@adminPage');
 Route::get('profile','SiteController@profilePage');
 Route::post('profile','SiteController@profileUpdate');
+Route::get('adminprofile','SiteController@adminprofilePage');
+Route::post('adminprofile','SiteController@adminprofileUpdate');
 // Route::get('invoice','SiteController@invoice');
 Route::get('admin/request', 'ComponentController@request');
 Route::get('admin/stock', 'ComponentController@stock');
