@@ -32,11 +32,11 @@ class SiteController extends Controller {
 		$no_seri_komponen = Input::get('no_seri_komponen');
 		$jumlah = Input::get('jumlah');
 		$tanggal = Input::get('tanggal');
-		$no_tagihan = Input::get('no_tagihan');
+		//$no_tagihan = Input::get('no_tagihan');
 		$i=0;
 		if($no_seri_barang_rusak != "" && $no_seri_komponen != ""){
 			while($i<$jumlah){
-				DB::table('tagihan')->insert(array('no_seri_komponen'=>$no_seri_komponen,'no_seri_barang_rusak'=>$no_seri_barang_rusak,'tgl'=>$tanggal,'no_tagihan'=>$no_tagihan,'status'=>'requested'));
+				DB::table('tagihan')->insert(array('no_seri_komponen'=>$no_seri_komponen,'no_seri_barang_rusak'=>$no_seri_barang_rusak,'tgl'=>$tanggal,'status'=>'requested'));
 				$i++;
 			}
 		}

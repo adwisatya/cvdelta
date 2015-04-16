@@ -29,7 +29,7 @@
 		</select>
 		<br/>
 		Jumlah permintaan: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="jumlah" placeholder="3" size="1"><br/>
-		Nomor tagihan: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="no_tagihan" placeholder="3" size="2"><br/>
+		<!--Nomor tagihan: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="no_tagihan" placeholder="3" size="2"><br/>-->
 		<input type="hidden" name="tanggal" value="<?php echo date("Y-m-d"); ?>">
 		
 		<input type="submit" name="request" value="Request Barang">
