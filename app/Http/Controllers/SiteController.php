@@ -142,30 +142,27 @@ class SiteController extends Controller {
 
 		$nama_perus="PT. ABC";
 		$barang_rusak = database::getBarangSelesai($nama_perus);
+
 		$i = 0;
 		foreach($barang_rusak as $b){;
 			$k = database::getComponentUsed($b->no_seri_barang_rusak);
 			$komponens[$i] = $k;
-			$nama_komponen = json_decode(json_encode($komponens[$i]), true);
-			print_r($nama_komponen);
-
-			echo "<br><br>";
-
 			$i++;
 		}
 
-		$i = 0;
-		foreach($komponens as $komponen){
-			foreach ($komponen as $komp) {
-				$nKomp[$i] = database::getNKomponen($komp->no_seri_barang_rusak, $komp->no_seri_komponen);
+		$nama_komponen = json_decode(json_encode($komponens), true);
+
+		foreach ($nama_komponen as &$komponen) {
+			foreach ($komponen as &$komp) {
+				$komp['jumlah'] = database::getNKomponen($komp['no_seri_barang_rusak'], $komp['no_seri_komponen']);
+				$komp['harga'] = database::getPrice($komp['no_seri_komponen']);
+				$komp['subtotal'] = $komp['jumlah']*$komp['harga'][0]->harga;
 			}
-			$i++;
 		}
 
-		echo "uigckg ".sizeof($nKomp);
-		// echo "oinlhk ".$nKomp[2];
-		// echo "asdaefvd ".sizeof($nKomp[2]);
-		return view('invoice',compact('barang_rusak','komponens','k', 'nKomp'));
+		$komponens = $nama_komponen;
+		
+		return view('invoice',compact('barang_rusak','komponens'));
 	}
 
 }
