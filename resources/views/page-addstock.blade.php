@@ -5,7 +5,7 @@
 	<form method="post" action="/admin" id="form_data">
 		<input name="_token" hidden value="{!! csrf_token() !!}" />
 		<table class="table table-hover table-responsive" id="tblData"> 
-			<caption><h2>Stock Minimum</h2></caption>
+			<caption><h2>Add Stock</h2></caption>
 			<thead>
 				<tr>
 					<th>No Seri Komponen</th> 
@@ -15,12 +15,12 @@
 					<th>Keterangan</th>
 					<th>Supplier</th>
 					<th>Harga</th>
-					<th></th
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
-		            <td><input type='text' class='form-control' name='no[]' placeholder='No Seri Komponen'></td>
+		            <td><input type='text' class='form-control' name='no[]' placeholder='No Komponen'></td>
 		            <td><input type='text' class='form-control' name='nama[]' placeholder='Nama Komponen'></td>
 		            <td><input type='text' class='form-control' name='jumlah[]' placeholder='Jumlah'></td>
 		            <td><input type='text' class='form-control' name='lokasi[]' placeholder='Lokasi'></td>

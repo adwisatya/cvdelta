@@ -21,7 +21,8 @@ class database extends Model{
 
 	public static function getMinStock(){
 		return DB::table('komponen')
-				->where('jumlah','<=', array('min_jumlah'))
+				// ->where('jumlah','<=', array('min_jumlah'))
+				->whereRaw('jumlah <= min_jumlah')
 				->get();
 	}
 
@@ -72,6 +73,20 @@ class database extends Model{
 			]);
 	}
 
+	public static function customer(){
+		return DB::table('customer')->get();
+	}
+
+	public static function saveCustomer($nama,$alamat,$telepon,$cp){
+		DB::table('customer')->insert(
+			[
+				'nama_perusahaan' => $nama,
+				'alamat' => $alamat,
+				'telepon' => $telepon,
+				'contact_person' => $cp,
+			]);
+	}
+
 	public static function getNKomponen($id_barang,$id_komp){
 		// echo "tes: ".$id_barang;
 		// echo "tes2: ".$id_komp."<br>";
@@ -88,7 +103,6 @@ class database extends Model{
 					->where('no_seri_komponen','=',$id_komponen)
 					->get();
 	}
-
 
 
 
