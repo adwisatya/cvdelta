@@ -25,18 +25,22 @@ class database extends Model{
 				->get();
 	}
 
-	public static function getBarangSelesai(){
-		return DB::table('barang_rusak')
-					->where('status','=','fixed')
-					->get();
-	}
-
-	// public static function getUsedComponent($id_barang_rusak){
-	// 	return DB::table('tagihan')
-					
-	// 				->where ('no_seri_barang_rusak','=','$id_barang_rusak')
-	// 				// ->where ('status','','') -->kolom status nya belom ada
+	// public static function getBarangSelesai(){
+	// 	return DB::table('barang_rusak')
+	// 				->where('status','=','fixed')
 	// 				->get();
 	// }
+
+	public static function getBarangSelesai(){
+		return DB::table('tagihan')
+					->leftJoin('barang_rusak','tagihan.no_seri_barang_rusak','=','barang_rusak.no_seri_barang_rusak')
+					->leftJoin('milik','barang_rusak.no_seri_barang_rusak','=','milik.no_seri_barang_rusak')
+					// ->join('customer','milik.nama_perusahaan','=','customer.nama_perusahaan')
+
+					// ->where('customer.nama_perusahaan','=',$nama_customer)
+					// ->where ('no_seri_barang_rusak','=','inidiisiapa')
+					// ->where ('status','','') -->kolom status nya belom ada
+					->get();
+	}
 
 }

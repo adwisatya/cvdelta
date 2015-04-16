@@ -11,49 +11,55 @@ class BarangSeeder extends Seeder {
         DB::statement("SET foreign_key_checks=1");
 
     	Barang::create( [
+            'nama_perusahaan' => 'PT. ABC',
+            'nama_barang_rusak' => 'barang A',
             'no_seri_barang_rusak' => '12345-1',
             'tgl_datang' => '2015-04-10',
             'harga_jasa' => '2000000',
             'status' => 'Pending',
             'tgl_diperbaiki' => '2015-04-11',
         ] );
-        
+
         Barang::create( [
+            'nama_perusahaan' => 'PT. DEF',
+            'nama_barang_rusak' => 'barang B',
             'no_seri_barang_rusak' => '12345-2',
-            'tgl_datang' => '2015-04-9',
+            'tgl_datang' => '2015-04-10',
             'harga_jasa' => '2000000',
-            'status' => 'Fixed',
-            'tgl_diperbaiki' => '2015-04-10',
-            'tgl_selesai' => '2015-04-13',
-            'username' => 'teknisi2',
-        ] );
-
-        Barang::create( [
-            'no_seri_barang_rusak' => '12345-3',
-            'tgl_datang' => '2015-04-8',
-            'harga_jasa' => '2000000',
-            'status' => 'On Progress',
-            'tgl_diperbaiki' => '2015-04-9',
-            'username' => 'teknisi3',
-        ] );
-
-        Barang::create( [
-            'no_seri_barang_rusak' => '12345-4',
-            'tgl_datang' => '2015-04-7',
-            'harga_jasa' => '2000000',
-            'status' => 'Fixed',
-            'tgl_diperbaiki' => '2015-04-8',
-            'tgl_selesai' => '2015-04-13',
-            'username' => 'teknisi4',
-        ] );
-
-        Barang::create( [
-            'no_seri_barang_rusak' => '12345-5',
-            'tgl_datang' => '2015-04-6',
-            'harga_jasa' => '2000000',
-            'status' => 'On Progress',
+            'status' => 'Pending',
             'tgl_diperbaiki' => '2015-04-11',
-            'username' => 'teknisi5',
         ] );
+
+        Barang::create( [
+            'nama_perusahaan' => 'PT. ghi',
+            'nama_barang_rusak' => 'barang C',
+            'no_seri_barang_rusak' => '12345-3',
+            'tgl_datang' => '2015-04-10',
+            'harga_jasa' => '2000000',
+            'status' => 'Pending',
+            'tgl_diperbaiki' => '2015-04-11',
+        ] );
+
+        Barang::create( [
+            'nama_perusahaan' => 'PT. jkl',
+            'nama_barang_rusak' => 'barang D',
+            'no_seri_barang_rusak' => '12345-4',
+            'tgl_datang' => '2015-04-10',
+            'harga_jasa' => '2000000',
+            'status' => 'Pending',
+            'tgl_diperbaiki' => '2015-04-11',
+        ] );
+
+        Barang::create( [
+            'nama_perusahaan' => 'PT. mno',
+            'nama_barang_rusak' => 'barang E',
+            'no_seri_barang_rusak' => '12345-5',
+            'tgl_datang' => '2015-04-10',
+            'harga_jasa' => '2000000',
+            'status' => 'Pending',
+            'tgl_diperbaiki' => '2015-04-11',
+        ] );
+        
+        
     }
 }

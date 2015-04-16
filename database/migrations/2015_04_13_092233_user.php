@@ -29,22 +29,7 @@ class User extends Migration {
 
 			$table->primary('username');
 		});
-
-		Schema::create('barang_rusak',function($table)
-		{
-			$table->string('no_seri_barang_rusak');
-			$table->date('tgl_datang');
-			$table->string('harga_jasa');
-			$table->string('status');
-
-			$table->primary('no_seri_barang_rusak');
-			$table->date('tgl_diperbaiki');
-			$table->date('tgl_selesai');
-			$table->string('username');
-			$table->foreign('username')->references('username')->on('teknisi');
-
-		});
-
+		
 		Schema::create('customer', function($table)
 		{
 			$table->string('nama_perusahaan');
@@ -54,15 +39,36 @@ class User extends Migration {
 
 			$table->primary('nama_perusahaan');
 		});
-
-		Schema::create('milik', function($table)
+		
+		Schema::create('barang_rusak',function($table)
 		{
+			$table->string('nama_barang_rusak');
 			$table->string('nama_perusahaan');
 			$table->string('no_seri_barang_rusak');
+			$table->string('no_surat_jalan');
+			$table->date('tgl_datang');
+			$table->string('harga_jasa');
+			$table->string('status');
 
-			$table->foreign('nama_perusahaan')->references('nama_perusahaan')->on('customer');
-			$table->foreign('no_seri_barang_rusak')->references('no_seri_barang_rusak')->on('barang_rusak');
+			$table->primary('no_seri_barang_rusak');
+			$table->date('tgl_diperbaiki');
+			$table->date('tgl_selesai');
+			$table->string('username');
+			$table->foreign('username')->references('username')->on('teknisi')->onDelete('cascade');
+			$table->foreign('nama_perusahaan')->references('nama_perusahaan')->on('customer')->onDelete('cascade');
+
 		});
+
+		
+
+		// Schema::create('milik', function($table)
+		// {
+		// 	$table->string('nama_perusahaan');
+		// 	$table->string('no_seri_barang_rusak');
+
+		// 	$table->foreign('nama_perusahaan')->references('nama_perusahaan')->on('customer');
+		// 	$table->foreign('no_seri_barang_rusak')->references('no_seri_barang_rusak')->on('barang_rusak');
+		// });
 
 		Schema::create('komponen', function($table)
 		{
@@ -84,9 +90,10 @@ class User extends Migration {
 			$table->string('no_seri_barang_rusak');
 			$table->date('tgl');
 			$table->string('no_tagihan');
+			$table->string('status');
 
-			$table->foreign('no_seri_komponen')->references('no_seri_komponen')->on('komponen');
-			$table->foreign('no_seri_barang_rusak')->references('no_seri_barang_rusak')->on('barang_rusak');
+			$table->foreign('no_seri_komponen')->references('no_seri_komponen')->on('komponen')->onDelete('cascade');
+			$table->foreign('no_seri_barang_rusak')->references('no_seri_barang_rusak')->on('barang_rusak')->onDelete('cascade');
 		});
 
 	}
@@ -102,7 +109,6 @@ class User extends Migration {
 		Schema::drop('administrasi');
 		Schema::drop('barang_rusak');
 		Schema::drop('customer');
-		Schema::drop('milik');
 		Schema::drop('komponen');
 		Schema::drop('tagihan');
 	}
