@@ -20,6 +20,21 @@
 			</div>
 		</div>
 {{-- end modal --}}
+{{-- modal --}}
+
+		<div id="perbaiki" class="modalDialog">
+			<div>
+				<a href="#close" title="Close" class="close">X</a>
+				<h2>Perbaiki Barang</h2>
+				<form method="post" action="/admin/barang-masuk/perbaiki" >
+					<input name="_token" hidden value="{!! csrf_token() !!}" />
+					<input class='form-control' type="text" name="nama_teknisi" placeholder="Nama Teknisi">
+					<br>
+					<button id="btnSub"  class="btn" role="button"> Simpan </button>
+				</form>
+			</div>
+		</div>
+{{-- end modal --}}
 	<div class="row">
 		<table class="table table-hover table-responsive" id="tblData"> 
 			<caption><h2>Barang Rusak</h2></caption>
@@ -50,7 +65,13 @@
 		            <td>{{$barang->status}}</td>
 		            <td>{{$barang->tgl_diperbaiki}}</td>
 		            <td>{{$barang->tgl_selesai}}</td>
-		            <td>{{$barang->username}}</td>
+		            <td>@if($barang->username=="")
+		            		<a href="#perbaiki"><button id="pilihTeknisi" class="btn " role="button"> Pilih</button></a>
+		            	@else
+		            		$barang->username
+		            	@endif
+		            	
+		            </td>
 	            </tr>
 	            @endforeach
 			</tbody>

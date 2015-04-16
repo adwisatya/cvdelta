@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use Input;
 use App\database;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class BarangRusakController extends Controller {
 
@@ -24,5 +25,14 @@ class BarangRusakController extends Controller {
 		$barang_rusak=database::getBarangRusak();
 		return view('barang-rusak', compact('barang_rusak'));
 		
+	}
+
+	public function perbaiki(){
+		$username=Input::get('nama_teknisi');
+		$status="Onprogress";
+		$tgl_diperbaiki=Carbon::now()->toDateString();
+
+		database::perbaikiBarang($username,$status,$tgl_diperbaiki);
+		return redirect('/admin/barang-masuk/view');
 	}
 }

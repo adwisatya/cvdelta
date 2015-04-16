@@ -55,4 +55,5 @@ Route::get('admin/customer','ComponentController@customer');
 Route::post('admin/customer','ComponentController@addCustomer');
 Route::post('admin/barang-masuk','BarangRusakController@addBarang');
 Route::get('admin/barang-masuk/view','BarangRusakController@viewBarang');
+Route::post('admin/barang-masuk/perbaiki','BarangRusakController@perbaiki');
 

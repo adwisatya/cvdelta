@@ -135,14 +135,18 @@ class database extends Model{
 				'no_surat_jalan' => $no_surat_jalan,
 				'tgl_datang' => Carbon::now()->toDateString(),
 				'harga_jasa' => 0,
-				'status' => 'belum',
+				'status' => 'pending',
 			]);
 	}
 
 	public static function getBarangRusak(){
 		return DB::table('barang_rusak')
-				->where('status','belum')
+				->where('status','pending')
 				->get();
+	}
+
+	public static function perbaikiBarang($username,$status,$tgl_diperbaiki){
+		//update database
 	}
 
 }
