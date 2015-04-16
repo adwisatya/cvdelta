@@ -28,11 +28,12 @@ class BarangRusakController extends Controller {
 	}
 
 	public function perbaiki(){
+		$noseri=Input::get('noseri');
 		$username=Input::get('nama_teknisi');
 		$status="Onprogress";
 		$tgl_diperbaiki=Carbon::now()->toDateString();
 
-		database::perbaikiBarang($username,$status,$tgl_diperbaiki);
+		database::perbaikiBarang($noseri, $username,$status,$tgl_diperbaiki);
 		return redirect('/admin/barang-masuk/view');
 	}
 }

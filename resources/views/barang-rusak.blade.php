@@ -28,6 +28,7 @@
 				<h2>Perbaiki Barang</h2>
 				<form method="post" action="/admin/barang-masuk/perbaiki" >
 					<input name="_token" hidden value="{!! csrf_token() !!}" />
+					<input class='form-control' type="hidden" id="noseri" name="noseri">
 					<input class='form-control' type="text" name="nama_teknisi" placeholder="Nama Teknisi">
 					<br>
 					<button id="btnSub"  class="btn" role="button"> Simpan </button>
@@ -65,8 +66,8 @@
 		            <td>{{$barang->status}}</td>
 		            <td>{{$barang->tgl_diperbaiki}}</td>
 		            <td>{{$barang->tgl_selesai}}</td>
-		            <td>@if($barang->username=="")
-		            		<a href="#perbaiki"><button id="pilihTeknisi" class="btn " role="button"> Pilih</button></a>
+		            <td id="{{$barang->no_seri_barang_rusak}}">@if($barang->username=="")
+		            		<a href="#perbaiki"><button class="btn pilihTeknisi" role="button"> Pilih</button></a>
 		            	@else
 		            		{{$barang->username}}
 		            	@endif

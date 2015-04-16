@@ -12,7 +12,9 @@ class database extends Model{
 				->join('tagihan','komponen.no_seri_komponen','=','tagihan.no_seri_komponen')
 				->join('barang_rusak','tagihan.no_seri_barang_rusak','=','barang_rusak.no_seri_barang_rusak')
 				->join('teknisi','barang_rusak.username','=','teknisi.username')
+				->where('tagihan.status','=','requested')
 				->select('komponen.no_seri_komponen','komponen.nama_komponen','barang_rusak.no_seri_barang_rusak','teknisi.username')
+				->distinct()
 				->get();
 	}
 
@@ -120,11 +122,43 @@ class database extends Model{
 	public static function getBarangRusak(){
 		return DB::table('barang_rusak')
 				->where('status','pending')
+				->orWhere('status','Onprogress')
 				->get();
 	}
 
-	public static function perbaikiBarang($username,$status,$tgl_diperbaiki){
-		//update database
+	public static function perbaikiBarang($noseri, $username,$status,$tgl_diperbaiki){
+		DB::table('barang_rusak')
+			->where('no_seri_barang_rusak','=',$noseri)
+			->update(
+				[
+					'username' => $username,
+					'status' => $status,
+					'tgl_diperbaiki' => $tgl_diperbaiki,
+				]);
+	}
+
+	public static function approval($status, $no_seri_komponen, $no_seri_barang_rusak, $username){
+		if ($status=="approved"){
+			DB::table('komponen')
+				->join('tagihan','komponen.no_seri_komponen','=','tagihan.no_seri_komponen')
+				->join('barang_rusak','tagihan.no_seri_barang_rusak','=','barang_rusak.no_seri_barang_rusak')
+				->join('teknisi','barang_rusak.username','=','teknisi.username')
+				->where('komponen.no_seri_komponen','=', $no_seri_komponen)
+				->where('barang_rusak.no_seri_barang_rusak','=', $no_seri_barang_rusak)
+				->where('teknisi.username','=',$username)
+				->update([
+						'tagihan.status' => $status
+					]);
+		} else{
+			DB::table('komponen')
+				->join('tagihan','komponen.no_seri_komponen','=','tagihan.no_seri_komponen')
+				->join('barang_rusak','tagihan.no_seri_barang_rusak','=','barang_rusak.no_seri_barang_rusak')
+				->join('teknisi','barang_rusak.username','=','teknisi.username')
+				->where('komponen.no_seri_komponen','=', $no_seri_komponen)
+				->where('barang_rusak.no_seri_barang_rusak','=', $no_seri_barang_rusak)
+				->where('teknisi.username','=',$username)
+				->delete();
+		}
 	}
 
 }
