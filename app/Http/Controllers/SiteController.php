@@ -109,21 +109,9 @@ class SiteController extends Controller {
 
 		$nama_perus="PT. ABC";
 		$barang_rusak = database::getBarangSelesai($nama_perus);
-<<<<<<< HEAD
-=======
-
->>>>>>> 20c69b4c82a6d4a637cdb73de07b99995df7daeb
 		$i = 0;
 		foreach($barang_rusak as $b){;
 			$k = database::getComponentUsed($b->no_seri_barang_rusak);
-			
-<<<<<<< HEAD
-=======
-			// $foo = (array)$k;
-			// $foo['bar'] = '1234';
-			// $k = (object)$foo;
-
->>>>>>> 20c69b4c82a6d4a637cdb73de07b99995df7daeb
 			$komponens[$i] = $k;
 			$nama_komponen = json_decode(json_encode($komponens[$i]), true);
 			print_r($nama_komponen);
