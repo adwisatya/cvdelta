@@ -31,7 +31,7 @@
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Invoice<b class="caret"></b></a>
 						<ul class="dropdown-menu">
-							<li><a href="#">Per Customer</a></li>
+							<li><a href="{{ url('/admin/invoice-per-customer') }}">Per Customer</a></li>
 							<li><a href="#">Per Month</a></li>
 							<li><a href="#">All</a></li>
 						</ul>

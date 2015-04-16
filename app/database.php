@@ -24,4 +24,19 @@ class database extends Model{
 				->where('jumlah','<=','min_jumlah')
 				->get();
 	}
+
+	public static function getBarangSelesai(){
+		return DB::table('barang_rusak')
+					->where('status','=','fixed')
+					->get();
+	}
+
+	// public static function getUsedComponent($id_barang_rusak){
+	// 	return DB::table('tagihan')
+					
+	// 				->where ('no_seri_barang_rusak','=','$id_barang_rusak')
+	// 				// ->where ('status','','') -->kolom status nya belom ada
+	// 				->get();
+	// }
+
 }

@@ -1,14 +1,14 @@
 <html>
 <head>
 <title>CV. Delta</title>
-<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="{{url('css/style.css')}}" />
 <style>
 body {background-color:white}
 </style>
 </head>
 <body>
 	<div class="kop">
-		<img src="images/logo_biru.png"><br>
+		<img src="{{url('images/logo_biru.png')}}"><br>
 		Taman Kopo Indah II 1A no. 10 Bandung <br>
 		Telp/fax (022) 5415768
 		<hr>
@@ -22,32 +22,67 @@ body {background-color:white}
 		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
 	</div>
 	<!-- diulang dari sini -->
+	@foreach($barang_rusak as $barang)
 	<div class="invoiceBarang">
-		<namabarang>barang 1</namabarang>
+		<namabarang>{{$barang->no_seri_barang_rusak}}</namabarang>
 		<div class="komponen">
 			<table>
+				<tr>
+					<td colspan="5">Jasa perbaikan</td>
+					<td>harga</td>
+				</tr>
 				<!-- diulang dari sini -->
+				
+					<tr>
+						<td>2</td>
+						<td>pcs</td>
+						<td class="komp">nama komponennya panjang banget jadinya gini</td>
+						<td>@</td>
+						<td>harga</td>
+						<td>subtotal</td>
+					</tr>
 				<tr>
-					<td>nama komponennya panjang banget jadinya gini</td>
+					<td>2</td>
+					<td>pcs</td>
+					<td class="komp">nama komponennya panjang banget jadinya gini</td>
+					<td>@</td>
 					<td>harga</td>
+					<td>subtotal</td>
 				</tr>
 				<tr>
-					<td>nama komponen</td>
+					<td>2</td>
+					<td>sat</td>
+					<td class="komp">nama komponennya </td>
+					<td>@</td>
 					<td>harga</td>
+					<td>subtotal</td>
 				</tr>
 				<tr>
-					<td>nama komponen</td>
+					<td>2</td>
+					<td>sat</td>
+					<td class="komp">nama komponennya </td>
+					<td>@</td>
 					<td>harga</td>
+					<td>subtotal</td>
 				</tr>
 				<tr>
-					<td><b>sub total</b></td>
-					<td><b>total harga</b></td>
+					<td>2</td>
+					<td>sat</td>
+					<td class="komp">nama komponennya </td>
+					<td>@</td>
+					<td>harga</td>
+					<td>subtotal</td>
 				</tr>
 				<!-- diulang sampe sini -->
+				<tr>
+					<td colspan="5"><b>Subtotal</b></td>
+					<td>harga</td>
+				</tr>
 			</table>
 		</div>
 	</div>
 	<!-- diulang sampe sini -->
+	@endforeach
 
 	<div class="sign">
 		Bandung, Bulan tahun
