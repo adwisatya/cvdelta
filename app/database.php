@@ -4,6 +4,7 @@ namespace App;
  
 use Illuminate\Database\Eloquent\Model;
 use DB;
+use Carbon\Carbon;
 
 class database extends Model{
 	public static function getRequestedComponent(){
@@ -101,6 +102,25 @@ class database extends Model{
 			->where('nama_komponen',$nama_komponen)
 			->orWhere('no_seri_komponen',$no_seri_komponen)
 			->increment('jumlah', $jumlah);
+	}
+
+	public static function saveBarang($nama_barang_rusak, $nama_perusahaan, $no_seri_barang_rusak, $no_surat_jalan){
+		DB::table('barang_rusak')->insert(
+			[
+				'nama_barang_rusak' => $nama_barang_rusak,
+				'nama_perusahaan' => $nama_perusahaan,
+				'no_seri_barang_rusak' => $no_seri_barang_rusak,
+				'no_surat_jalan' => $no_surat_jalan,
+				'tgl_datang' => Carbon::now()->toDateString(),
+				'harga_jasa' => 0,
+				'status' => 'belum',
+			]);
+	}
+
+	public static function getBarangRusak(){
+		return DB::table('barang_rusak')
+				->where('status','belum')
+				->get();
 	}
 
 }
