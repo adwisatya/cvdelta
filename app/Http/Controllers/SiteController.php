@@ -13,6 +13,12 @@ use Illuminate\Http\Request;
 class SiteController extends Controller {
 
 	public function index(){
+		if (Session::get('role')=="admin"){
+			return view('page-admin');
+		}
+		if (Session::get('role')=="teknisi"){
+			return view('dashboard-teknisi');
+		}
 		return view('index');
 	}
 	public function teknisiPage(){
@@ -107,7 +113,10 @@ class SiteController extends Controller {
 		$i = 0;
 		foreach($barang_rusak as $b){;
 			$k = database::getComponentUsed($b->no_seri_barang_rusak);
-			// $k->tes = 0;
+			
+			// $foo = (array)$k;
+			// $foo['bar'] = '1234';
+			// $k = (object)$foo;
 
 			$komponens[$i] = $k;
 			$nama_komponen = json_decode(json_encode($komponens[$i]), true);
