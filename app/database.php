@@ -54,7 +54,7 @@ class database extends Model{
 		return DB::table('tagihan')
 					->where('no_seri_barang_rusak','=',$id_barang)
 					// ->orderBy('no_seri_komponen','asc')
-					// ->distinct()
+					->distinct()
 					->get();
 	}
 
@@ -104,6 +104,25 @@ class database extends Model{
 					->get();
 	}
 
+	public static function saveNewStock($nama_komponen, $no_seri_komponen, $supplier, $harga, $jumlah, $lokasi, $keterangan, $min_jumlah){
+		DB::table('komponen')->insert(
+			[
+				'nama_komponen' => $nama_komponen,
+				'no_seri_komponen' => $no_seri_komponen,
+				'supplier' => $supplier,
+				'harga' => $harga,
+				'jumlah' => $jumlah,
+				'lokasi' => $lokasi,
+				'keterangan' => $keterangan,
+				'min_jumlah' => $min_jumlah,
+			]);
+	}
 
+	public static function saveStock($nama_komponen, $no_seri_komponen, $jumlah){
+		DB::table('komponen')
+			->where('nama_komponen',$nama_komponen)
+			->orWhere('no_seri_komponen',$no_seri_komponen)
+			->increment('jumlah', $jumlah);
+	}
 
 }

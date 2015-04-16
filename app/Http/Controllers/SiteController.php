@@ -13,6 +13,12 @@ use Illuminate\Http\Request;
 class SiteController extends Controller {
 
 	public function index(){
+		if (Session::get('role')=="admin"){
+			return view('page-admin');
+		}
+		if (Session::get('role')=="teknisi"){
+			return view('dashboard-teknisi');
+		}
 		return view('index');
 	}
 	public function teknisiPage(){
@@ -103,56 +109,41 @@ class SiteController extends Controller {
 
 		$nama_perus="PT. ABC";
 		$barang_rusak = database::getBarangSelesai($nama_perus);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 20c69b4c82a6d4a637cdb73de07b99995df7daeb
 		$i = 0;
-		foreach($barang_rusak as $b){
-			$nKomp[$i] = 0;
+		foreach($barang_rusak as $b){;
 			$k = database::getComponentUsed($b->no_seri_barang_rusak);
 			
+<<<<<<< HEAD
+=======
+			// $foo = (array)$k;
+			// $foo['bar'] = '1234';
+			// $k = (object)$foo;
+
+>>>>>>> 20c69b4c82a6d4a637cdb73de07b99995df7daeb
 			$komponens[$i] = $k;
 			$nama_komponen = json_decode(json_encode($komponens[$i]), true);
 			print_r($nama_komponen);
 
-			// if ($nama_komponen[0]['no_seri_komponen']=="k010203-5"){
-			// 	echo "tesasdasdasd";
-			// }
-
-			
-			if (in_array("k010203-5",$nama_komponen[0])){
-				echo "lplmlmplmpm";
-			}
-
-			foreach ($nama_komponen as $komponen) {
-				
-			}
-
-			// print_r($komponens[$i]);
 			echo "<br><br>";
 
-			// if (in_array('k010203-5', $komponens[$i])){
-			// 	echo "true";
-			// } else{
-			// 	echo "false";
-			// }
-
-			foreach($komponens[$i] as $singK){
-				$nKomp[$i] = database::getNKomponen($b->no_seri_barang_rusak, $singK->no_seri_komponen);
-			}
-
 			$i++;
-			// echo ("   tes   ");
 		}
 
-			// print_r($komponens[1]);
+		$i = 0;
+		foreach($komponens as $komponen){
+			foreach ($komponen as $komp) {
+				$nKomp[$i] = database::getNKomponen($komp->no_seri_barang_rusak, $komp->no_seri_komponen);
+			}
+			$i++;
+		}
 
-		// echo sizeof($komponens);
-		// $components = database::getUsedComponent();
-			// echo "hhhhhhhhhhhhhhhh";
-			// echo database::getNKomponen('12345-7', 'k010203-5');
-
-		$nama_komponen = json_decode(json_encode($komponens[0]), true);
-
-		// echo "tes ".$nama_komponen[0]['no_seri_komponen'];
-
+		echo "uigckg ".sizeof($nKomp);
+		// echo "oinlhk ".$nKomp[2];
+		// echo "asdaefvd ".sizeof($nKomp[2]);
 		return view('invoice',compact('barang_rusak','komponens','k', 'nKomp'));
 	}
 

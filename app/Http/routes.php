@@ -43,6 +43,9 @@ Route::get('admin/request', 'ComponentController@request');
 Route::get('admin/stock', 'ComponentController@stock');
 Route::get('admin/minimum', 'ComponentController@min');
 Route::get('admin/add', 'ComponentController@add');
+Route::post('admin/stock-baru','ComponentController@addNewStock');
+Route::post('admin/stock','ComponentController@addStock');
+
 
 Route::get('admin/invoice-per-customer','SiteController@invoice');
 

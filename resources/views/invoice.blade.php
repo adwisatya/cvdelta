@@ -22,6 +22,13 @@ body {background-color:white}
 		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
 	</div>
 	<?php $i = 0; ?>
+	<?php echo sizeof($nKomp) ?>
+	<br>
+
+	@foreach($nKomp as $komp)
+		<?php echo sizeof($komp); ?>
+	@endforeach
+
 	@foreach($barang_rusak as $barang)
 	<!-- diulang dari sini -->
 	<div class="invoiceBarang">
@@ -37,7 +44,7 @@ body {background-color:white}
 					{{--@foreach($komponens as $komponen)--}}
 							@for($j=0;$j<sizeof($komponens[$i]);$j++)
 								<tr>
-									<td>{{$nKomp[$j]}}</td>
+									<td>{{$nKomp[$i]}}</td>
 									<td>pcs</td>
 									<td class="komp">{{$komponens[$i][$j]->no_seri_komponen}}</td>
 									<td>@</td>

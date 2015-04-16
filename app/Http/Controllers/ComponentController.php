@@ -58,4 +58,28 @@ class ComponentController extends Controller {
 		return redirect('/admin/customer');
 	}
 
+	public function addNewStock(){
+		$nama_komponen = Input::get('nama_komponen');
+		$no_seri_komponen = Input::get('no_seri_komponen');
+		$supplier = Input::get('supplier');
+		$harga = Input::get('harga');
+		$jumlah = Input::get('jumlah');
+		$lokasi = Input::get('lokasi');
+		$keterangan = Input::get('keterangan');
+		$min_jumlah = Input::get('min_jumlah');
+
+		database::saveNewStock($nama_komponen, $no_seri_komponen, $supplier, $harga, $jumlah, $lokasi, $keterangan, $min_jumlah);
+		return redirect('/admin/stock');
+	}
+
+	public function addStock(){
+		$nama_komponen = Input::get('nama_komponen');
+		$no_seri_komponen = Input::get('no_seri_komponen');
+		$jumlah = Input::get('jumlah');
+
+		database::saveStock($nama_komponen, $no_seri_komponen, $jumlah);
+		return redirect('/admin/stock');
+	}
+
+
 }
