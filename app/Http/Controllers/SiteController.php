@@ -27,6 +27,21 @@ class SiteController extends Controller {
 	public function requestKomponenPage(){
 		return view('request-komponen');
 	}
+	public function requestKomponen(){
+		$no_seri_barang_rusak = Input::get('no_seri_barang_rusak');
+		$no_seri_komponen = Input::get('no_seri_komponen');
+		$jumlah = Input::get('jumlah');
+		$tanggal = Input::get('tanggal');
+		$no_tagihan = Input::get('no_tagihan');
+		$i=0;
+		if($no_seri_barang_rusak != "" && $no_seri_komponen != ""){
+			while($i<$jumlah){
+				DB::table('tagihan')->insert(array('no_seri_komponen'=>$no_seri_komponen,'no_seri_barang_rusak'=>$no_seri_barang_rusak,'tgl'=>$tanggal,'no_tagihan'=>$no_tagihan,'status'=>'requested'));
+				$i++;
+			}
+		}
+		return view('request-komponen');
+	}
 	public function adminPage(){
 		return view('page-admin');
 	}

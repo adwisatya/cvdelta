@@ -27,6 +27,8 @@ Route::get('teknisi','SiteController@teknisiPage');
 Route::post('teknisi','SiteController@teknisiPage');
 
 Route::get('request_komponen','SiteController@requestKomponenPage');
+Route::post('request_komponen','SiteController@requestKomponen');
+
 Route::get('history','SiteController@historyPage');
 Route::get('onprogress','SiteController@onprogressPage');
 
