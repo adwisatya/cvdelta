@@ -2,7 +2,7 @@
 @section('content')
 	<?php 
 		$Barang = DB::table('barang_rusak')->where('status','1')->get();
-		echo "Selesai diproses";
+		echo "Sedang dalam proses";
 		echo '<table style="width:1050px;" border="1">
 				<tr>
 					<td width="200px">
