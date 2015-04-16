@@ -41,8 +41,8 @@
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Hi namanya! <b class="caret"></b></a>
 						<ul class="dropdown-menu">
-							<li><a href="#">profil</a></li>
-							<li><a href="#">logout</a></li>
+							<li><a href="/Aprofile">profil</a></li>
+							<li><a href="/logout">logout</a></li>
 						</ul>
 					</li>
 				</ul>
