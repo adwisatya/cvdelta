@@ -37,21 +37,16 @@
 	</div>
 	<div class="container">
 		<div class="content">
-			Selamat datang, <?php echo Session::get('username'); ?>
-			<br/>Silahkan ganti password Anda melalui form berikut ini<br/>
+			<h2>Selamat datang, <?php echo Session::get('username'); ?></h2>
+			<hr/>
+			Silahkan ganti password Anda melalui form berikut ini<br/>
 			<form method="post" action="">
 				<input name="_token" hidden value="{!! csrf_token() !!}" />
-				<label>
-					Password lama:
-				</label>
-				<input type="password" name="oldpwd"><br/>
-				<label>
-					Password baru:
-				</label>
+				Password lama:
+				<input type="password" name="oldpwd" style="margin-left:35px;"><br/>
+				Password baru:
 				<input type="password" name="newpwd"><br/>
-				<label>
-					Konfirmasi Password Baru:
-				</label>
+				Konfirmasi Password Baru:
 				<input type="password" name="newpwdconfirmation"><br/>
 				<input type="submit" name="changepwd" value="Ubah Password">
 			</form>
