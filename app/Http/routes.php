@@ -24,6 +24,8 @@ Route::get('index','SiteController@index');
 Route::post('index','LoginController@validateLogin');
 Route::get('logout','LoginController@logout');
 Route::get('teknisi','SiteController@teknisiPage');
+Route::post('teknisi','SiteController@teknisiPage');
+
 Route::get('request_komponen','SiteController@requestKomponenPage');
 Route::get('history','SiteController@historyPage');
 Route::get('onprogress','SiteController@onprogressPage');
