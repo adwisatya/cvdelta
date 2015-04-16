@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="{{ asset('/css/style.css') }}" />
 <script src="{{ asset('/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('/js/addRow.js') }}"></script>
+<script src="{{ asset('/js/fix.js') }}"></script>
 
 </head>
 <body>	

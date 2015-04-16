@@ -120,11 +120,19 @@ class database extends Model{
 	public static function getBarangRusak(){
 		return DB::table('barang_rusak')
 				->where('status','pending')
+				->orWhere('status','Onprogress')
 				->get();
 	}
 
-	public static function perbaikiBarang($username,$status,$tgl_diperbaiki){
-		//update database
+	public static function perbaikiBarang($noseri, $username,$status,$tgl_diperbaiki){
+		DB::table('barang_rusak')
+			->where('no_seri_barang_rusak','=',$noseri)
+			->update(
+				[
+					'username' => $username,
+					'status' => $status,
+					'tgl_diperbaiki' => $tgl_diperbaiki,
+				]);
 	}
 
 }
