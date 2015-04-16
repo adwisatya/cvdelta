@@ -114,10 +114,10 @@ class SiteController extends Controller {
 		foreach($barang_rusak as $b){;
 			$k = database::getComponentUsed($b->no_seri_barang_rusak);
 			
-			foreach ($$k as $singK) {
-				// $foo = (array)$k;
-				// $foo['bar'] = '1234';
-				// $k = (object)$foo;
+			foreach ($k as $singK) {
+				$foo = (array)$singK;
+				$foo['bar'] = '1234';
+				$singK = (object)$foo;
 			}
 
 			$komponens[$i] = $k;
