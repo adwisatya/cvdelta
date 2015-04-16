@@ -2,34 +2,34 @@
 @section('content')
 	<?php 
 		$Barang = DB::table('barang_rusak')->where('status','Done')->get();
-		echo "Selesai diproses";
-		echo '<table style="width:1050px;" border="1">
+		echo "<h3>Barang Selesai Diperbaiki</h3><hr/>";
+		echo '<table class="table table-hover table-responsive">
 				<tr>
-					<td width="200px">
+					<td>
 						Nama Barang Rusak
 					</td>
-					<td width="200px">
+					<td>
 						Nama Perusahaan
 					</td>
-					<td width="200px">
+					<td>
 						No Seri Barang Rusak
 					</td>
-					<td width="150px">
+					<td>
 						Tanggal Datang
 					</td>
-					<td width="150px">
+					<td>
 						Harga
 					</td>
-					<td width="100px">
+					<td>
 						Status
 					</td>
-					<td width="150px">
+					<td>
 						Tanggal Diperbaiki
 					</td>
-					<td width="150px">
+					<td>
 						Tanggal Selesai
 					</td>
-					<td width="150px">
+					<td>
 						Teknisi
 					</td>
 				</tr>';
@@ -70,28 +70,28 @@
 		echo '</table>';
 		echo "<br/>";
 		$Barang = DB::table('barang_rusak')->where('status','Pending')->get();
-		echo "Belum Diproses";
-		echo '<table style="width:1050px;" border="1">
+		echo "<h3>Barang Belum Diperbaiki</h3><hr/>";
+		echo '<table class="table table-hover table-responsive">
 				<tr>
-					<td width="200px">
+					<td>
 						Nama Barang Rusak
 					</td>
-					<td width="200px">
+					<td>
 						Nama Perusahaan
 					</td>
-					<td width="200px">
+					<td>
 						No Seri Barang Rusak
 					</td>
-					<td width="150px">
+					<td>
 						Tanggal Datang
 					</td>
-					<td width="150px">
+					<td>
 						Harga
 					</td>
-					<td width="100px">
+					<td>
 						Status
 					</td>
-					<td width="150px">
+					<td>
 						Teknisi
 					</td>
 				</tr>';
