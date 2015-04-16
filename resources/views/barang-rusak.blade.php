@@ -68,7 +68,7 @@
 		            <td>@if($barang->username=="")
 		            		<a href="#perbaiki"><button id="pilihTeknisi" class="btn " role="button"> Pilih</button></a>
 		            	@else
-		            		$barang->username
+		            		{{$barang->username}}
 		            	@endif
 		            	
 		            </td>

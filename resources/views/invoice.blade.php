@@ -14,12 +14,10 @@ body {background-color:white}
 		<hr>
 	</div>
 	<div class="invoiceHeader">
-		Yth. bapak siapa <br>
-		di tempat <br>
-		lalala <br><br><br><br>
-		Berikut ini adalah Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+		Kepada Yth. <br>
+		{{$nama_perus}} <br>
+		<br><br><br><br>
+		Perincian Biaya Perbaikan PCB, sebagai berikut:
 	</div>
 	<?php $i = 0; ?>
 	@foreach($barang_rusak as $barang)

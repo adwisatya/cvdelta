@@ -140,7 +140,7 @@ class SiteController extends Controller {
 
 	public function invoice(){
 
-		$nama_perus="PT. ABC";
+		$nama_perus=Input::get('nama_perusahaan');
 		$barang_rusak = database::getBarangSelesai($nama_perus);
 
 		$i = 0;
@@ -162,7 +162,12 @@ class SiteController extends Controller {
 
 		$komponens = $nama_komponen;
 		
-		return view('invoice',compact('barang_rusak','komponens'));
+		return view('invoice',compact('barang_rusak','komponens','nama_perus'));
 	}
+
+	public function chooseCustomer(){
+		return view('pilih-customer');
+	}
+
 
 }
