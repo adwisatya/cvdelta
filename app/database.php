@@ -184,4 +184,14 @@ class database extends Model{
 		DB::table('komponen')
 			->decrement('komponen.jumlah',$count);
 	}
+
+	public static function getAdmin(){
+		return DB::table('administrasi')
+				->get();
+	}
+
+	public static function getTeknisi(){
+		return DB::table('teknisi')
+				->get();
+	}
 }

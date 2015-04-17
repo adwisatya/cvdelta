@@ -65,3 +65,4 @@ Route::post('admin/pilih-customer','PrintController@showPDF');
 // Route::post('admin/pilih-customer','SiteController@invoice');
 Route::post('admin/request/approval','ComponentController@approval');
 Route::post('admin/request/selesai','BarangRusakController@selesai');
+Route::get('user','SiteController@user');

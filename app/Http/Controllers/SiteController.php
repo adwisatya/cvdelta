@@ -169,5 +169,9 @@ class SiteController extends Controller {
 		return view('pilih-customer');
 	}
 
-
+	public function user(){
+		$admin=database::getAdmin();
+		$teknisi=database::getTeknisi();
+		return view('user', compact('admin','teknisi'));
+	}
 }
