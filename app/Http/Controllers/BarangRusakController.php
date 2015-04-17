@@ -38,7 +38,7 @@ class BarangRusakController extends Controller {
 	}
 
 	public function selesai(){
-		$noseri=Input::get('noseri');
+		$noseri=Input::get('idbarang');
 		$status="Done";
 		$tgl_selesai=Carbon::now()->toDateString();
 

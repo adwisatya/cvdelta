@@ -88,6 +88,10 @@ class ComponentController extends Controller {
 		$tombol = Input::get('tombol');
 
 		database::approval($tombol, $no_seri_komponen, $no_seri_barang_rusak, $username);
+		
+		if ($tombol=="approved"){
+			database::potong($no_seri_komponen,$no_seri_barang_rusak,$username);
+		}
 
 		return redirect('/admin/request');
 	}

@@ -35,6 +35,11 @@
 				</form>
 			</div>
 		</div>
+
+		<form method="post" id="form_selesai" action="/admin/barang-masuk/selesai" >
+			<input name="_token" hidden value="{!! csrf_token() !!}" />
+			<input class='form-control' type="hidden" id="idbarang" name="idbarang">
+    	</form>
 {{-- end modal --}}
 	<div class="row">
 		<table class="table table-hover table-responsive" id="tblData"> 
@@ -66,10 +71,7 @@
 		            <td>{{$barang->status}}</td>
 		            <td>{{$barang->tgl_diperbaiki}}</td>
 		            <td id="{{$barang->no_seri_barang_rusak}}">@if($barang->tgl_selesai=="")
-						<form method="post" action="/admin/barang-masuk/selesai" >
-							<input name="_token" hidden value="{!! csrf_token() !!}" />
-		            		<button class="btn selesai" role="button"> selesai</button>
-		            	</form>
+		            		<button form="form_selesai" class="btn selesai" role="button"> selesai</button>
 		            	@else
 		            		{{$barang->tgl_selesai}}
 		            	@endif

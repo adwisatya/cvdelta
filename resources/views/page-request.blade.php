@@ -15,6 +15,7 @@
 				<tr> 
 					<th>No Seri Komponen</th> 
 					<th>Nama Komponen</th> 
+					<th>Jumlah</th>
 					<th>Barang Terkait</th>
 					<th>Teknisi</th> 
 					<th>Approve</th>

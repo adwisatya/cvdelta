@@ -14,7 +14,6 @@ class database extends Model{
 				->join('teknisi','barang_rusak.username','=','teknisi.username')
 				->where('tagihan.status','=','requested')
 				->select('komponen.no_seri_komponen','komponen.nama_komponen','barang_rusak.no_seri_barang_rusak','teknisi.username')
-				->distinct()
 				->get();
 	}
 
@@ -169,5 +168,20 @@ class database extends Model{
 					'status' => $status,
 					'tgl_selesai' => $tgl_selesai,
 				]);
+	}
+
+	public static function potong($nokomponen, $nobarang, $username){
+		$count = DB::table('komponen')
+			->join('tagihan','komponen.no_seri_komponen','=','tagihan.no_seri_komponen')
+			->join('barang_rusak','tagihan.no_seri_barang_rusak','=','barang_rusak.no_seri_barang_rusak')
+			->join('teknisi','barang_rusak.username','=','teknisi.username')
+			->where('komponen.no_seri_komponen','=', $nokomponen)
+			->where('barang_rusak.no_seri_barang_rusak','=', $nobarang)
+			->where('teknisi.username','=', $username)
+			->where('tagihan.status','=','requested')
+			->count();
+
+		DB::table('komponen')
+			->decrement('komponen.jumlah',$count);
 	}
 }

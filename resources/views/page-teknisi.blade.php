@@ -36,7 +36,6 @@
 	</div>
 	<div class="container">
 		<div class="content">
-			Status : <?php echo Session::get('username'); ?>
 			@yield('content')
 		</div>
 	</div>
