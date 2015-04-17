@@ -161,4 +161,13 @@ class database extends Model{
 		}
 	}
 
+	public static function selesaiBarang($noseri,$tgl_selesai,$status){
+		DB::table('barang_rusak')
+			->where('no_seri_barang_rusak','=',$noseri)
+			->update(
+				[
+					'status' => $status,
+					'tgl_selesai' => $tgl_selesai,
+				]);
+	}
 }

@@ -36,4 +36,13 @@ class BarangRusakController extends Controller {
 		database::perbaikiBarang($noseri, $username,$status,$tgl_diperbaiki);
 		return redirect('/admin/barang-masuk/view');
 	}
+
+	public function selesai(){
+		$noseri=Input::get('noseri');
+		$status="Done";
+		$tgl_selesai=Carbon::now()->toDateString();
+
+		database::selesaiBarang($noseri,$tgl_selesai, $status);
+		return redirect('/admin/barang-masuk/view');
+	}
 }

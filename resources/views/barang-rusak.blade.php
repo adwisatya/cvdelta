@@ -65,7 +65,16 @@
 		            <td>{{$barang->harga_jasa}}</td>
 		            <td>{{$barang->status}}</td>
 		            <td>{{$barang->tgl_diperbaiki}}</td>
-		            <td>{{$barang->tgl_selesai}}</td>
+		            <td id="{{$barang->no_seri_barang_rusak}}">@if($barang->tgl_selesai=="")
+						<form method="post" action="/admin/barang-masuk/selesai" >
+							<input name="_token" hidden value="{!! csrf_token() !!}" />
+		            		<button class="btn selesai" role="button"> selesai</button>
+		            	</form>
+		            	@else
+		            		{{$barang->tgl_selesai}}
+		            	@endif
+		            	
+		            </td>
 		            <td id="{{$barang->no_seri_barang_rusak}}">@if($barang->username=="")
 		            		<a href="#perbaiki"><button class="btn pilihTeknisi" role="button"> Pilih</button></a>
 		            	@else
