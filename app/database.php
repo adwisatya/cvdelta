@@ -170,4 +170,14 @@ class database extends Model{
 					'tgl_selesai' => $tgl_selesai,
 				]);
 	}
+
+	public static function getAdmin(){
+		return DB::table('administrasi')
+				->get();
+	}
+
+	public static function getTeknisi(){
+		return DB::table('teknisi')
+				->get();
+	}
 }
