@@ -47,9 +47,22 @@ Route::post('admin/stock-baru','ComponentController@addNewStock');
 Route::post('admin/stock','ComponentController@addStock');
 
 
-Route::get('admin/invoice-per-customer','SiteController@invoice');
+Route::get('admin/invoice-per-customer','SiteController@chooseCustomer');
 
 Route::post('admin', 'ComponentController@input');
 
 Route::get('admin/customer','ComponentController@customer');
 Route::post('admin/customer','ComponentController@addCustomer');
+Route::post('admin/barang-masuk','BarangRusakController@addBarang');
+Route::get('admin/barang-masuk/view','BarangRusakController@viewBarang');
+Route::post('admin/barang-masuk/perbaiki','BarangRusakController@perbaiki');
+Route::post('admin/barang-masuk/selesai','BarangRusakController@selesai');
+
+
+Route::post('admin/pilih-customer','PrintController@showPDF');
+// Route::get('admin/pilih-customer/pdf','PrintController@showPDF');
+
+// Route::post('admin/pilih-customer','SiteController@invoice');
+Route::post('admin/request/approval','ComponentController@approval');
+Route::post('admin/request/selesai','BarangRusakController@selesai');
+Route::get('user','SiteController@user');

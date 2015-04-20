@@ -4,6 +4,7 @@ namespace App;
  
 use Illuminate\Database\Eloquent\Model;
 use DB;
+use Carbon\Carbon;
 
 class database extends Model{
 	public static function getRequestedComponent(){
@@ -11,6 +12,7 @@ class database extends Model{
 				->join('tagihan','komponen.no_seri_komponen','=','tagihan.no_seri_komponen')
 				->join('barang_rusak','tagihan.no_seri_barang_rusak','=','barang_rusak.no_seri_barang_rusak')
 				->join('teknisi','barang_rusak.username','=','teknisi.username')
+				->where('tagihan.status','=','requested')
 				->select('komponen.no_seri_komponen','komponen.nama_komponen','barang_rusak.no_seri_barang_rusak','teknisi.username')
 				->get();
 	}
@@ -21,29 +23,11 @@ class database extends Model{
 
 	public static function getMinStock(){
 		return DB::table('komponen')
-				// ->where('jumlah','<=', array('min_jumlah'))
 				->whereRaw('jumlah <= min_jumlah')
 				->get();
 	}
 
-	// public static function getBarangSelesai(){
-	// 	return DB::table('barang_rusak')
-	// 				->where('status','=','fixed')
-	// 				->get();
-	// }
-
-	// public static function getBarangSelesai($nama_perus){
-	// 	return DB::table('komponen')
-	// 				->join('tagihan','komponen.no_seri_komponen','=','tagihan.no_seri_komponen')
-	// 				->join('barang_rusak','tagihan.no_seri_barang_rusak','=','barang_rusak.no_seri_barang_rusak')
-	// 				->join('customer','barang_rusak.nama_perusahaan','=','customer.nama_perusahaan')
-	// 				// ->where ('no_seri_barang_rusak','=','inidiisiapa')
-	// 				->where('customer.nama_perusahaan','=',$nama_perus)
-	// 				//->where ('status','=','requested') //-->kolom status nya belom ada
-	// 				->get();
-	// }
-
-		public static function getBarangSelesai($nama_perus){
+	public static function getBarangSelesai($nama_perus){
 		return DB::table('barang_rusak')
 					->where('nama_perusahaan','=',$nama_perus)
 					//status udh selesai
@@ -53,7 +37,6 @@ class database extends Model{
 	public static function getComponentUsed($id_barang){
 		return DB::table('tagihan')
 					->where('no_seri_barang_rusak','=',$id_barang)
-					// ->orderBy('no_seri_komponen','asc')
 					->distinct()
 					->get();
 	}
@@ -88,9 +71,6 @@ class database extends Model{
 	}
 
 	public static function getNKomponen($id_barang,$id_komp){
-		// echo "tes: ".$id_barang;
-		// echo "tes2: ".$id_komp."<br>";
-		// return DB::statement('select count(*) from tagihan where no_seri_komponen = ? and no_seri_barang_rusak = ?',array('k010203-5','12345-7'));
 		return DB::table('tagihan')
 					->where('no_seri_komponen',$id_komp)
 					->where('no_seri_barang_rusak',$id_barang)
@@ -125,4 +105,93 @@ class database extends Model{
 			->increment('jumlah', $jumlah);
 	}
 
+	public static function saveBarang($nama_barang_rusak, $nama_perusahaan, $no_seri_barang_rusak, $no_surat_jalan){
+		DB::table('barang_rusak')->insert(
+			[
+				'nama_barang_rusak' => $nama_barang_rusak,
+				'nama_perusahaan' => $nama_perusahaan,
+				'no_seri_barang_rusak' => $no_seri_barang_rusak,
+				'no_surat_jalan' => $no_surat_jalan,
+				'tgl_datang' => Carbon::now()->toDateString(),
+				'harga_jasa' => 0,
+				'status' => 'pending',
+			]);
+	}
+
+	public static function getBarangRusak(){
+		return DB::table('barang_rusak')
+				->where('status','pending')
+				->orWhere('status','Onprogress')
+				->get();
+	}
+
+	public static function perbaikiBarang($noseri, $username,$status,$tgl_diperbaiki){
+		DB::table('barang_rusak')
+			->where('no_seri_barang_rusak','=',$noseri)
+			->update(
+				[
+					'username' => $username,
+					'status' => $status,
+					'tgl_diperbaiki' => $tgl_diperbaiki,
+				]);
+	}
+
+	public static function approval($status, $no_seri_komponen, $no_seri_barang_rusak, $username){
+		if ($status=="approved"){
+			DB::table('komponen')
+				->join('tagihan','komponen.no_seri_komponen','=','tagihan.no_seri_komponen')
+				->join('barang_rusak','tagihan.no_seri_barang_rusak','=','barang_rusak.no_seri_barang_rusak')
+				->join('teknisi','barang_rusak.username','=','teknisi.username')
+				->where('komponen.no_seri_komponen','=', $no_seri_komponen)
+				->where('barang_rusak.no_seri_barang_rusak','=', $no_seri_barang_rusak)
+				->where('teknisi.username','=',$username)
+				->update([
+						'tagihan.status' => $status
+					]);
+		} else{
+			DB::table('komponen')
+				->join('tagihan','komponen.no_seri_komponen','=','tagihan.no_seri_komponen')
+				->join('barang_rusak','tagihan.no_seri_barang_rusak','=','barang_rusak.no_seri_barang_rusak')
+				->join('teknisi','barang_rusak.username','=','teknisi.username')
+				->where('komponen.no_seri_komponen','=', $no_seri_komponen)
+				->where('barang_rusak.no_seri_barang_rusak','=', $no_seri_barang_rusak)
+				->where('teknisi.username','=',$username)
+				->delete();
+		}
+	}
+
+	public static function selesaiBarang($noseri,$tgl_selesai,$status){
+		DB::table('barang_rusak')
+			->where('no_seri_barang_rusak','=',$noseri)
+			->update(
+				[
+					'status' => $status,
+					'tgl_selesai' => $tgl_selesai,
+				]);
+	}
+
+	public static function potong($nokomponen, $nobarang, $username){
+		$count = DB::table('komponen')
+			->join('tagihan','komponen.no_seri_komponen','=','tagihan.no_seri_komponen')
+			->join('barang_rusak','tagihan.no_seri_barang_rusak','=','barang_rusak.no_seri_barang_rusak')
+			->join('teknisi','barang_rusak.username','=','teknisi.username')
+			->where('komponen.no_seri_komponen','=', $nokomponen)
+			->where('barang_rusak.no_seri_barang_rusak','=', $nobarang)
+			->where('teknisi.username','=', $username)
+			->where('tagihan.status','=','requested')
+			->count();
+
+		DB::table('komponen')
+			->decrement('komponen.jumlah',$count);
+	}
+
+	public static function getAdmin(){
+		return DB::table('administrasi')
+				->get();
+	}
+
+	public static function getTeknisi(){
+		return DB::table('teknisi')
+				->get();
+	}
 }

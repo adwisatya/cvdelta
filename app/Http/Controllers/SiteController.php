@@ -22,16 +22,32 @@ class SiteController extends Controller {
 		return view('index');
 	}
 	public function teknisiPage(){
-		return view('dashboard-teknisi');
+		if (Session::get('role')=="teknisi"){
+			return view('request-komponen');
+		}else{
+			return view('index');
+		}
 	}
 	public function historyPage(){
-		return view('historyPage');
+		if (Session::get('role')=="teknisi"){
+			return view('historyPage');
+		}else{
+			return view('index');
+		}		
 	}
 	public function onprogressPage(){
-		return view('onprogressPage');
+		if (Session::get('role')=="teknisi"){
+			return view('onprogressPage');
+		}else{
+			return view('index');
+		}
 	}
 	public function requestKomponenPage(){
-		return view('request-komponen');
+		if (Session::get('role')=="teknisi"){
+			return view('request-komponen');
+		}else{
+			return view('index');
+		}
 	}
 	public function requestKomponen(){
 		$no_seri_barang_rusak = Input::get('no_seri_barang_rusak');
@@ -49,13 +65,26 @@ class SiteController extends Controller {
 		return view('request-komponen');
 	}
 	public function adminPage(){
-		return view('page-admin');
+		if (Session::get('role')=="admin"){
+			return view('admin-index');
+		}else{
+			return view('index');
+		}
 	}
 	public function profilePage(){
-		return view('page-profile');
+		if (Session::get('role')=="teknisi"){
+			return view('page-profile');
+		}else{
+			return view('index');
+		}
 	}
 	public function adminprofilePage(){
-		return view('page-adminprofile');
+		if (Session::get('role')=="admin"){
+			return view('page-adminprofile');
+		}else{
+			return view('index');
+		}
+
 	}
 	public function profileUpdate(){
 		$oldPassword = Input::get('oldpwd');
@@ -102,37 +131,47 @@ class SiteController extends Controller {
 		}
 	}
 	public function request(){
-		return view('page-request');
+		if (Session::get('role')=="admin"){
+			return view('page-request');
+		}else{
+			return view('index');
+		}
 	}
 
 	public function invoice(){
 
-		$nama_perus="PT. ABC";
+		$nama_perus=Input::get('nama_perusahaan');
 		$barang_rusak = database::getBarangSelesai($nama_perus);
+
 		$i = 0;
 		foreach($barang_rusak as $b){;
 			$k = database::getComponentUsed($b->no_seri_barang_rusak);
 			$komponens[$i] = $k;
-			$nama_komponen = json_decode(json_encode($komponens[$i]), true);
-			print_r($nama_komponen);
-
-			echo "<br><br>";
-
 			$i++;
 		}
 
-		$i = 0;
-		foreach($komponens as $komponen){
-			foreach ($komponen as $komp) {
-				$nKomp[$i] = database::getNKomponen($komp->no_seri_barang_rusak, $komp->no_seri_komponen);
+		$nama_komponen = json_decode(json_encode($komponens), true);
+
+		foreach ($nama_komponen as &$komponen) {
+			foreach ($komponen as &$komp) {
+				$komp['jumlah'] = database::getNKomponen($komp['no_seri_barang_rusak'], $komp['no_seri_komponen']);
+				$komp['harga'] = database::getPrice($komp['no_seri_komponen']);
+				$komp['subtotal'] = $komp['jumlah']*$komp['harga'][0]->harga;
 			}
-			$i++;
 		}
 
-		echo "uigckg ".sizeof($nKomp);
-		// echo "oinlhk ".$nKomp[2];
-		// echo "asdaefvd ".sizeof($nKomp[2]);
-		return view('invoice',compact('barang_rusak','komponens','k', 'nKomp'));
+		$komponens = $nama_komponen;
+		
+		return view('invoice',compact('barang_rusak','komponens','nama_perus'));
 	}
 
+	public function chooseCustomer(){
+		return view('pilih-customer');
+	}
+
+	public function user(){
+		$admin=database::getAdmin();
+		$teknisi=database::getTeknisi();
+		return view('user', compact('admin','teknisi'));
+	}
 }

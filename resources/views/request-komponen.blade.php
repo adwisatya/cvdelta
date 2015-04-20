@@ -6,7 +6,7 @@
 	<table class="table table-hover table-responsive" style="width:500px;">
 		<tr>
 			<td>
-				Nama Barang
+				Nama Komponen yang Dibutuhkan
 			</td>
 			<td>
 				<select name="no_seri_komponen" style="width:150px;">
@@ -23,7 +23,7 @@
 		</tr>
 		<tr>
 			<td>
-				Nomor Barang Rusak
+				No Seri Barang Rusak
 			</td>
 			<td>
 				<select name="no_seri_barang_rusak" style="width:150px;">

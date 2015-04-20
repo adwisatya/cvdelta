@@ -7,6 +7,7 @@ body {background-color:white}
 </style>
 </head>
 <body>
+	<!-- <a href="{{ url('admin/pilih-customer/pdf', $nama_perus, $barang_rusak) }}"<button id="btnSub"  class="btn" role="button"> pdf</button></a> -->
 	<div class="kop">
 		<img src="{{url('images/logo_biru.png')}}"><br>
 		Taman Kopo Indah II 1A no. 10 Bandung <br>
@@ -14,21 +15,12 @@ body {background-color:white}
 		<hr>
 	</div>
 	<div class="invoiceHeader">
-		Yth. bapak siapa <br>
-		di tempat <br>
-		lalala <br><br><br><br>
-		Berikut ini adalah Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+		Kepada Yth. <br>
+		{{$nama_perus}} <br>
+		<br><br><br><br>
+		Perincian Biaya Perbaikan PCB, sebagai berikut:
 	</div>
 	<?php $i = 0; ?>
-	<?php echo sizeof($nKomp) ?>
-	<br>
-
-	@foreach($nKomp as $komp)
-		<?php echo sizeof($komp); ?>
-	@endforeach
-
 	@foreach($barang_rusak as $barang)
 	<!-- diulang dari sini -->
 	<div class="invoiceBarang">
@@ -39,34 +31,28 @@ body {background-color:white}
 					<td colspan="5">Jasa perbaikan</td>
 					<td>harga</td>
 				</tr>
-				<!-- diulang dari sini -->
-					
-					{{--@foreach($komponens as $komponen)--}}
-							@for($j=0;$j<sizeof($komponens[$i]);$j++)
-								<tr>
-									<td>{{$nKomp[$i]}}</td>
-									<td>pcs</td>
-									<td class="komp">{{$komponens[$i][$j]->no_seri_komponen}}</td>
-									<td>@</td>
-									<td>harga</td>
-									<td>subtotal</td>
-								</tr>
-							@endfor
-							<?php $i++; ?>
-					{{--@endforeach--}}
-				
-				<!-- diulang sampe sini -->
+					@for($j=0;$j<sizeof($komponens[$i]);$j++)
+						<tr>
+							<td>{{$komponens[$i][$j]['jumlah']}}</td>
+							<td>pcs</td>
+							<td class="komp">{{$komponens[$i][$j]['no_seri_komponen']}}</td>
+							<td>@</td>
+							<td>Rp. {{$komponens[$i][$j]['harga'][0]->harga}},00</td>
+							<td>Rp. {{$komponens[$i][$j]['subtotal']}},00</td>
+						</tr>
+					@endfor
 				<tr>
 					<td colspan="5"><b>Subtotal</b></td>
-					<td>harga</td>
+					<td><b>Rp. <?php echo array_sum(array_column($komponens[$i],'subtotal')) ?>,00</b></td>
 				</tr>
 			</table>
 		</div>
 	</div>
+	<?php $i++; ?>
 	<!-- diulang sampe sini -->
 	@endforeach
 	<div class="sign">
-		Bandung, Bulan tahun
+		Bandung, April 2015
 		<br><br><br><br><br>
 		Sonny Tjahjadi
 	</div>

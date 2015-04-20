@@ -36,7 +36,54 @@
 	</div>
 	<div class="container">
 		<div class="content">
-			@yield('content')
+			
+		<div class="row">
+				<table class="table table-hover table-responsive" id="tblData"> 
+					<caption><h2>Administrator</h2></caption>
+					<thead>
+						<tr>
+							<th>username</th> 
+							<th>password</th> 
+							<th>role</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach($admin as $adminit)
+						<tr>
+				            <td>{{$adminit->username}}</td>
+				            <td>{{$adminit->password}}</td>
+				            <td>{{$adminit->role}}</td>
+			            </tr>
+			            @endforeach
+					</tbody>
+				</table>		
+
+				<table class="table table-hover table-responsive" id="tblData"> 
+					<caption><h2>Teknisi</h2></caption>
+					<thead>
+						<tr>
+							<th>username</th> 
+							<th>password</th> 
+							<th>role</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach($teknisi as $teknisiit)
+						<tr>
+				            <td>{{$teknisiit->username}}</td>
+				            <td>{{$teknisiit->password}}</td>
+				            <td>{{$teknisiit->role}}</td>
+			            </tr>
+			            @endforeach
+					</tbody>
+				</table>		
+
+			</div>
+
+
+
 		</div>
 	</div>
 	<footer class="footer">

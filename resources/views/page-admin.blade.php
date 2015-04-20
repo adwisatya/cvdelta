@@ -7,6 +7,8 @@
 <link rel="stylesheet" href="{{ asset('/css/style.css') }}" />
 <script src="{{ asset('/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('/js/addRow.js') }}"></script>
+<script src="{{ asset('/js/fix.js') }}"></script>
+<script src="{{ asset('/js/approval.js') }}"></script>
 
 </head>
 <body>	
@@ -15,7 +17,7 @@
 			<div class="navbar-header">
 				<!-- Button for smallest screens -->
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-				<a class="navbar-brand" href="{{ url('/index') }}"><img src="{{ asset('/images/logo.png') }}" alt="CV. Delta logo"></a>
+				<a class="navbar-brand" href="#"><img src="{{ asset('/images/logo.png') }}" alt="CV. Delta logo"></a>
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav pull-right">
@@ -31,11 +33,17 @@
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Invoice<b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li><a href="{{ url('/admin/invoice-per-customer') }}">Per Customer</a></li>
-							<li><a href="#">Per Month</a></li>
-							<li><a href="#">All</a></li>
+							<!-- <li><a href="#">Per Month</a></li>
+							<li><a href="#">All</a></li> -->
 						</ul>
 					</li>
-					<li><a href="{{ url('/admin/customer') }}">Customer</a></li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Customer<b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="{{ url('/admin/customer') }}">Data Customer</a></li>
+							<li><a href="{{ url('/admin/barang-masuk/view') }}">Barang Rusak</a></li>
+						</ul>
+					</li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Hi <?php echo Session::get('username'); ?> <b class="caret"></b></a>
 						<ul class="dropdown-menu">

@@ -81,5 +81,19 @@ class ComponentController extends Controller {
 		return redirect('/admin/stock');
 	}
 
+	public function approval(){
+		$no_seri_komponen = Input::get('noserikomponen');
+		$no_seri_barang_rusak = Input::get('noseribarangrusak');
+		$username = Input::get('username');
+		$tombol = Input::get('tombol');
+
+		database::approval($tombol, $no_seri_komponen, $no_seri_barang_rusak, $username);
+		
+		if ($tombol=="approved"){
+			database::potong($no_seri_komponen,$no_seri_barang_rusak,$username);
+		}
+
+		return redirect('/admin/request');
+	}
 
 }
