@@ -19,7 +19,6 @@
 					<th>Nama Komponen</th> 
 					<th>Jumlah</th>
 					<th>Stok</th>
-					<th>Jumlah Minimal</th>
 					<th>Barang Terkait</th>
 					<th>Teknisi</th> 
 					<th>Approve</th>
@@ -32,7 +31,6 @@
 						<td class="namakomponen">{{$data['nama_komponen']}}</td>
 						<td class="jumlah">{{$data['jumlah']}}</td>
 						<td class="stok">{{$data['min']}}</td>
-						<td class="jumlahminkomponen">{{$data['min_stok']}}</td>
 						<td class="nobarang" >{{$data['no_seri_barang_rusak']}}</td>
 						<td class="user">{{$data['username']}}</td>
 						<td>

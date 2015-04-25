@@ -150,3 +150,7 @@ namabarang{
 }
 
 .close:hover { background: #00d9ff; }
+
+.modalDialog{
+	text-align: center;
+}

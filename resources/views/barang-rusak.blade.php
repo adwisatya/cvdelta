@@ -7,7 +7,7 @@
 		<div id="tambahBarangRusak" class="modalDialog">
 			<div>
 				<a href="#close" title="Close" class="close">X</a>
-				<h2>Tambah Barang Rusak</h2>
+				<h3>Tambah Barang Rusak</h3>
 				<form method="post" action="/admin/barang-masuk" >
 					<input name="_token" hidden value="{!! csrf_token() !!}" />
 					<input class='form-control' type="text" name="nama_perusahaan" placeholder="Nama Perusahaan">
@@ -25,13 +25,19 @@
 		<div id="perbaiki" class="modalDialog">
 			<div>
 				<a href="#close" title="Close" class="close">X</a>
-				<h2>Perbaiki Barang</h2>
+				<h3>Perbaiki Barang</h3>
 				<form method="post" action="/admin/barang-masuk/perbaiki" >
 					<input name="_token" hidden value="{!! csrf_token() !!}" />
 					<input class='form-control' type="hidden" id="noseri" name="noseri">
-					<input class='form-control' type="text" name="nama_teknisi" placeholder="Nama Teknisi">
-					<br>
-					<button id="btnSub"  class="btn" role="button"> Simpan </button>
+					<select name="nama_teknisi" class="btn btn-default dropdown-toggle">
+							<option disabled selected> -- Pilih nama Teknisi -- </option>
+						@foreach($teknisi as $tek)
+							<option>{{$tek->username}}</option>
+						@endforeach
+					</select>
+					{{--<input class='form-control' type="text" name="nama_teknisi" placeholder="Nama Teknisi">--}}
+					<br><br>
+					<button id="btnSub"  class="btn btn-primary btn-group-sm" role="button"> Simpan </button>
 				</form>
 			</div>
 		</div>

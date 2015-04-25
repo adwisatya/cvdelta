@@ -10,9 +10,7 @@ use Illuminate\Http\Request;
 class ComponentController extends Controller {
 	public function request(){
 		$datas = database::getRequestedComponent();
-
 		$arr_datas = json_decode(json_encode($datas), true);
-
 		foreach ($arr_datas as &$data) {
 			$data['jumlah'] = database::getCountRequested($data['no_seri_komponen'], $data['no_seri_barang_rusak'], $data['username']);
 			$data['min'] = database::getItemStock($data['no_seri_komponen'])[0]->jumlah;

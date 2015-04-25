@@ -22,9 +22,9 @@ class BarangRusakController extends Controller {
 	}
 
 	public function viewBarang(){
+		$teknisi=database::getTeknisi();
 		$barang_rusak=database::getBarangRusak();
-		return view('barang-rusak', compact('barang_rusak'));
-		
+		return view('barang-rusak', compact('barang_rusak','teknisi'));		
 	}
 
 	public function perbaiki(){

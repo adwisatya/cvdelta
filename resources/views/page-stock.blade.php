@@ -3,26 +3,27 @@
 @section('content')
 
 {{-- modal --}}
-		<a href="#tambahStok"><button id="addStock" class="btn " role="button"> Tambah Stok</button></a>
+		<a href="#tambahStok"><button id="addStock" class="btn btn-primary " role="button"> Tambah Stok</button></a>
 
 		<div id="tambahStok" class="modalDialog">
 			<div>
 				<a href="#close" title="Close" class="close">X</a>
 				<h2>Tambah Stok</h2>
 				<form method="post" action="/admin/stock" >
+					@include ('errors.validate')
 					<input name="_token" hidden value="{!! csrf_token() !!}" />
 					<input class='form-control' type="text" name="nama_komponen" placeholder="Nama Komponen">
 					<input class='form-control' type="text" name="no_seri_komponen" placeholder="No Komponen">
 					<input class='form-control' type="text" name="jumlah" placeholder="Jumlah">
 					<br>
-					<button id="btnSub" class="btn" role="button"> Tambah Stok </button>
+					<button id="btnSub" class="btn btn-primary" role="button"> Tambah Stok </button>
 				</form>
 			</div>
 		</div>
 {{-- end modal --}}
 	
 	{{-- modal --}}
-		<a href="#tambahStokBaru"><button id="addNewStock" class="btn " role="button"> Tambah Stok Baru</button></a>
+		<a href="#tambahStokBaru"><button id="addNewStock" class="btn btn-primary" role="button"> Tambah Stok Baru</button></a>
 
 		<div id="tambahStokBaru" class="modalDialog">
 			<div>
@@ -39,7 +40,7 @@
 					<input class='form-control' type="text" name="keterangan" placeholder="Keterangan">
 					<input class='form-control' type="text" name="min_jumlah" placeholder="Jumlah Stok Minimal">
 					<br>
-					<button id="btnSub"  class="btn" role="button"> Tambah Barang Baru </button>
+					<button id="btnSub"  class="btn btn-primary" role="button"> Tambah Barang Baru </button>
 				</form>
 			</div>
 		</div>
