@@ -47,23 +47,23 @@ class LoginController extends Controller {
 
 		$inputUsername = Input::get('username');
 		$inputPassword = Input::get('password');
-		$user = DB::table('teknisi')->where('username',$inputUsername)->first();
-		if($user == ""){
-			$user = DB::table('administrasi')->where('username',$inputUsername)->first();
-		}		
-		if($user->password == $inputPassword){
-			Session::put('username', $inputUsername);
-			if($user->role=="admin"){
-				Session::put('role', 'admin');
-				return redirect('/admin');
-			}else{
+		$userTeknisi = DB::table('teknisi')->where('username',$inputUsername)->first();
+		$userAdministrasi = DB::table('administrasi')->where('username',$inputUsername)->first();
+		if($userTeknisi != NULL){
+			if($userTeknisi->password == $inputPassword){
+				Session::put('username', $inputUsername);
 				Session::put('role', 'teknisi');
 				return redirect('/teknisi');
+			}
+		}elseif($userAdministrasi != NULL){
+			if($userAdministrasi->password == $inputPassword){
+				Session::put('username', $inputUsername);
+				Session::put('role', 'admin');
+				return redirect('/admin');
 			}
 		}else{
 			return redirect('/index');
 		}
-		
 	}
 
 	public function logout() 
