@@ -42,16 +42,23 @@ class SiteController extends Controller {
 			return view('index');
 		}
 	}
+	public function findKomponenView(){
+		return view('find-komponen');
+	}
+
 	public function requestKomponenPage(){
 		if (Session::get('role')=="teknisi"){
-			return view('request-komponen');
+			$komponen = Input::get('findComp');
+			$komponen_hasil = database::getKomponen($komponen);
+			$barang_progress=database::getBarangOnProgress();
+			return view('request-komponen', compact('barang_progress','komponen_hasil'));
 		}else{
 			return view('index');
 		}
 	}
 	public function requestKomponen(){
-		$no_seri_barang_rusak = Input::get('no_seri_barang_rusak');
-		$no_seri_komponen = Input::get('no_seri_komponen');
+		$no_seri_barang_rusak = Input::get('noBarangRusak');
+		$no_seri_komponen = Input::get('noKomponen');
 		$jumlah = Input::get('jumlah');
 		$tanggal = Input::get('tanggal');
 		//$no_tagihan = Input::get('no_tagihan');
@@ -62,7 +69,7 @@ class SiteController extends Controller {
 				$i++;
 			}
 		}
-		return view('request-komponen');
+		return view('find-komponen');
 	}
 	public function adminPage(){
 		if (Session::get('role')=="admin"){

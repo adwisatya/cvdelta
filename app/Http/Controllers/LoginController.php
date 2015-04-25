@@ -53,7 +53,7 @@ class LoginController extends Controller {
 			if($userTeknisi->password == $inputPassword){
 				Session::put('username', $inputUsername);
 				Session::put('role', 'teknisi');
-				return redirect('/teknisi');
+				return redirect('/index');
 			}
 		}elseif($userAdministrasi != NULL){
 			if($userAdministrasi->password == $inputPassword){

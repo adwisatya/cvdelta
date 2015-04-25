@@ -6,22 +6,17 @@
 		echo '<table class="table table-hover table-responsive">
 				<tr>
 					<td>
-						<b>Nama Barang Rusak</b>
-					</td>
-					<td>
-						<b>Nama Perusahaan</b>
-					</td>
-					<td>
 						<b>No Seri Barang Rusak</b>
 					</td>
 					<td>
+						<b>Nama Barang Rusak</b>
+					</td>
+					<td>
+						<b>Customer</b>
+					</td>
+					
+					<td>
 						<b>Tanggal Datang</b>
-					</td>
-					<td>
-						<b>Harga</b>
-					</td>
-					<td>
-						<b>Status</b>
 					</td>
 					<td>
 						<b>Tanggal Diperbaiki</b>
@@ -34,22 +29,17 @@
 			echo '
 				<tr>
 					<td>
+						'.$barang->no_seri_barang_rusak.'
+					</td>
+					<td>
 						'.$barang->nama_barang_rusak.'
 					</td>
 					<td>
 						'.$barang->nama_perusahaan.'
 					</td>
-					<td>
-						'.$barang->no_seri_barang_rusak.'
-					</td>
+					
 					<td>
 						'.$barang->tgl_datang.'
-					</td>
-					<td>
-						'.$barang->harga_jasa.'
-					</td>
-					<td>
-						'.$barang->status.'
 					</td>
 					<td>
 						'.$barang->tgl_diperbaiki.'

@@ -125,6 +125,12 @@ class database extends Model{
 				->get();
 	}
 
+	public static function getBarangOnProgress(){
+		return DB::table('barang_rusak')
+				->Where('status','Onprogress')
+				->get();
+	}	
+
 	public static function perbaikiBarang($noseri, $username,$status,$tgl_diperbaiki){
 		DB::table('barang_rusak')
 			->where('no_seri_barang_rusak','=',$noseri)
@@ -192,6 +198,12 @@ class database extends Model{
 
 	public static function getTeknisi(){
 		return DB::table('teknisi')
+				->get();
+	}
+	public static function getKomponen($komp){
+		return DB::table('komponen')
+				->where('nama_komponen', 'LIKE', '%'.$komp.'%')
+				->orWhere('no_seri_komponen', 'LIKE', '%'.$komp.'%')
 				->get();
 	}
 }
