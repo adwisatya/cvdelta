@@ -10,6 +10,17 @@ use Illuminate\Http\Request;
 class ComponentController extends Controller {
 	public function request(){
 		$datas = database::getRequestedComponent();
+
+		$arr_datas = json_decode(json_encode($datas), true);
+
+		foreach ($arr_datas as &$data) {
+			$data['jumlah'] = database::getCountRequested($data['no_seri_komponen'], $data['no_seri_barang_rusak'], $data['username']);
+			$data['min'] = database::getItemStock($data['no_seri_komponen'])[0]->jumlah;
+			$data['min_stok'] = database::getItemStock($data['no_seri_komponen'])[0]->min_jumlah;
+		}
+
+		$datas = $arr_datas;
+
 		return view('page-request')->with('datas', $datas);
 	}
 
@@ -84,13 +95,15 @@ class ComponentController extends Controller {
 	public function approval(){
 		$no_seri_komponen = Input::get('noserikomponen');
 		$no_seri_barang_rusak = Input::get('noseribarangrusak');
+		$jumlah = Input::get('jumlahkomponen');
+		$stok = Input::get('stokkomponen');
 		$username = Input::get('username');
 		$tombol = Input::get('tombol');
 
 		database::approval($tombol, $no_seri_komponen, $no_seri_barang_rusak, $username);
 		
 		if ($tombol=="approved"){
-			database::potong($no_seri_komponen,$no_seri_barang_rusak,$username);
+			database::updateJumlahKomponen($no_seri_komponen,$stok-$jumlah);
 		}
 
 		return redirect('/admin/request');
