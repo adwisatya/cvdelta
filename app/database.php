@@ -14,7 +14,28 @@ class database extends Model{
 				->join('teknisi','barang_rusak.username','=','teknisi.username')
 				->where('tagihan.status','=','requested')
 				->select('komponen.no_seri_komponen','komponen.nama_komponen','barang_rusak.no_seri_barang_rusak','teknisi.username')
+				->distinct()
 				->get();
+	}
+
+	public static function getCountRequested($no_seri_komponen, $no_seri_barang_rusak, $teknisi){
+		return DB::table('komponen')
+				->join('tagihan','komponen.no_seri_komponen','=','tagihan.no_seri_komponen')
+				->join('barang_rusak','tagihan.no_seri_barang_rusak','=','barang_rusak.no_seri_barang_rusak')
+				->join('teknisi','barang_rusak.username','=','teknisi.username')
+				->where('tagihan.status','=','requested')
+				->where('komponen.no_seri_komponen','=',$no_seri_komponen)
+				->where('barang_rusak.no_seri_barang_rusak','=',$no_seri_barang_rusak)
+				->where('teknisi.username','=',$teknisi)
+				->select('komponen.no_seri_komponen','komponen.nama_komponen','barang_rusak.no_seri_barang_rusak','teknisi.username')
+				->count();
+	}
+
+	public static function getItemStock($no_seri_komponen){
+		return DB::table('komponen')
+					->where('no_seri_komponen', '=', $no_seri_komponen)
+					->select('komponen.jumlah', 'komponen.min_jumlah')
+					->get();
 	}
 
 	public static function getStock(){
@@ -170,19 +191,10 @@ class database extends Model{
 				]);
 	}
 
-	public static function potong($nokomponen, $nobarang, $username){
-		$count = DB::table('komponen')
-			->join('tagihan','komponen.no_seri_komponen','=','tagihan.no_seri_komponen')
-			->join('barang_rusak','tagihan.no_seri_barang_rusak','=','barang_rusak.no_seri_barang_rusak')
-			->join('teknisi','barang_rusak.username','=','teknisi.username')
-			->where('komponen.no_seri_komponen','=', $nokomponen)
-			->where('barang_rusak.no_seri_barang_rusak','=', $nobarang)
-			->where('teknisi.username','=', $username)
-			->where('tagihan.status','=','requested')
-			->count();
-
+	public static function updateJumlahKomponen($nokomponen, $jumlah){
 		DB::table('komponen')
-			->decrement('komponen.jumlah',$count);
+			->where('no_seri_komponen','=',$nokomponen)
+			->update(['jumlah' => $jumlah]);
 	}
 
 	public static function getAdmin(){
