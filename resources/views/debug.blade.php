@@ -1,3 +1,2 @@
-{{$no_seri_komponen}}
-<br>
-{{$jumlah}}
+debug<br>
+{{$no_seri_komponen}} <br> {{$jumlah}}

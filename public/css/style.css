@@ -154,3 +154,9 @@ namabarang{
 .modalDialog{
 	text-align: center;
 }
+fontsmall td{
+	font-size: 12px;
+}
+fontsmall .btn{
+	font-size: 12px;
+}

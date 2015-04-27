@@ -51,7 +51,7 @@ class database extends Model{
 	public static function getBarangSelesai($nama_perus){
 		return DB::table('barang_rusak')
 					->where('nama_perusahaan','=',$nama_perus)
-					//status udh selesai
+					->where('status','=','done')
 					->get();
 	}
 
@@ -119,10 +119,9 @@ class database extends Model{
 			]);
 	}
 
-	public static function saveStock($nama_komponen, $no_seri_komponen, $jumlah){
+	public static function saveStock($no_seri_komponen, $jumlah){
 		DB::table('komponen')
-			->where('nama_komponen',$nama_komponen)
-			->orWhere('no_seri_komponen',$no_seri_komponen)
+			->where('no_seri_komponen',$no_seri_komponen)
 			->increment('jumlah', $jumlah);
 	}
 
@@ -143,6 +142,7 @@ class database extends Model{
 		return DB::table('barang_rusak')
 				->where('status','pending')
 				->orWhere('status','Onprogress')
+				->orderBy('tgl_datang')
 				->get();
 	}
 
@@ -212,10 +212,33 @@ class database extends Model{
 		return DB::table('teknisi')
 				->get();
 	}
-	public static function getKomponen($komp){
+	public static function getKomponenLike($komp){
 		return DB::table('komponen')
 				->where('nama_komponen', 'LIKE', '%'.$komp.'%')
 				->orWhere('no_seri_komponen', 'LIKE', '%'.$komp.'%')
 				->get();
+	}
+	public static function getKomponenById($komp){
+		return DB::table('komponen')
+				->where('no_seri_komponen', '=', $komp)
+				->get();
+	}
+	public static function deleteCustomer($namaPerusahaan){
+		DB::table('customer')
+				->where('nama_perusahaan','=',$namaPerusahaan)
+				->delete();
+	}
+	public static function updateStock($noSeri, $namaKomponen, $lokasi, $supplier, $harga, $minJum, $ket){
+		DB::table('komponen')
+			->where('no_seri_komponen','=',$noSeri)
+			->update(
+				[
+					'nama_komponen' => $namaKomponen,
+					'lokasi' => $lokasi,
+					'supplier' => $supplier,
+					'harga' => $harga,
+					'min_jumlah' => $minJum,
+					'keterangan' => $ket,
+				]);
 	}
 }

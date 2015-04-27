@@ -49,7 +49,7 @@ class SiteController extends Controller {
 	public function requestKomponenPage(){
 		if (Session::get('role')=="teknisi"){
 			$komponen = Input::get('findComp');
-			$komponen_hasil = database::getKomponen($komponen);
+			$komponen_hasil = database::getKomponenLike($komponen);
 			$barang_progress=database::getBarangOnProgress();
 			return view('request-komponen', compact('barang_progress','komponen_hasil'));
 		}else{
@@ -73,7 +73,8 @@ class SiteController extends Controller {
 	}
 	public function adminPage(){
 		if (Session::get('role')=="admin"){
-			return view('admin-index');
+			$customer = database::customer();
+			return view('admin-index', compact('customer'));
 		}else{
 			return view('index');
 		}
@@ -173,12 +174,43 @@ class SiteController extends Controller {
 	}
 
 	public function chooseCustomer(){
-		return view('pilih-customer');
+		$customer=database::customer();
+		return view('pilih-customer',compact('customer'));
 	}
 
 	public function user(){
 		$admin=database::getAdmin();
 		$teknisi=database::getTeknisi();
 		return view('user', compact('admin','teknisi'));
+	}
+	public function deleteCustomer($id){
+		database::deleteCustomer($id);
+		$customer = database::customer();
+		return view('customer',compact('customer'));
+	}
+	public function showInvoice(){
+		$nama_perus=Input::get('nama_perusahaan');
+		$barang_rusak = database::getBarangSelesai($nama_perus);
+
+		$i = 0;
+		foreach($barang_rusak as $b){;
+			$k = database::getComponentUsed($b->no_seri_barang_rusak);
+			$komponens[$i] = $k;
+			$i++;
+		}
+
+		$nama_komponen = json_decode(json_encode($komponens), true);
+
+		foreach ($nama_komponen as &$komponen) {
+			foreach ($komponen as &$komp) {
+				$komp['jumlah'] = database::getNKomponen($komp['no_seri_barang_rusak'], $komp['no_seri_komponen']);
+				$komp['harga'] = database::getPrice($komp['no_seri_komponen']);
+				$komp['subtotal'] = $komp['jumlah']*$komp['harga'][0]->harga;
+			}
+		}
+
+		$komponens = $nama_komponen;
+		
+		return view('invoice-edit',compact('barang_rusak','komponens','nama_perus'));
 	}
 }

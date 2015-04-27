@@ -2,7 +2,7 @@
 
 @section('content')
 {{-- modal --}}
-		<a href="#openModal"><button id="addCust" class="btn " role="button"> Tambah Customer </button></a>
+		<a href="#openModal"><button id="addCust" class="btn btn-primary" role="button"> Tambah Customer </button></a>
 
 		<div id="openModal" class="modalDialog">
 			<div>
@@ -15,13 +15,13 @@
 					<input class='form-control' type="text" name="telepon" placeholder="Customer's Phone Number">
 					<input class='form-control' type="text" name="contact_person" placeholder="Customer's Contact Person">
 					<br>
-					<button id="btnSub" form="form_data" class="btn" role="button"> Add Customer </button>
+					<button id="btnSub" form="form_data" class="btn btn-primary" role="button"> Add Customer </button>
 				</form>
 			</div>
 		</div>
 
 {{-- end modal --}}
-<div class="row">
+	<div class="row">
 		<table class="table table-hover table-responsive" id="tblData"> 
 			<caption><h2>Customer</h2></caption>
 			<thead>
@@ -36,15 +36,14 @@
 			<tbody>
 				@foreach($customer as $cust)
 				<tr>
-		            <td>{{$cust->nama_perusahaan}}</td>
+		            <td class="namaPerusahaan">{{$cust->nama_perusahaan}}</td>
 		            <td>{{$cust->alamat}}</td>
 		            <td>{{$cust->telepon}}</td>
 		            <td>{{$cust->contact_person}}</td>
+		            <td><a href="/admin/customer/delete/{{$cust->nama_perusahaan}}"><button form="deleteCust" class="btn btn-danger" title="hapus" role="button" type="submit">x</button></a></td>
 	            </tr>
 	            @endforeach
 			</tbody>
 		</table>
-		
-
 	</div>
 @endsection
