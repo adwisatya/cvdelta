@@ -98,13 +98,15 @@ class ComponentController extends Controller {
 		$username = Input::get('username');
 		$tombol = Input::get('tombol');
 
-		database::approval($tombol, $no_seri_komponen, $no_seri_barang_rusak, $username);
+		// database::approval($tombol, $no_seri_komponen, $no_seri_barang_rusak, $username);
 		
 		if ($tombol=="approved"){
 			database::updateJumlahKomponen($no_seri_komponen,$stok-$jumlah);
+		} else{
+			echo "masuk!";
 		}
 
-		return redirect('/admin/request');
+		// return redirect('/admin/request');
 	}
 	public function tambahStokView($noSeri){
 		$komponen = database::getKomponenById($noSeri);

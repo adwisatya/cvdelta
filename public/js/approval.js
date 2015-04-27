@@ -19,12 +19,12 @@ $(document).ready(function() {
         });
     });
 
-    $(function(){
-        $(".decline").click(function(){
-            $('#noserikomponen').val($(this).closest('tr').find('.nokomponen').text());
-            $('#noseribarangrusak').val($(this).closest('tr').find('.nobarang').text());
-            $('#username').val($(this).closest('tr').find('.user').text());
-            $('#tombol').val("decline");
-        });
-    });
+    // $(function(){
+    //     $(".decline").click(function(){
+    //         $('#noserikomponen').val($(this).closest('tr').find('.nokomponen').text());
+    //         $('#noseribarangrusak').val($(this).closest('tr').find('.nobarang').text());
+    //         $('#username').val($(this).closest('tr').find('.user').text());
+    //         $('#tombol').val("decline");
+    //     });
+    // });
 });

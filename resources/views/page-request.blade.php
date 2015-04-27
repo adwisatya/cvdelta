@@ -11,6 +11,15 @@
 			<input class='form-control' type="hidden" id="username" name="username">
 			<input class='form-control' type="hidden" id="tombol" name="tombol">
 		</form>
+		<form method="post" id="form_data2" action="/admin/request/approval" >
+			<input name="_token" hidden value="{!! csrf_token() !!}" />
+			<input class='form-control' type="hidden" id="noserikomponen2" name="noserikomponen2">
+			<input class='form-control' type="hidden" id="jumlahkomponen2" name="jumlahkomponen2">
+			<input class='form-control' type="hidden" id="stokkomponen2" name="stokkomponen2">
+			<input class='form-control' type="hidden" id="noseribarangrusak2" name="noseribarangrusak2">
+			<input class='form-control' type="hidden" id="username2" name="username2">
+			<input class='form-control' type="hidden" id="tombol2" name="tombol2">
+		</form>
 		<table class="table table-hover table-responsive"> 
 			<caption><h2>Requested Component</h2></caption>
 			<thead> 
@@ -35,7 +44,7 @@
 						<td class="user">{{$data['username']}}</td>
 						<td>
 							<button form="form_data" class="btn btn-success approve" role="button"> Approve </a>&nbsp;
-							<button form="form_data" class="btn btn-danger decline" role="button"> Decline </a>
+							<button form="form_data2" class="btn btn-danger decline" role="button"> Decline </a>
 						</td>
 					</tr>
 				@endforeach

@@ -148,7 +148,7 @@ class database extends Model{
 
 	public static function getBarangOnProgress(){
 		return DB::table('barang_rusak')
-				->Where('status','Onprogress')
+				->where('status','Onprogress')
 				->get();
 	}	
 

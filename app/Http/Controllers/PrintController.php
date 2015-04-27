@@ -43,7 +43,7 @@ class PrintController extends Controller {
 		
 		return view('invoice',compact('barang_rusak','komponens','nama_perus'));
 
-        // $pdf = \PDF::loadView('invoice',compact('barang_rusak','komponens','nama_perus'));
+  //       $pdf = \PDF::loadView('invoice',compact('barang_rusak','komponens','nama_perus'));
 		// return $pdf->stream();
     }
 

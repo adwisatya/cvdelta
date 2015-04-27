@@ -51,6 +51,7 @@
 	<hr>
 	@endforeach
 	<div class="sign">
+		
 		Bandung, April 2015
 		<br><br><br><br><br>
 		Sonny Tjahjadi
