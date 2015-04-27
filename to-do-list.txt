@@ -1,4 +1,0 @@
-Aryya:
-	Teknisi
-	Login
-	Menu Profile

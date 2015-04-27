@@ -10,6 +10,15 @@ use Illuminate\Http\Request;
 class ComponentController extends Controller {
 	public function request(){
 		$datas = database::getRequestedComponent();
+		$arr_datas = json_decode(json_encode($datas), true);
+		foreach ($arr_datas as &$data) {
+			$data['jumlah'] = database::getCountRequested($data['no_seri_komponen'], $data['no_seri_barang_rusak'], $data['username']);
+			$data['min'] = database::getItemStock($data['no_seri_komponen'])[0]->jumlah;
+			$data['min_stok'] = database::getItemStock($data['no_seri_komponen'])[0]->min_jumlah;
+		}
+
+		$datas = $arr_datas;
+
 		return view('page-request')->with('datas', $datas);
 	}
 
@@ -73,27 +82,49 @@ class ComponentController extends Controller {
 	}
 
 	public function addStock(){
-		$nama_komponen = Input::get('nama_komponen');
-		$no_seri_komponen = Input::get('no_seri_komponen');
+		// $nama_komponen = Input::get('nama_komponen');
+		$no_seri_komponen = Input::get('noSeri');
 		$jumlah = Input::get('jumlah');
 
-		database::saveStock($nama_komponen, $no_seri_komponen, $jumlah);
+		database::saveStock($no_seri_komponen, $jumlah);
 		return redirect('/admin/stock');
 	}
 
 	public function approval(){
 		$no_seri_komponen = Input::get('noserikomponen');
 		$no_seri_barang_rusak = Input::get('noseribarangrusak');
+		$jumlah = Input::get('jumlahkomponen');
+		$stok = Input::get('stokkomponen');
 		$username = Input::get('username');
 		$tombol = Input::get('tombol');
 
 		database::approval($tombol, $no_seri_komponen, $no_seri_barang_rusak, $username);
 		
 		if ($tombol=="approved"){
-			database::potong($no_seri_komponen,$no_seri_barang_rusak,$username);
+			database::updateJumlahKomponen($no_seri_komponen,$stok-$jumlah);
 		}
 
 		return redirect('/admin/request');
 	}
+	public function tambahStokView($noSeri){
+		$komponen = database::getKomponenById($noSeri);
+		return view('tambah-stok', compact('komponen'));
+	}
+	public function updateStockView($noSeri){
+		$komponen = database::getKomponenById($noSeri);
+		return view('update-stock',compact('komponen'));
+	}
+	public function updateStock(){
+		$noSeri = Input::get('noSeri');
+		$namaKomponen = Input::get('namaKomponen');
+		$lokasi = Input::get('lokasi');
+		$supplier = Input::get('supplier');
+		$harga = Input::get('harga');
+		$minJum = Input::get('minJum');
+		$jumlah = Input::get('jumlah');
+		$ket = Input::get('ket');
 
+		database::updateStock($noSeri, $namaKomponen, $lokasi, $supplier, $harga, $minJum, $ket);
+		return redirect('admin/stock');
+	}
 }

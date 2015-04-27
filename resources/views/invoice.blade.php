@@ -52,7 +52,7 @@ body {background-color:white}
 	<!-- diulang sampe sini -->
 	@endforeach
 	<div class="sign">
-		Bandung, April 2015
+		Bandung, <?php echo date("d/m/Y"); ?> 
 		<br><br><br><br><br>
 		Sonny Tjahjadi
 	</div>
