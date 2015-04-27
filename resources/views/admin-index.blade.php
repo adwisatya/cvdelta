@@ -11,4 +11,4 @@
 			<br>
 			<button id="btnSub"  class="btn" role="button"> Tambah Barang Baru </button>
 		</form>
-@endsection
+@stop
