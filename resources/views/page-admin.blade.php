@@ -17,7 +17,7 @@
 			<div class="navbar-header">
 				<!-- Button for smallest screens -->
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-				<a class="navbar-brand" href="#"><img src="{{ asset('/images/logo.png') }}" alt="CV. Delta logo"></a>
+				<a class="navbar-brand" href="{{ url('/admin')}}"><img src="{{ asset('/images/logo.png') }}" alt="CV. Delta logo"></a>
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav pull-right">
@@ -58,6 +58,15 @@
 	<div class="container">
 		<div class="content">
 			@yield('content')
+		</div>
+		<div class="errors">
+			@if($errors->any())
+				<ul class="alert alert-danger">
+					@foreach($errors->all() as $error)
+						<li>{{$error}}</li>
+					@endforeach
+				</ul>
+			@endif
 		</div>
 	</div>
 	<footer class="footer">

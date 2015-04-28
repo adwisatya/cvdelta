@@ -82,13 +82,12 @@ class database extends Model{
 	}
 
 	public static function saveCustomer($nama,$alamat,$telepon,$cp){
-		DB::table('customer')->insert(
-			[
-				'nama_perusahaan' => $nama,
-				'alamat' => $alamat,
-				'telepon' => $telepon,
-				'contact_person' => $cp,
-			]);
+		$customer = new Customer;
+		$customer->nama_perusahaan = $nama;
+		$customer->alamat = $alamat;
+		$customer->telepon = $telepon;
+		$customer->contact_person = $contact_person;
+		$customer->save();
 	}
 
 	public static function getNKomponen($id_barang,$id_komp){
