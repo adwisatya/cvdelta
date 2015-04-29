@@ -56,10 +56,12 @@
 		</div>
 	</div> 
 	<div class="container">
+
 		<div class="content">
 			@yield('content')
 		</div>
 		<div class="errors">
+			@yield('errorMessage')
 			@if($errors->any())
 				<ul class="alert alert-danger">
 					@foreach($errors->all() as $error)

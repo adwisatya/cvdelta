@@ -160,3 +160,7 @@ fontsmall td{
 fontsmall .btn{
 	font-size: 12px;
 }
+.errors{
+	color:red;
+	font-size: 14px;
+}

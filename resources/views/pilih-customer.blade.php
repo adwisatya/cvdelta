@@ -16,3 +16,10 @@
 		<button id="btnSub"  class="btn btn-primary" role="button"> Pilih</button>
 	</form>
 @endsection
+
+@section('errorMessage')
+	@if(isset($error)){
+		{{$error}}
+	}
+	@endif
+@endsection
