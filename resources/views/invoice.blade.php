@@ -20,7 +20,9 @@ body {background-color:white}
 		<br><br><br><br>
 		Perincian Biaya Perbaikan PCB, sebagai berikut:
 	</div>
-	<?php $i = 0; ?>
+	<?php $i = 0; 
+			$grandTotal = 0;
+		?>
 	@foreach($barang_rusak as $barang)
 	<!-- diulang dari sini -->
 	<div class="invoiceBarang">
@@ -29,7 +31,7 @@ body {background-color:white}
 			<table>
 				<tr>
 					<td colspan="5">Jasa perbaikan</td>
-					<td>harga</td>
+					<td>Rp.{{$barang->harga_jasa}},00</td>
 				</tr>
 					@for($j=0;$j<sizeof($komponens[$i]);$j++)
 						<tr>
@@ -43,14 +45,19 @@ body {background-color:white}
 					@endfor
 				<tr>
 					<td colspan="5"><b>Subtotal</b></td>
-					<td><b>Rp. <?php echo array_sum(array_column($komponens[$i],'subtotal')) ?>,00</b></td>
+					<td><b>Rp. <?php echo array_sum(array_column($komponens[$i],'subtotal'))+$barang->harga_jasa ?>,00</b></td>
 				</tr>
 			</table>
 		</div>
 	</div>
-	<?php $i++; ?>
+	<?php 
+		$grandTotal += array_sum(array_column($komponens[$i],'subtotal'))+$barang->harga_jasa;
+	$i++; ?>
 	<!-- diulang sampe sini -->
 	@endforeach
+
+	<b>Grand Total  : <?php echo $grandTotal; ?> </b>
+
 	<div class="sign">
 		Bandung, <?php echo date("d/m/Y"); ?> 
 		<br><br><br><br><br>

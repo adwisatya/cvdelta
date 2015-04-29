@@ -42,8 +42,13 @@ class BarangRusakController extends Controller {
 		$noseri=Input::get('idbarang');
 		$status="Done";
 		$tgl_selesai=Carbon::now()->toDateString();
+		if(Input::get('hargaJasa')!=""){
+			$jasa=Input::get('hargaJasa');
+		}else{
+			$jasa=250000;
+		}
 
-		database::selesaiBarang($noseri,$tgl_selesai, $status);
+		database::selesaiBarang($noseri,$tgl_selesai, $status, $jasa);
 		return redirect('/admin/barang-masuk/view');
 	}
 }
