@@ -1,22 +1,23 @@
 <?php namespace App\Http\Controllers;
 
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use Input;
+use App\Barang;
 use App\database;
-use Illuminate\Http\Request;
 use Carbon\Carbon;
+use App\Http\Requests;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\AddBarangRequest;
+use App\Http\Requests\FixBarangRusakRequest;
 
 class BarangRusakController extends Controller {
+	public function addBarang(AddBarangRequest $request){
 
-	public function addBarang(){
-
-		$nama_perusahaan = Input::get('nama_perusahaan');
-		$nama_barang_rusak = Input::get('nama_barang_rusak');
-		$no_seri_barang_rusak = Input::get('no_seri_barang_rusak');
-		$no_surat_jalan = Input::get('no_surat_jalan');
-
-
+		$nama_perusahaan = $request->nama_perusahaan;
+		$nama_barang_rusak = $request->nama_barang_rusak;
+		$no_seri_barang_rusak = $request->no_seri_barang_rusak;
+		$no_surat_jalan = $request->no_surat_jalan;
+		
 		database::saveBarang($nama_barang_rusak, $nama_perusahaan, $no_seri_barang_rusak, $no_surat_jalan);
 		return redirect('/admin');
 	}
@@ -27,9 +28,9 @@ class BarangRusakController extends Controller {
 		return view('barang-rusak', compact('barang_rusak','teknisi'));		
 	}
 
-	public function perbaiki(){
-		$noseri=Input::get('noseri');
-		$username=Input::get('nama_teknisi');
+	public function perbaiki(FixBarangRusakRequest $request){
+		$noseri=$request->noseri;
+		$username=$request->nama_teknisi;
 		$status="Onprogress";
 		$tgl_diperbaiki=Carbon::now()->toDateString();
 

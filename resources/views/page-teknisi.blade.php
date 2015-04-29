@@ -38,6 +38,15 @@
 		<div class="content">
 			@yield('content')
 		</div>
+		<div class="errors">
+			@if($errors->any())
+				<ul class="alert alert-danger">
+					@foreach($errors->all() as $error)
+						<li>{{$error}}</li>
+					@endforeach
+				</ul>
+			@endif
+		</div>
 	</div>
 	<footer class="footer">
       <div class="container">

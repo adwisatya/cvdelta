@@ -1,11 +1,14 @@
 <?php namespace App\Http\Controllers;
 
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
-use App\database;
 use Input;
-
+use App\database;
+use App\Http\Requests;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\AddStockRequest;
+use App\Http\Requests\AddCountRequest;
+use App\Http\Requests\AddCustomerRequest;
+use App\Http\Requests\UpdateStockRequest;
 
 class ComponentController extends Controller {
 	public function request(){
@@ -57,34 +60,34 @@ class ComponentController extends Controller {
 		return view('customer', compact('customer'));
 	}
 
-	public function addCustomer(){
-		$nama = Input::get('nama_perusahaan');
-		$alamat = Input::get('alamat');
-		$telepon = Input::get('telepon');
-		$cp = Input::get('contact_person');
+	public function addCustomer(AddCustomerRequest $request){
+		$nama = $request->nama_perusahaan;
+		$alamat = $request->alamat;
+		$telepon = $request->telepon;
+		$cp = $request->contact_person;
+		echo $cp;
 
 		database::saveCustomer($nama,$alamat,$telepon,$cp);
 		return redirect('/admin/customer');
 	}
 
-	public function addNewStock(){
-		$nama_komponen = Input::get('nama_komponen');
-		$no_seri_komponen = Input::get('no_seri_komponen');
-		$supplier = Input::get('supplier');
-		$harga = Input::get('harga');
-		$jumlah = Input::get('jumlah');
-		$lokasi = Input::get('lokasi');
-		$keterangan = Input::get('keterangan');
-		$min_jumlah = Input::get('min_jumlah');
+	public function addNewStock(AddStockRequest $request){
+		$nama_komponen = $request->nama_komponen;
+		$no_seri_komponen = $request->no_seri_komponen;
+		$supplier = $request->supplier;
+		$harga = $request->harga;
+		$jumlah = $request->jumlah;
+		$lokasi = $request->lokasi;
+		$keterangan = $request->keterangan;
+		$min_jumlah = $request->min_jumlah;
 
 		database::saveNewStock($nama_komponen, $no_seri_komponen, $supplier, $harga, $jumlah, $lokasi, $keterangan, $min_jumlah);
 		return redirect('/admin/stock');
 	}
 
-	public function addStock(){
-		// $nama_komponen = Input::get('nama_komponen');
+	public function addStock(AddCountRequest $request){
 		$no_seri_komponen = Input::get('noSeri');
-		$jumlah = Input::get('jumlah');
+		$jumlah = $request->jumlah;
 
 		database::saveStock($no_seri_komponen, $jumlah);
 		return redirect('/admin/stock');
@@ -102,27 +105,32 @@ class ComponentController extends Controller {
 		
 		if ($tombol=="approved"){
 			database::updateJumlahKomponen($no_seri_komponen,$stok-$jumlah);
+		} else{
+			database::delDeclined();
 		}
 
 		return redirect('/admin/request');
 	}
+
 	public function tambahStokView($noSeri){
 		$komponen = database::getKomponenById($noSeri);
 		return view('tambah-stok', compact('komponen'));
 	}
+
 	public function updateStockView($noSeri){
 		$komponen = database::getKomponenById($noSeri);
 		return view('update-stock',compact('komponen'));
 	}
-	public function updateStock(){
-		$noSeri = Input::get('noSeri');
-		$namaKomponen = Input::get('namaKomponen');
-		$lokasi = Input::get('lokasi');
-		$supplier = Input::get('supplier');
-		$harga = Input::get('harga');
-		$minJum = Input::get('minJum');
-		$jumlah = Input::get('jumlah');
-		$ket = Input::get('ket');
+
+	public function updateStock(UpdateStockRequest $request){
+		$noSeri = $request->noSeri;
+		$namaKomponen = $request->namaKomponen;
+		$lokasi = $request->lokasi;
+		$supplier = $request->supplier;
+		$harga = $request->harga;
+		$minJum = $request->minJum;
+		$jumlah = $request->jumlah;
+		$ket = $request->ket;
 
 		database::updateStock($noSeri, $namaKomponen, $lokasi, $supplier, $harga, $minJum, $ket);
 		return redirect('admin/stock');

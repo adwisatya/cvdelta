@@ -3,15 +3,21 @@
 use DB;
 use Input;
 use Session;
+use App\Barang;
+use App\database;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\database;
-
+use App\Http\Requests\AdminProfileRequest;
+use App\Http\Requests\TeknisiProfileRequest;
+use App\Http\Requests\InvoiceCustomerRequest;
 
 use Illuminate\Http\Request;
 
 class SiteController extends Controller {
-
+	public static $rules = [
+		'no_seri_barang_rusak' => 'required'
+	];
+	
 	public function index(){
 		if (Session::get('role')=="admin"){
 			return view('page-admin');
@@ -61,7 +67,6 @@ class SiteController extends Controller {
 		$no_seri_komponen = Input::get('noKomponen');
 		$jumlah = Input::get('jumlah');
 		$tanggal = Input::get('tanggal');
-		//$no_tagihan = Input::get('no_tagihan');
 		$i=0;
 		if($no_seri_barang_rusak != "" && $no_seri_komponen != ""){
 			while($i<$jumlah){
@@ -71,6 +76,7 @@ class SiteController extends Controller {
 		}
 		return view('find-komponen');
 	}
+
 	public function adminPage(){
 		if (Session::get('role')=="admin"){
 			$customer = database::customer();
@@ -94,10 +100,10 @@ class SiteController extends Controller {
 		}
 
 	}
-	public function profileUpdate(){
-		$oldPassword = Input::get('oldpwd');
-		$newPassword = Input::get('newpwd');
-		$newPasswordConfirmation = Input::get('newpwdconfirmation');
+	public function profileUpdate(TeknisiProfileRequest $request){
+		$oldPassword = $request->oldpwd;
+		$newPassword = $request->newpwd;
+		$newPasswordConfirmation = $request->newpwdconfirmation;
 		
 		echo $oldPassword." ".$newPassword." ".$newPasswordConfirmation;
 		$user = DB::table('teknisi')->where('username',Session::get('username'))->first();
@@ -116,10 +122,10 @@ class SiteController extends Controller {
 			}
 		}
 	}
-	public function adminprofileUpdate(){
-		$oldPassword = Input::get('oldpwd');
-		$newPassword = Input::get('newpwd');
-		$newPasswordConfirmation = Input::get('newpwdconfirmation');
+	public function adminprofileUpdate(AdminProfileRequest $request){
+		$oldPassword = $request->oldpwd;
+		$newPassword = $request->newpwd;
+		$newPasswordConfirmation = $request->newpwdconfirmation;
 		
 		echo $oldPassword." ".$newPassword." ".$newPasswordConfirmation;
 		$user = DB::table('administrasi')->where('username',Session::get('username'))->first();
@@ -188,8 +194,8 @@ class SiteController extends Controller {
 		$customer = database::customer();
 		return view('customer',compact('customer'));
 	}
-	public function showInvoice(){
-		$nama_perus=Input::get('nama_perusahaan');
+	public function showInvoice(InvoiceCustomerRequest $request){
+		$nama_perus=$request->nama_perusahaan;
 		$barang_rusak = database::getBarangSelesai($nama_perus);
 
 		$i = 0;

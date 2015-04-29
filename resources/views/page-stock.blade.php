@@ -16,7 +16,7 @@
 				<input class='form-control' type="text" name="harga" placeholder="Harga">
 				<input class='form-control' type="text" name="jumlah" placeholder="Jumlah">
 				<input class='form-control' type="text" name="lokasi" placeholder="Lokasi">
-				<input class='form-control' type="text" name="keterangan" placeholder="Keterangan">
+				<input class='form-control' type="text" name="keterangan" placeholder="Keterangan (Optional)">
 				<input class='form-control' type="text" name="min_jumlah" placeholder="Jumlah Stok Minimal">
 				<br>
 				<button id="btnSub"  class="btn btn-primary" role="button"> Tambah Barang Baru </button>

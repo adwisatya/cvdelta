@@ -10,10 +10,11 @@
 					<option value="{{$cust->nama_perusahaan}}" >{{$cust->nama_perusahaan}}</option>
 				@endforeach
 			</select>
-			<input class='form-control' type="text" name="nama_barang_rusak" placeholder="Nama Barang">
-			<input class='form-control' type="text" name="no_seri_barang_rusak" placeholder="No seri">
+			<input class='form-control' type="text" name="nama_barang_rusak" placeholder="Nama Barang Rusak">
+			<input class='form-control' type="text" name="no_seri_barang_rusak" placeholder="No seri Barang Rusak">
 			<input class='form-control' type="text" name="no_surat_jalan" placeholder="No Surat Jalan">
 			<br>
 			<button id="btnSub"  class="btn btn-primary" role="button"> Tambah Barang Baru </button>
 		</form>
-@stop
+		
+@endsection
