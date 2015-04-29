@@ -67,8 +67,8 @@ Route::post('admin/updateStock', 'ComponentController@updateStock');
 
 
 //yang ngeprint:
-// Route::post('admin/pilih-customer','PrintController@showPDF'); //--> yang bener
-Route::post('admin/pilih-customer','SiteController@showInvoice'); //--> masih belom
+Route::post('admin/pilih-customer','PrintController@showPDF'); //--> yang bener
+// Route::post('admin/pilih-customer','SiteController@showInvoice'); //--> masih belom
 
 
 // Route::get('admin/pilih-customer/pdf','PrintController@showPDF');
