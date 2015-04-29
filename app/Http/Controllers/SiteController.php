@@ -6,18 +6,14 @@ use Session;
 use App\Barang;
 use App\database;
 use App\Http\Requests;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminProfileRequest;
 use App\Http\Requests\TeknisiProfileRequest;
 use App\Http\Requests\InvoiceCustomerRequest;
-
-use Illuminate\Http\Request;
+use App\Http\Requests\TeknisiComponentRequest;
 
 class SiteController extends Controller {
-	public static $rules = [
-		'no_seri_barang_rusak' => 'required'
-	];
-	
 	public function index(){
 		if (Session::get('role')=="admin"){
 			return view('page-admin');
@@ -27,6 +23,7 @@ class SiteController extends Controller {
 		}
 		return view('index');
 	}
+
 	public function teknisiPage(){
 		if (Session::get('role')=="teknisi"){
 			return view('request-komponen');
@@ -62,10 +59,10 @@ class SiteController extends Controller {
 			return view('index');
 		}
 	}
-	public function requestKomponen(){
-		$no_seri_barang_rusak = Input::get('noBarangRusak');
-		$no_seri_komponen = Input::get('noKomponen');
-		$jumlah = Input::get('jumlah');
+	public function requestKomponen(TeknisiComponentRequest $request){
+		$no_seri_barang_rusak = $request->noBarangRusak;
+		$no_seri_komponen = $request->noKomponen;
+		$jumlah = $request->jumlah;
 		$tanggal = Input::get('tanggal');
 		$i=0;
 		if($no_seri_barang_rusak != "" && $no_seri_komponen != ""){
