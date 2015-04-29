@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AddStockRequest;
 use App\Http\Requests\AddCountRequest;
+use App\Http\Requests\AddCustomerRequest;
 use App\Http\Requests\UpdateStockRequest;
 
 class ComponentController extends Controller {
@@ -59,11 +60,12 @@ class ComponentController extends Controller {
 		return view('customer', compact('customer'));
 	}
 
-	public function addCustomer(){
-		$nama = Input::get('nama_perusahaan');
-		$alamat = Input::get('alamat');
-		$telepon = Input::get('telepon');
-		$cp = Input::get('contact_person');
+	public function addCustomer(AddCustomerRequest $request){
+		$nama = $request->nama_perusahaan;
+		$alamat = $request->alamat;
+		$telepon = $request->telepon;
+		$cp = $request->contact_person;
+		echo $cp;
 
 		database::saveCustomer($nama,$alamat,$telepon,$cp);
 		return redirect('/admin/customer');

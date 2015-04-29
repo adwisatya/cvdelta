@@ -7,8 +7,9 @@ use App\Barang;
 use App\database;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\InvoiceCustomerRequest;
 use App\Http\Requests\AdminProfileRequest;
+use App\Http\Requests\TeknisiProfileRequest;
+use App\Http\Requests\InvoiceCustomerRequest;
 
 use Illuminate\Http\Request;
 
@@ -66,7 +67,6 @@ class SiteController extends Controller {
 		$no_seri_komponen = Input::get('noKomponen');
 		$jumlah = Input::get('jumlah');
 		$tanggal = Input::get('tanggal');
-		//$no_tagihan = Input::get('no_tagihan');
 		$i=0;
 		if($no_seri_barang_rusak != "" && $no_seri_komponen != ""){
 			while($i<$jumlah){
@@ -100,10 +100,10 @@ class SiteController extends Controller {
 		}
 
 	}
-	public function profileUpdate(){
-		$oldPassword = Input::get('oldpwd');
-		$newPassword = Input::get('newpwd');
-		$newPasswordConfirmation = Input::get('newpwdconfirmation');
+	public function profileUpdate(TeknisiProfileRequest $request){
+		$oldPassword = $request->oldpwd;
+		$newPassword = $request->newpwd;
+		$newPasswordConfirmation = $request->newpwdconfirmation;
 		
 		echo $oldPassword." ".$newPassword." ".$newPasswordConfirmation;
 		$user = DB::table('teknisi')->where('username',Session::get('username'))->first();

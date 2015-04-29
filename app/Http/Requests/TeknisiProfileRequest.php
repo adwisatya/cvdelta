@@ -2,7 +2,7 @@
 
 use App\Http\Requests\Request;
 
-class AddCustomerRequest extends Request {
+class TeknisiProfileRequest extends Request {
 
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -22,10 +22,9 @@ class AddCustomerRequest extends Request {
 	public function rules()
 	{
 		return [
-			'nama_perusahaan' => 'required|unique:customer',
-			'alamat' => 'required',
-			'telepon' => 'required',
-			'contact_person' => 'required',
+			'oldpwd' => 'required',
+			'newpwd' => 'required',
+			'newpwdconfirmation' => 'required|same:newpwd'
 		];
 	}
 

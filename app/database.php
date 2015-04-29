@@ -86,7 +86,7 @@ class database extends Model{
 		$customer->nama_perusahaan = $nama;
 		$customer->alamat = $alamat;
 		$customer->telepon = $telepon;
-		$customer->contact_person = $contact_person;
+		$customer->contact_person = $cp;
 		$customer->save();
 	}
 
