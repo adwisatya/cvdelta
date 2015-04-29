@@ -62,7 +62,7 @@ class LoginController extends Controller {
 				return redirect('/admin');
 			}
 		}else{
-			return redirect('/index');
+			return redirect('/');
 		}
 	}
 

@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'SiteController@index');
+Route::get('/index','SiteController@index');
 
 Route::get('home', 'HomeController@index');
 
@@ -19,8 +20,6 @@ Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
-
-Route::get('index','SiteController@index');
 
 Route::post('index','LoginController@validateLogin');
 
