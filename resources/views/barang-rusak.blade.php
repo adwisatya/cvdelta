@@ -55,7 +55,7 @@
 		            <td>{{$barang->nama_perusahaan}}</td>
 		            <td>{{$barang->no_surat_jalan}}</td>
 		            <td>{{$barang->tgl_datang}}</td>
-		            <td>{{$barang->harga_jasa}}</td>
+		            <td><input type="text" class="form-control" name="hargaJasa" form="form_selesai"></td>
 		            <td>{{$barang->status}}</td>
 		            <td>{{$barang->tgl_diperbaiki}}</td>
 		           	<td id="{{$barang->no_seri_barang_rusak}}">@if($barang->username=="")

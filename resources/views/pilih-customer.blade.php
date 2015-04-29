@@ -11,6 +11,7 @@
 				<option value="{{$cust->nama_perusahaan}}">{{$cust->nama_perusahaan}}</option>
 			@endforeach
 		</select>
+		<input class='form-control' type="text" name="bulan" placeholder="masukkan bulan dalam format angka">
 		<br>
 		<button id="btnSub"  class="btn btn-primary" role="button"> Pilih</button>
 	</form>

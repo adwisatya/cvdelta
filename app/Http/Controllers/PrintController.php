@@ -20,7 +20,8 @@ class PrintController extends Controller {
         // return $pdf->stream();
 
     	$nama_perus=Input::get('nama_perusahaan');
-		$barang_rusak = database::getBarangSelesai($nama_perus);
+    	$bulan = Input::get('bulan');
+		$barang_rusak = database::getBarangSelesaionMonth($nama_perus,$bulan);
 
 		$i = 0;
 		$komponens = array();

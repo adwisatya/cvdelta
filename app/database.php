@@ -194,13 +194,14 @@ class database extends Model{
 			->delete();
 	}
 
-	public static function selesaiBarang($noseri,$tgl_selesai,$status){
+	public static function selesaiBarang($noseri,$tgl_selesai,$status,$jasa){
 		DB::table('barang_rusak')
 			->where('no_seri_barang_rusak','=',$noseri)
 			->update(
 				[
 					'status' => $status,
 					'tgl_selesai' => $tgl_selesai,
+					'harga_jasa' => $jasa,
 				]);
 	}
 
@@ -248,4 +249,12 @@ class database extends Model{
 					'keterangan' => $ket,
 				]);
 	}
+	public static function getBarangSelesaionMonth($nama_perus,$month){
+		return DB::table('barang_rusak')
+					->where('nama_perusahaan','=',$nama_perus)
+					->where('status','=','done')
+					->where(DB::raw('MONTH(tgl_selesai)'), '=', $month)
+					->get();
+	}
+
 }
