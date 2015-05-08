@@ -25,19 +25,19 @@
 					<td colspan="5">Jasa perbaikan</td>						
 					<td><div class="input-group input-group-sm">
 						  <span class="input-group-addon" id="basic-addon1">Rp. </span>
-						  <input onchange="calculateJasa({{$i}},<?php echo array_sum(array_column($komponens[$i],'subtotal')) ?>)" name="biayaJasa" id="biayaJasa{{$i}}" type="text" class="form-control" placeholder="Biaya Perbaikan" aria-describedby="basic-addon1">
+						  <input onchange="calculateJasa({{$i}})" name="biayaJasa" id="biayaJasa{{$i}}" type="text" class="form-control" placeholder="Biaya Perbaikan" aria-describedby="basic-addon1">
 						  <span class="input-group-addon">.00</span>
 						</div></td>
 				</tr>
 				@for($j=0;$j<sizeof($komponens[$i]);$j++)
 					<tr>
-						<td style="width:2%;"><input onchange="calculatePerKomponen({{$i}},{{$j}},<?php echo array_sum(array_column($komponens[$i],'subtotal')) ?>)" class="form-control" id="jml{{$i}}-{{$j}}" value="{{$komponens[$i][$j]['jumlah']}}"></td>
+						<td style="width:2%;"><input onchange="calculatePerKomponen({{$i}},{{$j}})" class="form-control" id="jml{{$i}}-{{$j}}" value="{{$komponens[$i][$j]['jumlah']}}"></td>
 						<td style="width:1%;">pcs</td>
 						<td style="width:10%;" class="komp">{{$komponens[$i][$j]['no_seri_komponen']}}</td>
 						<td style="width:1%;">@</td>
 						<td style="width:8%;"><div class="input-group input-group-sm">
 						  <span class="input-group-addon" id="basic-addon1">Rp. </span>
-						  <input onchange="calculatePerKomponen({{$i}},{{$j}},<?php echo array_sum(array_column($komponens[$i],'subtotal')) ?>)" id="hargaKomponen{{$i}}-{{$j}}" name="hargaKomponen" type="text" class="form-control" aria-describedby="basic-addon1" value="{{$komponens[$i][$j]['harga'][0]->harga}}"></input>
+						  <input onchange="calculatePerKomponen({{$i}},{{$j}})" id="hargaKomponen{{$i}}-{{$j}}" name="hargaKomponen" type="text" class="form-control" aria-describedby="basic-addon1" value="{{$komponens[$i][$j]['harga'][0]->harga}}"></input>
 						  <span class="input-group-addon">.00</span>
 						</div></td>
 						<td style="width:10%;"><input id="total{{$i}}-{{$j}}" value="{{$komponens[$i][$j]['subtotal']}}" class="form-control" readonly></td>
@@ -65,8 +65,9 @@
 	</div>
 
 <script>
-function calculatePerKomponen(i,j,sub) {
+function calculatePerKomponen(i,j) {
 	// window.alert(i+","+j);
+	var sub = parseInt(document.getElementById("subtotal"+i).value);
 	var temp_total = sub - document.getElementById("total"+i+"-"+j).value;
 	// var subtotal = document.getElementById("subtotal"+i).value;
     var x = document.getElementById("hargaKomponen"+i+"-"+j).value;
@@ -74,8 +75,8 @@ function calculatePerKomponen(i,j,sub) {
     document.getElementById("subtotal"+i).value = temp_total+parseInt(document.getElementById("total"+i+"-"+j).value);
     calculateSubTotal(i,j,sub);
 }
-function calculateJasa(i,sub){
-	sub = parseInt(document.getElementById("subtotal"+i).value);
+function calculateJasa(i){
+	var sub = parseInt(document.getElementById("subtotal"+i).value);
 	var jasa = parseInt(document.getElementById("biayaJasa"+i).value);
 	// var temp = parseInt(document.getElementById("subtotal"+i).value); 
     document.getElementById("subtotal"+i).value = jasa+sub;
