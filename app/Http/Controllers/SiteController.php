@@ -193,7 +193,8 @@ class SiteController extends Controller {
 	}
 	public function showInvoice(InvoiceCustomerRequest $request){
 		$nama_perus=$request->nama_perusahaan;
-		$barang_rusak = database::getBarangSelesai($nama_perus);
+		$bulan = Input::get('bulan');
+		$barang_rusak = database::getBarangSelesaionMonth($nama_perus,$bulan);
 
 		$i = 0;
 		foreach($barang_rusak as $b){;
@@ -201,19 +202,24 @@ class SiteController extends Controller {
 			$komponens[$i] = $k;
 			$i++;
 		}
+		if(!isset($komponens)){
+			$error = "Tidak ada tagihan yang dapat dibuat";
+			$customer = database::customer();
+			return view ('pilih-customer',compact('error','customer'));
+		}else{
+			$nama_komponen = json_decode(json_encode($komponens), true);
 
-		$nama_komponen = json_decode(json_encode($komponens), true);
-
-		foreach ($nama_komponen as &$komponen) {
-			foreach ($komponen as &$komp) {
-				$komp['jumlah'] = database::getNKomponen($komp['no_seri_barang_rusak'], $komp['no_seri_komponen']);
-				$komp['harga'] = database::getPrice($komp['no_seri_komponen']);
-				$komp['subtotal'] = $komp['jumlah']*$komp['harga'][0]->harga;
+			foreach ($nama_komponen as &$komponen) {
+				foreach ($komponen as &$komp) {
+					$komp['jumlah'] = database::getNKomponen($komp['no_seri_barang_rusak'], $komp['no_seri_komponen']);
+					$komp['harga'] = database::getPrice($komp['no_seri_komponen']);
+					$komp['subtotal'] = $komp['jumlah']*$komp['harga'][0]->harga;
+				}
 			}
-		}
 
-		$komponens = $nama_komponen;
-		
-		return view('invoice-edit',compact('barang_rusak','komponens','nama_perus'));
+			$komponens = $nama_komponen;
+			
+			return view('invoice-edit',compact('barang_rusak','komponens','nama_perus'));
+		}
 	}
 }

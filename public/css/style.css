@@ -164,3 +164,6 @@ fontsmall .btn{
 	color:red;
 	font-size: 14px;
 }
+.printButton{
+	text-align: right;
+}

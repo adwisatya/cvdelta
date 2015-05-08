@@ -18,8 +18,9 @@
 @endsection
 
 @section('errorMessage')
-	@if(isset($error)){
-		{{$error}}
-	}
-	@endif
+	<div class="alert alert-danger">
+		@if(isset($error))
+			{{$error}}
+		@endif
+	</div>
 @endsection

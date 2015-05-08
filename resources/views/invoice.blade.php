@@ -56,7 +56,7 @@ body {background-color:white}
 	<!-- diulang sampe sini -->
 	@endforeach
 
-	<b>Grand Total  : <?php echo $grandTotal; ?> </b>
+	<b>Grand Total  : Rp. <?php echo $grandTotal; ?>,00 </b>
 
 	<div class="sign">
 		Bandung, <?php echo date("d/m/Y"); ?> 

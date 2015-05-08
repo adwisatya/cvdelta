@@ -1,5 +1,5 @@
 <?php namespace App\Http\Controllers;
-set_time_limit(0);
+
 use App\Http\Requests;
 use App\Http\PDF;
 use App;
@@ -24,11 +24,9 @@ class PrintController extends Controller {
 		$barang_rusak = database::getBarangSelesaionMonth($nama_perus,$bulan);
 
 		$i = 0;
-		$komponens = array();
 		foreach($barang_rusak as $b){;
 			$k = database::getComponentUsed($b->no_seri_barang_rusak);
-			//$komponens[$i] = $k;
-			array_push($komponens,$k);
+			$komponens[$i] = $k;
 			$i++;
 		}
 		if(!isset($komponens)){
