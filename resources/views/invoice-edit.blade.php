@@ -67,11 +67,15 @@
 <script>
 function calculatePerKomponen(i,j,sub) {
 	// window.alert(i+","+j);
+	var temp_total = sub - document.getElementById("total"+i+"-"+j).value;
+	// var subtotal = document.getElementById("subtotal"+i).value;
     var x = document.getElementById("hargaKomponen"+i+"-"+j).value;
     document.getElementById("total"+i+"-"+j).value = x*(document.getElementById("jml"+i+"-"+j).value);
+    document.getElementById("subtotal"+i).value = temp_total+parseInt(document.getElementById("total"+i+"-"+j).value);
     calculateSubTotal(i,j,sub);
 }
 function calculateJasa(i,sub){
+	sub = parseInt(document.getElementById("subtotal"+i).value);
 	var jasa = parseInt(document.getElementById("biayaJasa"+i).value);
 	// var temp = parseInt(document.getElementById("subtotal"+i).value); 
     document.getElementById("subtotal"+i).value = jasa+sub;
