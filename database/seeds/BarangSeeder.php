@@ -16,7 +16,7 @@ class BarangSeeder extends Seeder {
             'no_seri_barang_rusak' => '12345-1',
             'tgl_datang' => '2015-04-10',
             'harga_jasa' => '2000000',
-            'status' => 'Pending',
+            'status' => 'Onprogress',
             'tgl_diperbaiki' => '2015-04-11',
             'username' => 'teknisi1',
         ] );
@@ -27,7 +27,7 @@ class BarangSeeder extends Seeder {
             'no_seri_barang_rusak' => '12345-6',
             'tgl_datang' => '2015-04-10',
             'harga_jasa' => '2000000',
-            'status' => 'Pending',
+            'status' => 'Onprogress',
             'tgl_diperbaiki' => '2015-04-11',
         ] );
 
@@ -37,7 +37,7 @@ class BarangSeeder extends Seeder {
             'no_seri_barang_rusak' => '12345-7',
             'tgl_datang' => '2015-04-10',
             'harga_jasa' => '2000000',
-            'status' => 'Pending',
+            'status' => 'Onprogress',
             'tgl_diperbaiki' => '2015-04-11',
         ] );
 
@@ -47,7 +47,7 @@ class BarangSeeder extends Seeder {
             'no_seri_barang_rusak' => '12345-2',
             'tgl_datang' => '2015-04-10',
             'harga_jasa' => '2000000',
-            'status' => 'Pending',
+            'status' => 'Onprogress',
             'tgl_diperbaiki' => '2015-04-11',
             'username' => 'teknisi2',
         ] );
@@ -58,7 +58,7 @@ class BarangSeeder extends Seeder {
             'no_seri_barang_rusak' => '12345-3',
             'tgl_datang' => '2015-04-10',
             'harga_jasa' => '2000000',
-            'status' => 'Pending',
+            'status' => 'Onprogress',
             'tgl_diperbaiki' => '2015-04-11',
         ] );
 
@@ -68,7 +68,7 @@ class BarangSeeder extends Seeder {
             'no_seri_barang_rusak' => '12345-4',
             'tgl_datang' => '2015-04-10',
             'harga_jasa' => '2000000',
-            'status' => 'Pending',
+            'status' => 'Onprogress',
             'tgl_diperbaiki' => '2015-04-11',
             'username' => 'teknisi3',
         ] );
@@ -79,7 +79,7 @@ class BarangSeeder extends Seeder {
             'no_seri_barang_rusak' => '12345-5',
             'tgl_datang' => '2015-04-10',
             'harga_jasa' => '2000000',
-            'status' => 'Pending',
+            'status' => 'Onprogress',
             'tgl_diperbaiki' => '2015-04-11',
             'username' => 'teknisi1',
         ] );

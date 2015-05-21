@@ -5,7 +5,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}" />
 <link rel="stylesheet" href="{{ asset('/css/style.css') }}" />
+<link rel="stylesheet" href="{{ asset('/css/amaran.min.css') }}">
 <script src="{{ asset('/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('/js/jquery.amaran.min.js') }}"></script>
+<script src="{{ asset('/js/notification.js') }}"></script>
+<script src="{{ asset('/js/notifcounter.js') }}"></script>
 <script src="{{ asset('/js/addRow.js') }}"></script>
 <script src="{{ asset('/js/fix.js') }}"></script>
 <script src="{{ asset('/js/approval.js') }}"></script>
@@ -22,7 +26,7 @@
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav pull-right">
 					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Component<b class="caret"></b></a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Component <span class="badge" id="notifCount"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="{{ url('/admin/request') }}">Requested Component</a></li>
 							<li><a href="{{ url('/admin/stock') }}">stocks</a></li>
