@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="css/bootstrap.min.css" />
 <link rel="stylesheet" href="css/style.css" />
 <script src="js/bootstrap.min.js"></script>
+<script src="{{ asset('/js/notify.js') }}"></script>
 <!-- <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script> -->
 
 </head>
@@ -15,7 +16,7 @@
 				<div class="navbar-header">
 					<!-- Button for smallest screens -->
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-					<a class="navbar-brand" href="#"><img src="images/logo.png" alt="CV. Delta logo"></a>
+					<a class="navbar-brand" href="{{ url('/')}}"><img src="{{ asset('/images/logo.png') }}" alt="CV. Delta logo"></a>
 				</div>
 				<div class="navbar-collapse collapse">
 					<ul class="nav navbar-nav pull-right">

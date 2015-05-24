@@ -18,6 +18,24 @@ class database extends Model{
 				->get();
 	}
 
+	public static function getUnnotifiedRequestedComponent(){
+		return DB::table('komponen')
+				->join('tagihan','komponen.no_seri_komponen','=','tagihan.no_seri_komponen')
+				->join('barang_rusak','tagihan.no_seri_barang_rusak','=','barang_rusak.no_seri_barang_rusak')
+				->join('teknisi','barang_rusak.username','=','teknisi.username')
+				->where('tagihan.status','=','requested')
+				->where('tagihan.notify','=','0')
+				->select('komponen.no_seri_komponen','komponen.nama_komponen','barang_rusak.no_seri_barang_rusak','teknisi.username')
+				->distinct()
+				->get();
+	}
+
+	public static function changeUnnotifiedStatus() {
+		DB::table('tagihan')
+				->where('notify','=','0')
+				->update(array('notify' => '1'));
+	}
+
 	public static function getCountRequested($no_seri_komponen, $no_seri_barang_rusak, $teknisi){
 		return DB::table('komponen')
 				->join('tagihan','komponen.no_seri_komponen','=','tagihan.no_seri_komponen')

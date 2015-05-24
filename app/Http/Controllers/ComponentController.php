@@ -135,4 +135,23 @@ class ComponentController extends Controller {
 		database::updateStock($noSeri, $namaKomponen, $lokasi, $supplier, $harga, $minJum, $ket);
 		return redirect('admin/stock');
 	}
+
+	public function checkRequest() {
+		$datas = database::getUnnotifiedRequestedComponent();
+		if (isset($datas)){
+			echo json_encode($datas);
+			database::changeUnnotifiedStatus();
+		} else{
+			echo 0;
+		}
+	}
+
+	public function countRequest() {
+		$datas = database::getRequestedComponent();
+		if (isset($datas)) {
+			echo count((array) $datas);
+		} else {
+			echo 0;
+		}
+	}
 }
