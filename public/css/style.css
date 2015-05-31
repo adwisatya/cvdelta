@@ -19,6 +19,7 @@ html{
 .content{
 	padding-top: 10%;
 }
+
 body{
 	/*background-image: url("../images/bg.jpg");*/
 	background-color: #D7D2CF;
@@ -69,36 +70,13 @@ label{
 form{
 	font-family: arial;
 }
-
-
-/*PDF FORMAT*/
-.kop{
-	margin-top: 2%;
- 	text-align: center;
- 	font-size: 16px;
-}
-.kop img{
-	height: 60px;
-	margin-bottom: 1%;
-}
-.invoiceHeader{
-	margin-top: 5%;
-	margin-bottom: 2%;
-}
-table{
-	width: 400px;
-}
-namabarang{
-	font-size: 20px;
+.pagetitle{
+	font-size:30px;
 	font-weight: bold;
+	margin-bottom:3%;
 }
-.invoiceBarang{
-	margin-bottom: 2%;
-}
-.sign{
-	margin-top: 20%;
-	text-align: right;
-}
+
+
 .modalDialog {
 	position: fixed;
 	font-family: Arial, Helvetica, sans-serif;
@@ -167,3 +145,57 @@ fontsmall .btn{
 .printButton{
 	text-align: right;
 }
+.clientName{
+	background-color: transparent;
+	margin-bottom : -50;
+	color:  black;
+	border: none;
+}
+
+/*-------------invoice-------------*/
+
+.kop{
+	margin-top: 2%;
+ 	text-align: center;
+ 	font-size: 16px;
+}
+.kop img{
+	height: 60px;
+	margin-bottom: 1%;
+}
+.invoiceHeader{
+	margin-top: 5%;
+	margin-bottom: 2%;
+}
+table{
+	width: 300px;
+}
+.unborder{
+	border: none;
+}
+.namabarang{
+	font-size: 20px;
+	font-weight: bold;
+}
+.col-kecil{
+	width: 30px;
+	border: none;
+	display: inline;
+}
+.col-medium{
+	width:110px;
+	border:none;
+	display: inline;
+}
+.harga:before{
+	content: "Rp ";
+}
+.invoiceBarang{
+	margin-bottom: 2%;
+}
+.sign{
+	margin-top: 20%;
+	text-align: right;
+}
+
+/*-------------invoice-------------*/

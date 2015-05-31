@@ -5,9 +5,13 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <link rel="stylesheet" href="css/bootstrap.min.css" />
 <link rel="stylesheet" href="css/style.css" />
-<script src="js/bootstrap.min.js"></script>
-<script src="{{ asset('/js/notify.js') }}"></script>
-<!-- <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script> -->
+<script src="{{ asset('/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('/js/jquery.amaran.min.js') }}"></script>
+<script src="{{ asset('/js/notification.js') }}"></script>
+<script src="{{ asset('/js/notifcounter.js') }}"></script>
+<script src="{{ asset('/js/addRow.js') }}"></script>
+<script src="{{ asset('/js/fix.js') }}"></script>
+<script src="{{ asset('/js/approval.js') }}"></script>
 
 </head>
 <body>	
@@ -21,7 +25,7 @@
 				<div class="navbar-collapse collapse">
 					<ul class="nav navbar-nav pull-right">
 						<li><a href="/find-komponen">Request Komponen</a></li>
-						<li><a href="/onprogress">On Progress</a></li>
+						<li><a href="/onprogress">Barang Rusak</a></li>
 						<li><a href="/history">History</a></li>
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Hi, <?php echo Session::get('username'); ?> <b class="caret"></b></a>

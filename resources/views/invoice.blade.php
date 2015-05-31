@@ -9,7 +9,7 @@ body {background-color:white}
 <body>
 	<!-- <a href="{{ url('admin/pilih-customer/pdf', $nama_perus, $barang_rusak) }}"<button id="btnSub"  class="btn" role="button"> pdf</button></a> -->
 	<div class="kop">
-		<img src="{{url('images/logo_biru.png')}}"><br>
+		<a><img onclick="createPDF()" src="{{url('images/logo_biru.png')}}"><br></a>
 		Taman Kopo Indah II 1A no. 10 Bandung <br>
 		Telp/fax (022) 5415768
 		<hr>
@@ -20,43 +20,45 @@ body {background-color:white}
 		<br><br><br><br>
 		Perincian Biaya Perbaikan PCB, sebagai berikut:
 	</div>
-	<?php $i = 0; 
-			$grandTotal = 0;
-		?>
+	
+	<?php $i = 0; ?>
 	@foreach($barang_rusak as $barang)
 	<!-- diulang dari sini -->
 	<div class="invoiceBarang">
-		<namabarang>{{$barang->no_seri_barang_rusak}}</namabarang>
+		<div class="namabarang">{{$barang->no_seri_barang_rusak}}</div>
 		<div class="komponen">
 			<table>
 				<tr>
-					<td colspan="5">Jasa perbaikan</td>
-					<td>Rp.{{$barang->harga_jasa}},00</td>
+					<td colspan="6">Jasa perbaikan</td>
+					<td>Rp</td>						
+					<td><input onchange="calculateJasa({{$i}})" name="biayaJasa" id="biayaJasa{{$i}}" type="text" class="form-control col-medium harga" placeholder="Biaya Perbaikan" aria-describedby="basic-addon1"></td>
 				</tr>
-					@for($j=0;$j<sizeof($komponens[$i]);$j++)
-						<tr>
-							<td>{{$komponens[$i][$j]['jumlah']}}</td>
-							<td>pcs</td>
-							<td class="komp">{{$komponens[$i][$j]['no_seri_komponen']}}</td>
-							<td>@</td>
-							<td>Rp. {{$komponens[$i][$j]['harga'][0]->harga}},00</td>
-							<td>Rp. {{$komponens[$i][$j]['subtotal']}},00</td>
-						</tr>
-					@endfor
+				@for($j=0;$j<sizeof($komponens[$i]);$j++)
+					<tr>
+						<td><input onchange="calculatePerKomponen({{$i}},{{$j}})" class="form-control unborder col-kecil" id="jml{{$i}}-{{$j}}" value="{{$komponens[$i][$j]['jumlah']}}"></td>
+						<td><input class="col-kecil" value="pcs"></input></td>
+						<td><input class="col-medium" value="{{$komponens[$i][$j]['no_seri_komponen']}}"></input></td>
+						<td>@</td>
+						<td>Rp</td>
+						<td><input onchange="calculatePerKomponen({{$i}},{{$j}})" id="hargaKomponen{{$i}}-{{$j}}" name="hargaKomponen" type="text" class="form-control col-medium" aria-describedby="basic-addon1" value="{{$komponens[$i][$j]['harga'][0]->harga}}"></input></td>
+						<td>Rp</td>
+						<td><input id="total{{$i}}-{{$j}}" value="{{$komponens[$i][$j]['subtotal']}}" class="form-control col-medium" readonly></td>
+					</tr>
+				@endfor
 				<tr>
-					<td colspan="5"><b>Subtotal</b></td>
-					<td><b>Rp. <?php echo array_sum(array_column($komponens[$i],'subtotal'))+$barang->harga_jasa ?>,00</b></td>
+					<td colspan="4"> 
+					<td colspan="2"><b>Subtotal</b></td>
+					<td style="font-weight: bold;">Rp </td>
+					<td><input id="subtotal{{$i}}" style="font-weight: bold; font-size: 16px" name="subtotal" type="text" class="form-control col-medium" aria-describedby="basic-addon1" readonly value="<?php echo array_sum(array_column($komponens[$i],'subtotal')) ?>"></input></td>
+					<!-- <td><b><input class="form-input" id="subtotal" value"" readonly >Rp. <?php echo array_sum(array_column($komponens[$i],'subtotal')) ?>,00</b></td> -->
 				</tr>
 			</table>
 		</div>
 	</div>
-	<?php 
-		$grandTotal += array_sum(array_column($komponens[$i],'subtotal'))+$barang->harga_jasa;
-	$i++; ?>
+	<?php $i++; ?>
 	<!-- diulang sampe sini -->
-	@endforeach
 
-	<b>Grand Total  : Rp. <?php echo $grandTotal; ?>,00 </b>
+	@endforeach
 
 	<div class="sign">
 		Bandung, <?php echo date("d/m/Y"); ?> 
@@ -64,6 +66,29 @@ body {background-color:white}
 		Sonny Tjahjadi
 	</div>
 
+
+<script>
+function calculatePerKomponen(i,j) {
+	// window.alert(i+","+j);
+	var sub = parseInt(document.getElementById("subtotal"+i).value);
+	var temp_total = sub - document.getElementById("total"+i+"-"+j).value;
+	// var subtotal = document.getElementById("subtotal"+i).value;
+    var x = document.getElementById("hargaKomponen"+i+"-"+j).value;
+    document.getElementById("total"+i+"-"+j).value = x*(document.getElementById("jml"+i+"-"+j).value);
+    document.getElementById("subtotal"+i).value = temp_total+parseInt(document.getElementById("total"+i+"-"+j).value);
+}
+function calculateJasa(i){
+	var sub = parseInt(document.getElementById("subtotal"+i).value);
+	var jasa = parseInt(document.getElementById("biayaJasa"+i).value);
+	// var temp = parseInt(document.getElementById("subtotal"+i).value); 
+    document.getElementById("subtotal"+i).value = jasa+sub;
+}
+</script>
+<script type="text/javascript">
+	function createPDF() {
+	    window.print();
+	}
+</script>
 
 </body>
 </html>

@@ -77,7 +77,7 @@ Route::post('admin/barang-masuk','BarangRusakController@addBarang');
 
 Route::get('admin/barang-masuk/view','BarangRusakController@viewBarang');
 
-Route::post('admin/barang-masuk/perbaiki','BarangRusakController@perbaiki');
+Route::post('pilihBarangRusak','BarangRusakController@perbaiki');
 
 Route::post('admin/barang-masuk/selesai','BarangRusakController@selesai');
 
@@ -89,9 +89,14 @@ Route::get('admin/update-stock/{noSeri}','ComponentController@updateStockView');
 
 Route::post('admin/updateStock', 'ComponentController@updateStock');
 
+Route::get('admin/perusahaan-unbilled','SiteController@perusahaanUnbilled');
+
 //yang ngeprint:
 // Route::post('admin/pilih-customer','PrintController@showPDF'); //--> yang bener
-Route::post('admin/pilih-customer','SiteController@showInvoice'); //--> masih belom
+Route::post('admin/invoice','SiteController@showInvoice'); //--> editable invoice
+Route::post('admin/showInvoice','SiteController@showInvoicePerusahaan');
+
+Route::get('admin/pilih-customer/pdf','SiteController@showInvoicePDF'); // bikin PDF
 
 // Route::get('admin/pilih-customer/pdf','PrintController@showPDF');
 // Route::post('admin/pilih-customer','SiteController@invoice');
@@ -116,3 +121,4 @@ Route::get('/admin/cari', 'ComponentController@cari');
 Route::post('/admin/caristokhabis', 'ComponentController@findfewstock');
 
 Route::get('/admin/caristokhabis', 'ComponentController@findfewstock');
+

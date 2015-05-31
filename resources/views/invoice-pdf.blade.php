@@ -37,7 +37,7 @@
 						<td style="width:1%;">@</td>
 						<td style="width:8%;"><div class="input-group input-group-sm">
 						  <span class="input-group-addon" id="basic-addon1">Rp. </span>
-						  <input onchange="calculatePerKomponen({{$i}},{{$j}})" id="hargaKomponen{{$i}}-{{$j}}" name="hargaKomponen" type="text" class="form-control" aria-describedby="basic-addon1" value="{{$komponens[$i][$j]['harga']}}"></input>
+						  <input onchange="calculatePerKomponen({{$i}},{{$j}})" id="hargaKomponen{{$i}}-{{$j}}" name="hargaKomponen" type="text" class="form-control" aria-describedby="basic-addon1" value="{{$komponens[$i][$j]['harga'][0]->harga}}"></input>
 						  <span class="input-group-addon">.00</span>
 						</div></td>
 						<td style="width:10%;"><input id="total{{$i}}-{{$j}}" value="{{$komponens[$i][$j]['subtotal']}}" class="form-control" readonly></td>

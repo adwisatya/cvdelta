@@ -28,27 +28,23 @@ class BarangRusakController extends Controller {
 		return view('barang-rusak', compact('barang_rusak','teknisi'));		
 	}
 
-	public function perbaiki(FixBarangRusakRequest $request){
-		$noseri=$request->noseri;
-		$username=$request->nama_teknisi;
+	public function perbaiki(){
+		$noseri=Input::get('noseri');
+		$username=Input::get('nama_teknisi');
 		$status="Onprogress";
 		$tgl_diperbaiki=Carbon::now()->toDateString();
 
 		database::perbaikiBarang($noseri, $username,$status,$tgl_diperbaiki);
-		return redirect('/admin/barang-masuk/view');
+		return redirect('/onprogress');
 	}
 
 	public function selesai(){
 		$noseri=Input::get('idbarang');
 		$status="Done";
 		$tgl_selesai=Carbon::now()->toDateString();
-		if(Input::get('hargaJasa')!=""){
-			$jasa=Input::get('hargaJasa');
-		}else{
-			$jasa=250000;
-		}
+		
 
-		database::selesaiBarang($noseri,$tgl_selesai, $status, $jasa);
-		return redirect('/admin/barang-masuk/view');
+		database::selesaiBarang($noseri,$tgl_selesai, $status);
+		return redirect('/onprogress');
 	}
 }

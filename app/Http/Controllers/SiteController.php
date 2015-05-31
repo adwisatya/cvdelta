@@ -43,7 +43,9 @@ class SiteController extends Controller {
 	}
 	public function onprogressPage(){
 		if (Session::get('role')=="teknisi"){
-			return view('onprogressPage');
+			$barangrusak = database::getBarangRusak();
+			$teknisi = database::getTeknisi();
+			return view('onprogressPage', compact('barangrusak','teknisi'));
 		}else{
 			return view('index');
 		}
@@ -218,9 +220,39 @@ class SiteController extends Controller {
 	}
 
 	public function showInvoice(InvoiceCustomerRequest $request){
+		// $nama_perus=$request->nama_perusahaan;
+		// $bulan = Input::get('bulan');
+		// $barang_rusak = database::getBarangSelesaionMonth($nama_perus,$bulan);
+
+		// $i = 0;
+		// foreach($barang_rusak as $b){;
+		// 	$k = database::getComponentUsed($b->no_seri_barang_rusak);
+		// 	$komponens[$i] = $k;
+		// 	$i++;
+		// }
+		// if(!isset($komponens)){
+		// 	$error = "Tidak ada tagihan yang dapat dibuat";
+		// 	$customer = database::customer();
+		// 	return view ('pilih-customer',compact('error','customer'));
+		// }else{
+		// 	$nama_komponen = json_decode(json_encode($komponens), true);
+
+		// 	foreach ($nama_komponen as &$komponen) {
+		// 		foreach ($komponen as &$komp) {
+		// 			$komp['jumlah'] = database::getNKomponen($komp['no_seri_barang_rusak'], $komp['no_seri_komponen']);
+		// 			$komp['harga'] = database::getPrice($komp['no_seri_komponen']);
+		// 			$komp['subtotal'] = $komp['jumlah']*$komp['harga'][0]->harga;
+		// 		}
+		// 	}
+
+		// 	$komponens = $nama_komponen;
+			
+		// 	return view('invoice-edit',compact('barang_rusak','komponens','nama_perus'));
+
 		$nama_perus=$request->nama_perusahaan;
-		$bulan = Input::get('bulan');
-		$barang_rusak = database::getBarangSelesaionMonth($nama_perus,$bulan);
+		// $bulan = Input::get('bulan');
+		// $barang_rusak = database::getBarangSelesaionMonth($nama_perus,$bulan);
+		$barang_rusak = database::getUnbilledBarangSelesai($nama_perus);
 
 		$i = 0;
 		foreach($barang_rusak as $b){;
@@ -228,13 +260,18 @@ class SiteController extends Controller {
 			$komponens[$i] = $k;
 			$i++;
 		}
-		if(!isset($komponens)){
+		if(!isset($barang_rusak)){
 			$error = "Tidak ada tagihan yang dapat dibuat";
 			$customer = database::customer();
 			return view ('pilih-customer',compact('error','customer'));
 		}else{
-			$nama_komponen = json_decode(json_encode($komponens), true);
-
+			if(!isset($komponens)){
+				$error = "no komponen";
+				$customer = database::customer();
+				return view ('pilih-customer',compact('error','customer'));
+			}else{
+				$nama_komponen = json_decode(json_encode($komponens), true);
+			}
 			foreach ($nama_komponen as &$komponen) {
 				foreach ($komponen as &$komp) {
 					$komp['jumlah'] = database::getNKomponen($komp['no_seri_barang_rusak'], $komp['no_seri_komponen']);
@@ -242,12 +279,90 @@ class SiteController extends Controller {
 					$komp['harga'] = $this->toIDR(json_decode(json_encode($arr), true)[0]["harga"]);
 					$komp['subtotal'] = $komp['jumlah']*$komp['harga'];
 				}
-			}
 
-			$komponens = $nama_komponen;
-			
-			return view('invoice-edit',compact('barang_rusak','komponens','nama_perus'));
+				$komponens = $nama_komponen;
+				
+				return view('invoice-edit',compact('barang_rusak','komponens','nama_perus'));
+			}
 		}
+	}
+	public function showInvoicePerusahaan(){
+		$nama_perus = Input::get('namaPerus');
+		$barang_rusak = database::getUnbilledBarangSelesai($nama_perus);
+		
+		$i = 0;
+		foreach($barang_rusak as $b){;
+			$k = database::getComponentUsed($b->no_seri_barang_rusak);
+			$komponens[$i] = $k;
+			$i++;
+		}
+		if(!isset($barang_rusak)){
+			$error = "Tidak ada tagihan yang dapat dibuat";
+			$customer = database::customer();
+			return view ('pilih-customer',compact('error','customer'));
+		}else{
+			if(!isset($komponens)){
+				$error = "no komponen";
+				$customer = database::customer();
+				return view ('pilih-customer',compact('error','customer'));
+			}else{
+				$nama_komponen = json_decode(json_encode($komponens), true);
+
+				foreach ($nama_komponen as &$komponen) {
+					foreach ($komponen as &$komp) {
+						$komp['jumlah'] = database::getNKomponen($komp['no_seri_barang_rusak'], $komp['no_seri_komponen']);
+						$komp['harga'] = database::getPrice($komp['no_seri_komponen']);
+						$komp['subtotal'] = $komp['jumlah']*$komp['harga'][0]->harga;
+					}
+				}
+
+				$komponens = $nama_komponen;
+				
+				return view('invoice',compact('barang_rusak','komponens','nama_perus'));
+			}
+		}
+	}
+	public function showInvoicePDF(InvoiceCustomerRequest $request){
+		$nama_perus=$request->nama_perusahaan;
+		$barang_rusak = database::getUnbilledBarangSelesai($nama_perus);
+
+		$i = 0;
+		foreach($barang_rusak as $b){;
+			$k = database::getComponentUsed($b->no_seri_barang_rusak);
+			$komponens[$i] = $k;
+			$i++;
+		}
+		if(!isset($barang_rusak)){
+			$error = "Tidak ada tagihan yang dapat dibuat";
+			$customer = database::customer();
+			return view ('pilih-customer',compact('error','customer'));
+		}else{
+			if(!isset($komponens)){
+				$error = "no komponen";
+				$customer = database::customer();
+				return view ('pilih-customer',compact('error','customer'));
+			}else{
+				$nama_komponen = json_decode(json_encode($komponens), true);
+
+				foreach ($nama_komponen as &$komponen) {
+					foreach ($komponen as &$komp) {
+						$komp['jumlah'] = database::getNKomponen($komp['no_seri_barang_rusak'], $komp['no_seri_komponen']);
+						$komp['harga'] = database::getPrice($komp['no_seri_komponen']);
+						$komp['subtotal'] = $komp['jumlah']*$komp['harga'][0]->harga;
+					}
+				}
+
+				$komponens = $nama_komponen;
+				
+				// return view('invoice-edit',compact('barang_rusak','komponens','nama_perus'));
+				$pdf = \PDF::loadView('invoice-pdf',compact('barang_rusak','komponens','nama_perus'));
+				return $pdf->stream();
+			}
+		}
+	}
+	public function perusahaanUnbilled(){
+		$perusahaan = database::getPerusahaanUnbilledTagihan();
+		return view('perusahaan-unbilled',compact('perusahaan'));
 	}
 
 	public function showCurrency() {

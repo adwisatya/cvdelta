@@ -2,7 +2,7 @@
 
 @section('content')
 	<h2>Pilih Customer</h2>
-	<form method="post" action="/admin/pilih-customer" >
+	<form method="post" action="/admin/invoice" >
 		<input name="_token" hidden value="{!! csrf_token() !!}" />
 		{{--<input class='form-control' type="text" name="nama_perusahaan" placeholder="Nama Perusahaan">--}}
 		<select class="form-control" name="nama_perusahaan">
