@@ -269,7 +269,7 @@ class SiteController extends Controller {
 				return view ('pilih-customer',compact('error','customer'));
 			}else{
 				$nama_komponen = json_decode(json_encode($komponens), true);
-
+			}
 			foreach ($nama_komponen as &$komponen) {
 				foreach ($komponen as &$komp) {
 					$komp['jumlah'] = database::getNKomponen($komp['no_seri_barang_rusak'], $komp['no_seri_komponen']);
