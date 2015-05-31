@@ -52,6 +52,7 @@
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Hi <?php echo Session::get('username'); ?> <b class="caret"></b></a>
 						<ul class="dropdown-menu">
+							<li><a href="/admin/currency">ubah kurs</a></li>
 							<li><a href="/adminprofile">profil</a></li>
 							<li><a href="/logout">logout</a></li>
 						</ul>

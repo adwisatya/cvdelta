@@ -247,7 +247,7 @@ class SiteController extends Controller {
 			
 		// 	return view('invoice-edit',compact('barang_rusak','komponens','nama_perus'));
 
-		$nama_perus=$request->nama_perusahaan;
+		$nama_perus = Input::get('namaPerus');
 		// $bulan = Input::get('bulan');
 		// $barang_rusak = database::getBarangSelesaionMonth($nama_perus,$bulan);
 		$barang_rusak = database::getUnbilledBarangSelesai($nama_perus);
@@ -289,7 +289,7 @@ class SiteController extends Controller {
 		$barang_rusak = database::getUnbilledBarangSelesai($nama_perus);
 		
 		$i = 0;
-		foreach($barang_rusak as $b){;
+		foreach($barang_rusak as $b){
 			$k = database::getComponentUsed($b->no_seri_barang_rusak);
 			$komponens[$i] = $k;
 			$i++;
@@ -302,15 +302,17 @@ class SiteController extends Controller {
 			if(!isset($komponens)){
 				$error = "no komponen";
 				$customer = database::customer();
-				return view ('pilih-customer',compact('error','customer'));
+				return view ('invoice',compact('barang_rusak','komponens','nama_perus'));
 			}else{
 				$nama_komponen = json_decode(json_encode($komponens), true);
-
+			}
+		
 				foreach ($nama_komponen as &$komponen) {
 					foreach ($komponen as &$komp) {
 						$komp['jumlah'] = database::getNKomponen($komp['no_seri_barang_rusak'], $komp['no_seri_komponen']);
-						$komp['harga'] = database::getPrice($komp['no_seri_komponen']);
-						$komp['subtotal'] = $komp['jumlah']*$komp['harga'][0]->harga;
+						$arr = database::getPrice($komp['no_seri_komponen']);
+						$komp['harga'] = $this->toIDR(json_decode(json_encode($arr), true)[0]["harga"]);
+						$komp['subtotal'] = $komp['jumlah']*$komp['harga'];
 					}
 				}
 
@@ -318,7 +320,7 @@ class SiteController extends Controller {
 				
 				return view('invoice',compact('barang_rusak','komponens','nama_perus'));
 			}
-		}
+		
 	}
 	public function showInvoicePDF(InvoiceCustomerRequest $request){
 		$nama_perus=$request->nama_perusahaan;

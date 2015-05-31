@@ -278,6 +278,7 @@ class database extends Model{
 		return DB::table('tagihan')
 			->join('barang_rusak','tagihan.no_seri_barang_rusak','=','barang_rusak.no_seri_barang_rusak')
 			->select('nama_perusahaan')
+			->where('barang_rusak.status','=','Done')
 			->where('tagihan.status','=','approved')
 			->distinct()
 			->get();
