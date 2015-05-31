@@ -3,8 +3,10 @@
 use DB;
 use Input;
 use Session;
+
 use App\Barang;
 use App\database;
+use App\Currency;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -172,6 +174,8 @@ class SiteController extends Controller {
 		}
 
 		$komponens = $nama_komponen;
+
+		print_r($komponens);
 		
 		return view('invoice',compact('barang_rusak','komponens','nama_perus'));
 	}
@@ -191,6 +195,26 @@ class SiteController extends Controller {
 		$customer = database::customer();
 		return view('customer',compact('customer'));
 	}
+
+	public function toIDR($value) {
+		$val = substr($value, 0, -3);
+		$curr = substr($value, -3);
+		switch ($curr) {
+			case "USD":
+				$res = $val*Currency::find(1)->IDR;
+				break;
+			case "CNY":
+				$res = $val*Currency::find(2)->IDR;
+				break;
+			case "SGD":
+				$res = $val*Currency::find(3)->IDR;
+				break;
+			default:
+				$res = 1;
+		}
+		return $res;
+	}
+
 	public function showInvoice(InvoiceCustomerRequest $request){
 		$nama_perus=$request->nama_perusahaan;
 		$bulan = Input::get('bulan');
@@ -212,8 +236,9 @@ class SiteController extends Controller {
 			foreach ($nama_komponen as &$komponen) {
 				foreach ($komponen as &$komp) {
 					$komp['jumlah'] = database::getNKomponen($komp['no_seri_barang_rusak'], $komp['no_seri_komponen']);
-					$komp['harga'] = database::getPrice($komp['no_seri_komponen']);
-					$komp['subtotal'] = $komp['jumlah']*$komp['harga'][0]->harga;
+					$arr = database::getPrice($komp['no_seri_komponen']);
+					$komp['harga'] = $this->toIDR(json_decode(json_encode($arr), true)[0]["harga"]);
+					$komp['subtotal'] = $komp['jumlah']*$komp['harga'];
 				}
 			}
 
@@ -221,5 +246,10 @@ class SiteController extends Controller {
 			
 			return view('invoice-edit',compact('barang_rusak','komponens','nama_perus'));
 		}
+	}
+
+	public function changeCurrency() {
+		$currencies = Currency::all();
+		return view ('currency')->with('currency', $currencies);
 	}
 }

@@ -10,16 +10,59 @@
 			<h2>Tambah Stok Baru</h2>
 			<form method="post" action="/admin/stock-baru" >
 				<input name="_token" hidden value="{!! csrf_token() !!}" />
-				<input class='form-control' type="text" name="nama_komponen" placeholder="Nama Komponen">
-				<input class='form-control' type="text" name="no_seri_komponen" placeholder="No Komponen">
-				<input class='form-control' type="text" name="supplier" placeholder="Supplier">
-				<input class='form-control' type="text" name="harga" placeholder="Harga">
-				<input class='form-control' type="text" name="jumlah" placeholder="Jumlah">
-				<input class='form-control' type="text" name="lokasi" placeholder="Lokasi">
-				<input class='form-control' type="text" name="keterangan" placeholder="Keterangan (Optional)">
-				<input class='form-control' type="text" name="min_jumlah" placeholder="Jumlah Stok Minimal">
-				<br>
-				<button id="btnSub"  class="btn btn-primary" role="button"> Tambah Barang Baru </button>
+				<div class="form-group">
+					<div class="col-md-11">
+						<input class='form-control' type="text" name="nama_komponen" placeholder="Nama Komponen">
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-md-11">
+						<input class='form-control' type="text" name="no_seri_komponen" placeholder="No Komponen">
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-md-11">
+						<input class='form-control' type="text" name="supplier" placeholder="Supplier">
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-md-6">
+						<input class='form-control' type="text" name="harga" placeholder="Harga">
+					</div>
+					<div class="col-md-5">
+						<select class="form-control" id="currency" name="currency"> 
+							<option>IDR</option>
+							<option>USD</option> 
+							<option>CNY</option> 
+							<option>SGD</option>
+						</select> 
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-md-11">
+						<input class='form-control' type="text" name="jumlah" placeholder="Jumlah">
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-md-11">
+						<input class='form-control' type="text" name="lokasi" placeholder="Lokasi">
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-md-11">
+						<input class='form-control' type="text" name="keterangan" placeholder="Keterangan (Optional)">
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-md-11">
+						<input class='form-control' type="text" name="min_jumlah" placeholder="Jumlah Stok Minimal">
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-md-11">
+						<button id="btnSub"  class="btn btn-primary" role="button"> Tambah Barang Baru </button>
+					</div>
+				</div>
 			</form>
 		</div>
 	</div>
@@ -52,7 +95,7 @@
 						<td>{{$data->lokasi}}</td>
 						<td>{{$data->keterangan}}</td>
 						<td>{{$data->supplier}}</td>
-						<td>Rp. {{$data->harga}},00</td>
+						<td>{{$data->harga}}</td>
 						<td><input type="hidden" name="selectedNoSeri" value="{{$data->no_seri_komponen}}">
 							<a href="update-stock/{{$data->no_seri_komponen}}"><button id="updateStock" class="btn btn-primary" role="button">Update</button></a> 
 							<a href="tambah-stock/{{$data->no_seri_komponen}}"><button id="tambahStok" class="btn btn-warning " role="button">+</button></a>
