@@ -26,7 +26,7 @@
 						<td>{{$data->lokasi}}</td>
 						<td>{{$data->keterangan}}</td>
 						<td>{{$data->supplier}}</td>
-						<td>Rp. {{$data->harga}},00</td>
+						<td>{{$data->harga}}</td>
 					</tr>
 				@endforeach
 			</tbody> 

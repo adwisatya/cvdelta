@@ -109,3 +109,5 @@ Route::get('user','SiteController@user');
 Route::get('/check','ComponentController@checkRequest');
 
 Route::get('/check/count','ComponentController@countRequest');
+
+Route::get('/admin/currency','SiteController@changeCurrency');

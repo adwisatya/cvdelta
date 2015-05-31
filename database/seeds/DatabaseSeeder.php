@@ -26,11 +26,13 @@ class DatabaseSeeder extends Seeder {
 		$this->call('BarangSeeder');
 		$this->call('KomponenSeeder');
 		$this->call('TagihanSeeder');
+		$this->call('CurrencySeeder');
 		$this->command->info('Teknisi table seeded!');
 		$this->command->info('Admin table seeded!');
 		$this->command->info('Barang table seeded!');
 		$this->command->info('Komponen table seeded!');
 		$this->command->info('Tagihan table seeded!');
+		$this->command->info('Currency table seeded!');
 	}
 
 }

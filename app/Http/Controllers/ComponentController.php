@@ -76,12 +76,13 @@ class ComponentController extends Controller {
 		$no_seri_komponen = $request->no_seri_komponen;
 		$supplier = $request->supplier;
 		$harga = $request->harga;
+		$curr = $request->currency;
 		$jumlah = $request->jumlah;
 		$lokasi = $request->lokasi;
 		$keterangan = $request->keterangan;
 		$min_jumlah = $request->min_jumlah;
 
-		database::saveNewStock($nama_komponen, $no_seri_komponen, $supplier, $harga, $jumlah, $lokasi, $keterangan, $min_jumlah);
+		database::saveNewStock($nama_komponen, $no_seri_komponen, $supplier, $harga.$curr, $jumlah, $lokasi, $keterangan, $min_jumlah);
 		return redirect('/admin/stock');
 	}
 
