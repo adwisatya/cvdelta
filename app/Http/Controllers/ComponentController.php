@@ -155,4 +155,14 @@ class ComponentController extends Controller {
 			echo 0;
 		}
 	}
+
+	public function cari() {
+		$datas = database::findItem(Input::get('get_komponen'));
+		return view('page-stock')->with('datas', $datas);
+	}
+
+	public function findfewstock() {
+		$datas = database::findMinItem(Input::get('get_komponen'));
+		return view('page-minstock')->with('datas', $datas);
+	}
 }

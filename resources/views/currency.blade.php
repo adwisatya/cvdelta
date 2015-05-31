@@ -2,7 +2,7 @@
 
 @section('content')
 	<h2>Kurs Mata Uang</h2>
-		<form class="form-horizontal" role="form" method="POST" action="#">
+		<form class="form-horizontal" role="form" method="POST" action="/admin/change">
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 			<div class="form-group">

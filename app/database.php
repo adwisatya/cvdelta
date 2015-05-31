@@ -57,13 +57,12 @@ class database extends Model{
 	}
 
 	public static function getStock(){
-		return DB::table('komponen')->get();
+		return Komponen::paginate(10);
 	}
 
 	public static function getMinStock(){
-		return DB::table('komponen')
-				->whereRaw('jumlah <= min_jumlah')
-				->get();
+		return Komponen::whereRaw('jumlah <= min_jumlah')
+				->paginate(10);
 	}
 
 	public static function getBarangSelesai($nama_perus){
@@ -273,6 +272,14 @@ class database extends Model{
 					->where('status','=','done')
 					->where(DB::raw('MONTH(tgl_selesai)'), '=', $month)
 					->get();
+	}
+
+	public static function findItem($item) {
+		return Komponen::where('nama_komponen', 'LIKE', '%'.$item.'%')->paginate(10);
+	}
+
+	public static function findMinItem($item) {
+		return Komponen::whereRaw('jumlah <= min_jumlah')->where('nama_komponen', 'LIKE', '%'.$item.'%')->paginate(10);
 	}
 
 }
