@@ -70,6 +70,19 @@
 
 <fontsmall>	
 	<div class="row">
+		<form class="navbar-form navbar-right" role="search" action="/admin/cari" method="post">
+			<input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+	        <div class="form-group">
+	        	<input type="text" class="form-control" id="get_komponen" name="get_komponen" placeholder="Cari Komponen">
+	        </div>
+	        <div class="form-group">
+				<div class="col-md-6 col-md-offset-4">
+					<input type="submit" class="btn btn-primary" value="Cari">
+				</div>
+			</div>
+      	</form><br><br><br>
+      	
 		<table class="table table-hover table-responsive"> 
 			<caption><h2>Stok Barang</h2></caption>
 			<thead> 
@@ -107,4 +120,8 @@
 		<br>
 	</div>
 </fontsmall>
+
+<div class="col-md-5 col-md-offset-5">
+	<?php echo $datas->render(); ?>
+</div>
 @endsection

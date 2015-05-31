@@ -110,4 +110,15 @@ Route::get('/check','ComponentController@checkRequest');
 
 Route::get('/check/count','ComponentController@countRequest');
 
-Route::get('/admin/currency','SiteController@changeCurrency');
+Route::get('/admin/currency','SiteController@showCurrency');
+
+Route::post('/admin/change','SiteController@changeCurrency');
+
+Route::post('/admin/cari', 'ComponentController@cari');
+
+Route::get('/admin/cari', 'ComponentController@cari');
+
+Route::post('/admin/caristokhabis', 'ComponentController@findfewstock');
+
+Route::get('/admin/caristokhabis', 'ComponentController@findfewstock');
+

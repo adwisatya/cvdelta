@@ -10,6 +10,7 @@ use App\Currency;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CurrencyRequest;
 use App\Http\Requests\AdminProfileRequest;
 use App\Http\Requests\TeknisiProfileRequest;
 use App\Http\Requests\InvoiceCustomerRequest;
@@ -199,8 +200,9 @@ class SiteController extends Controller {
 	}
 
 	public function toIDR($value) {
-		$val = substr($value, 0, -3);
+		$val = substr($value, 0, -4);
 		$curr = substr($value, -3);
+
 		switch ($curr) {
 			case "USD":
 				$res = $val*Currency::find(1)->IDR;
@@ -365,8 +367,24 @@ class SiteController extends Controller {
 		return view('perusahaan-unbilled',compact('perusahaan'));
 	}
 
-	public function changeCurrency() {
+	public function showCurrency() {
 		$currencies = Currency::all();
 		return view ('currency')->with('currency', $currencies);
+	}
+
+	public function changeCurrency(CurrencyRequest $request) {
+		$curr = Currency::find(1);
+		$curr->IDR  = $request->usd;
+		$curr->save();
+
+		$curr = Currency::find(2);
+		$curr->IDR  = $request->cny;
+		$curr->save();
+
+		$curr = Currency::find(3);
+		$curr->IDR  = $request->sgd;
+		$curr->save();
+
+		return redirect('/admin');
 	}
 }
