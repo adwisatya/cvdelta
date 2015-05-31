@@ -76,6 +76,7 @@ class database extends Model{
 	public static function getComponentUsed($id_barang){
 		return DB::table('tagihan')
 					->where('no_seri_barang_rusak','=',$id_barang)
+					->where('status','=','approved')
 					->distinct()
 					->get();
 	}
@@ -212,14 +213,13 @@ class database extends Model{
 			->delete();
 	}
 
-	public static function selesaiBarang($noseri,$tgl_selesai,$status,$jasa){
+	public static function selesaiBarang($noseri,$tgl_selesai,$status){
 		DB::table('barang_rusak')
 			->where('no_seri_barang_rusak','=',$noseri)
 			->update(
 				[
 					'status' => $status,
 					'tgl_selesai' => $tgl_selesai,
-					'harga_jasa' => $jasa,
 				]);
 	}
 
@@ -269,10 +269,24 @@ class database extends Model{
 	}
 	public static function getBarangSelesaionMonth($nama_perus,$month){
 		return DB::table('barang_rusak')
-					->where('nama_perusahaan','=',$nama_perus)
-					->where('status','=','done')
-					->where(DB::raw('MONTH(tgl_selesai)'), '=', $month)
-					->get();
+			->where('nama_perusahaan','=',$nama_perus)
+			->where('status','=','done')
+			->where(DB::raw('MONTH(tgl_selesai)'), '=', $month)
+			->get();
+	}
+	public static function getPerusahaanUnbilledTagihan(){
+		return DB::table('tagihan')
+			->join('barang_rusak','tagihan.no_seri_barang_rusak','=','barang_rusak.no_seri_barang_rusak')
+			->select('nama_perusahaan')
+			->where('tagihan.status','=','approved')
+			->distinct()
+			->get();
+	}
+	public static function getUnbilledBarangSelesai($nama_perus){
+		return DB::table('barang_rusak')
+			->where('nama_perusahaan','=',$nama_perus)
+			->where('status','=','done')
+			->get();
 	}
 
 }
