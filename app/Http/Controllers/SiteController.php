@@ -205,13 +205,13 @@ class SiteController extends Controller {
 
 		switch ($curr) {
 			case "USD":
-				$res = $val*Currency::find(1)->IDR;
+				$res = $val*(Currency::find(1)->IDR);
 				break;
 			case "CNY":
-				$res = $val*Currency::find(2)->IDR;
+				$res = $val*(Currency::find(2)->IDR);
 				break;
 			case "SGD":
-				$res = $val*Currency::find(3)->IDR;
+				$res = $val*(Currency::find(3)->IDR);
 				break;
 			default:
 				$res = 1;
