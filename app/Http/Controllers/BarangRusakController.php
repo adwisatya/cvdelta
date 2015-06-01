@@ -47,4 +47,14 @@ class BarangRusakController extends Controller {
 		database::selesaiBarang($noseri,$tgl_selesai, $status);
 		return redirect('/onprogress');
 	}
+
+	public function changeStatusBarang() {
+		$barangs = Input::get('no_seri_barang_rusak');
+
+		foreach ($barangs as $barang) {
+			database::changeToBilled($barang);
+		}
+
+		echo "finish";
+	}
 }

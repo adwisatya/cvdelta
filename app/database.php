@@ -296,4 +296,10 @@ class database extends Model{
 		return Komponen::whereRaw('jumlah <= min_jumlah')->where('nama_komponen', 'LIKE', '%'.$item.'%')->paginate(10);
 	}
 
+	public static function changeToBilled($no_seri_barang_rusak) {
+		$barang = Barang::find($no_seri_barang_rusak);
+		$barang->status = "billed";
+		$barang->save();
+	}
+
 }
