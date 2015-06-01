@@ -55,7 +55,8 @@
 		            <td>{{$barang->status}}</td>
 		            <td>{{$barang->tgl_diperbaiki}}</td>
 		           	<td id="{{$barang->no_seri_barang_rusak}}">@if($barang->username=="")
-		            		<a href="#perbaiki"><button class="btn btn-primary pilihTeknisi" role="button"> Pilih</button></a>
+		            		<!-- <a href="#perbaiki"><button class="btn btn-primary pilihTeknisi" role="button"> Pilih</button></a> -->
+		            		-
 		            	@else
 		            		{{$barang->username}}
 		            	@endif		            	
