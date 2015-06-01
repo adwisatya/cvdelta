@@ -10,6 +10,7 @@
 <script src="{{ asset('/js/jquery.amaran.min.js') }}"></script>
 <script src="{{ asset('/js/notification.js') }}"></script>
 <script src="{{ asset('/js/notifcounter.js') }}"></script>
+<script src="{{ asset('/js/printPDF.js') }}"></script>
 <script src="{{ asset('/js/addRow.js') }}"></script>
 <script src="{{ asset('/js/fix.js') }}"></script>
 <script src="{{ asset('/js/approval.js') }}"></script>
