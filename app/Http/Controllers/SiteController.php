@@ -324,44 +324,44 @@ class SiteController extends Controller {
 			}
 		
 	}
-	public function showInvoicePDF(InvoiceCustomerRequest $request){
-		$nama_perus=$request->nama_perusahaan;
-		$barang_rusak = database::getUnbilledBarangSelesai($nama_perus);
+	// public function showInvoicePDF(InvoiceCustomerRequest $request){
+	// 	$nama_perus=$request->nama_perusahaan;
+	// 	$barang_rusak = database::getUnbilledBarangSelesai($nama_perus);
 
-		$i = 0;
-		foreach($barang_rusak as $b){;
-			$k = database::getComponentUsed($b->no_seri_barang_rusak);
-			$komponens[$i] = $k;
-			$i++;
-		}
-		if(!isset($barang_rusak)){
-			$error = "Tidak ada tagihan yang dapat dibuat";
-			$customer = database::customer();
-			return view ('pilih-customer',compact('error','customer'));
-		}else{
-			if(!isset($komponens)){
-				$error = "no komponen";
-				$customer = database::customer();
-				return view ('pilih-customer',compact('error','customer'));
-			}else{
-				$nama_komponen = json_decode(json_encode($komponens), true);
+	// 	$i = 0;
+	// 	foreach($barang_rusak as $b){;
+	// 		$k = database::getComponentUsed($b->no_seri_barang_rusak);
+	// 		$komponens[$i] = $k;
+	// 		$i++;
+	// 	}
+	// 	if(!isset($barang_rusak)){
+	// 		$error = "Tidak ada tagihan yang dapat dibuat";
+	// 		$customer = database::customer();
+	// 		return view ('pilih-customer',compact('error','customer'));
+	// 	}else{
+	// 		if(!isset($komponens)){
+	// 			$error = "no komponen";
+	// 			$customer = database::customer();
+	// 			return view ('pilih-customer',compact('error','customer'));
+	// 		}else{
+	// 			$nama_komponen = json_decode(json_encode($komponens), true);
 
-				foreach ($nama_komponen as &$komponen) {
-					foreach ($komponen as &$komp) {
-						$komp['jumlah'] = database::getNKomponen($komp['no_seri_barang_rusak'], $komp['no_seri_komponen']);
-						$komp['harga'] = database::getPrice($komp['no_seri_komponen']);
-						$komp['subtotal'] = $komp['jumlah']*$komp['harga'][0]->harga;
-					}
-				}
+	// 			foreach ($nama_komponen as &$komponen) {
+	// 				foreach ($komponen as &$komp) {
+	// 					$komp['jumlah'] = database::getNKomponen($komp['no_seri_barang_rusak'], $komp['no_seri_komponen']);
+	// 					$komp['harga'] = database::getPrice($komp['no_seri_komponen']);
+	// 					$komp['subtotal'] = $komp['jumlah']*$komp['harga'][0]->harga;
+	// 				}
+	// 			}
 
-				$komponens = $nama_komponen;
+	// 			$komponens = $nama_komponen;
 				
-				// return view('invoice-edit',compact('barang_rusak','komponens','nama_perus'));
-				$pdf = \PDF::loadView('invoice-pdf',compact('barang_rusak','komponens','nama_perus'));
-				return $pdf->stream();
-			}
-		}
-	}
+	// 			// return view('invoice-edit',compact('barang_rusak','komponens','nama_perus'));
+	// 			$pdf = \PDF::loadView('invoice-pdf',compact('barang_rusak','komponens','nama_perus'));
+	// 			return $pdf->stream();
+	// 		}
+	// 	}
+	// }
 	public function perusahaanUnbilled(){
 		$perusahaan = database::getPerusahaanUnbilledTagihan();
 		return view('perusahaan-unbilled',compact('perusahaan'));
