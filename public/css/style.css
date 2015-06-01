@@ -6,6 +6,10 @@
 	font-family: textfont;
 	src:url('fonts/NEOTERIC.otf');
 }*/
+@media print {
+  @page { margin: 0; }
+  body { margin: 1.6cm; }
+}
 h2,h3{
 	font-family: arial;
 }
