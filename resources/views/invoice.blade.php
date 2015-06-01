@@ -40,7 +40,7 @@ body {background-color:white}
 						<td><input class="col-medium" value="{{$komponens[$i][$j]['no_seri_komponen']}}"></input></td>
 						<td>@</td>
 						<td>Rp</td>
-						<td><input onchange="calculatePerKomponen({{$i}},{{$j}})" id="hargaKomponen{{$i}}-{{$j}}" name="hargaKomponen" type="text" class="form-control col-medium" aria-describedby="basic-addon1" value="{{$komponens[$i][$j]['harga'][0]->harga}}"></input></td>
+						<td><input onchange="calculatePerKomponen({{$i}},{{$j}})" id="hargaKomponen{{$i}}-{{$j}}" name="hargaKomponen" type="text" class="form-control col-medium" aria-describedby="basic-addon1" value="{{$komponens[$i][$j]['harga']}}"></input></td>
 						<td>Rp</td>
 						<td><input id="total{{$i}}-{{$j}}" value="{{$komponens[$i][$j]['subtotal']}}" class="form-control col-medium" readonly></td>
 					</tr>
