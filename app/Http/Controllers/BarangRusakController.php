@@ -16,9 +16,13 @@ class BarangRusakController extends Controller {
 		$nama_perusahaan = $request->nama_perusahaan;
 		$nama_barang_rusak = $request->nama_barang_rusak;
 		$no_seri_barang_rusak = $request->no_seri_barang_rusak;
+		$no_seri_barang_rusak .= '|';
+		$no_seri_barang_rusak .= date("ymd");
 		$no_surat_jalan = $request->no_surat_jalan;
 		$isRecheck = $request->isRecheck;
-
+		if(!isset($isRecheck)){
+			$isRecheck=0;
+		}
 		
 		database::saveBarang($nama_barang_rusak, $nama_perusahaan, $no_seri_barang_rusak, $no_surat_jalan, $isRecheck);
 		return redirect('/admin');
