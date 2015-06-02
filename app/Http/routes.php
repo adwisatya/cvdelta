@@ -124,3 +124,4 @@ Route::post('/admin/caristokhabis', 'ComponentController@findfewstock');
 
 Route::get('/admin/caristokhabis', 'ComponentController@findfewstock');
 
+Route::post('/admin/status', 'BarangRusakController@changeStatusBarang');

@@ -1,7 +1,11 @@
 <html>
 <head>
 <title>CV. Delta</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <link rel="stylesheet" href="{{url('css/style.css')}}" />
+<link rel="stylesheet" href="{{ asset('/css/amaran.min.css') }}">
+<script src="{{ asset('/js/jquery.amaran.min.js') }}"></script>
+<script src="{{ asset('/js/printPDF.js') }}"></script>
 <style>
 body {background-color:white}
 </style>
@@ -17,7 +21,7 @@ body {background-color:white}
 <body>
 	<!-- <a href="{{ url('admin/pilih-customer/pdf', $nama_perus, $barang_rusak) }}"<button id="btnSub"  class="btn" role="button"> pdf</button></a> -->
 	<div class="kop">
-		<a><img onclick="createPDF()" src="{{url('images/logo_biru.png')}}"><br></a>
+		<a><img src="{{url('images/logo_biru.png')}}" class="images"><br></a>
 		Taman Kopo Indah II 1A no. 10 Bandung <br>
 		Telp/fax (022) 5415768
 		<hr>
@@ -35,6 +39,7 @@ body {background-color:white}
 	<div class="invoiceBarang">
 		<div class="namabarang">{{$barang->no_seri_barang_rusak}}</div>
 		<div class="komponen">
+			<input name="_token" hidden value="{!! csrf_token() !!}" />
 			<table>
 				<tr>
 					<td colspan="6">Jasa perbaikan</td>
@@ -104,11 +109,6 @@ function calculatePerKomponen(i,j) {
 // 	// var temp = parseInt(document.getElementById("subtotal"+i).value); 
 //     document.getElementById("subtotal"+i).value = jasa+sub;
 // }
-</script>
-<script type="text/javascript">
-	function createPDF() {
-	    window.print();
-	}
 </script>
 
 </body>

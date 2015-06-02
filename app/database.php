@@ -302,5 +302,10 @@ class database extends Model{
 			->where('status','=','billed')
 			->get();
 	}
+	public static function changeToBilled($no_seri_barang_rusak) {
+		$barang = Barang::find($no_seri_barang_rusak);
+		$barang->status = "billed";
+		$barang->save();
+	}
 
 }
