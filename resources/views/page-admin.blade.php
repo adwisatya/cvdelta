@@ -47,6 +47,7 @@
 						<ul class="dropdown-menu">
 							<li><a href="{{ url('/admin/customer') }}">Data Customer</a></li>
 							<li><a href="{{ url('/admin/barang-masuk/view') }}">Barang Rusak</a></li>
+							<li><a href="{{ url('/admin/barang-selesai/view') }}">History Barang Perbaikan</a></li>
 						</ul>
 					</li>
 					<li class="dropdown">

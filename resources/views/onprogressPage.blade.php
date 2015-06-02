@@ -36,6 +36,7 @@
 					<th>Customer</th>
 					<th>Tgl Datang</th> 
 					<th>Status</th> 
+					<th>Recheck</th> 
 					<th>Tgl Diperbaiki</th> 
 					<th>Teknisi</th> 
 					<th></th> 
@@ -50,6 +51,13 @@
 		            <td>{{$barang->nama_perusahaan}}</td>
 		            <td>{{$barang->tgl_datang}}</td>
 		            <td>{{$barang->status}}</td>
+		            <td>
+		            	@if($barang->recheck)
+		            		<red>recheck</red>
+		            	@else
+		            		-
+		            	@endif
+		            </td>
 		            <td>{{$barang->tgl_diperbaiki}}</td>
 		           	<td id="{{$barang->no_seri_barang_rusak}}">@if($barang->username=="")
 		            		<a href="#perbaiki"><button class="btn btn-primary pilihTeknisi" role="button"> Pilih</button></a>

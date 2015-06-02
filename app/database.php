@@ -142,7 +142,7 @@ class database extends Model{
 			->increment('jumlah', $jumlah);
 	}
 
-	public static function saveBarang($nama_barang_rusak, $nama_perusahaan, $no_seri_barang_rusak, $no_surat_jalan){
+	public static function saveBarang($nama_barang_rusak, $nama_perusahaan, $no_seri_barang_rusak, $no_surat_jalan, $isRecheck){
 		DB::table('barang_rusak')->insert(
 			[
 				'nama_barang_rusak' => $nama_barang_rusak,
@@ -152,6 +152,7 @@ class database extends Model{
 				'tgl_datang' => Carbon::now()->toDateString(),
 				'harga_jasa' => 0,
 				'status' => 'pending',
+				'recheck' => $isRecheck,
 			]);
 	}
 
@@ -294,6 +295,12 @@ class database extends Model{
 
 	public static function findMinItem($item) {
 		return Komponen::whereRaw('jumlah <= min_jumlah')->where('nama_komponen', 'LIKE', '%'.$item.'%')->paginate(10);
+	}
+
+	public static function getBarangSelesai_Billed(){
+		return DB::table('barang_rusak')
+			->where('status','=','billed')
+			->get();
 	}
 
 }

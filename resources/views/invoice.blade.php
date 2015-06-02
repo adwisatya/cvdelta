@@ -39,7 +39,12 @@ body {background-color:white}
 				<tr>
 					<td colspan="6">Jasa perbaikan</td>
 					<td>Rp</td>						
-					<td><input onchange="calculateJasa({{$i}})" name="biayaJasa" id="biayaJasa{{$i}}" type="text" class="form-control col-medium harga" placeholder="Biaya Perbaikan" aria-describedby="basic-addon1"></td>
+					<td>
+						@if($barang->recheck)
+							<input onchange="calculateJasa({{$i}})" name="biayaJasa" id="biayaJasa{{$i}}" type="text" class="form-control col-medium harga" placeholder="Biaya Perbaikan" value=0 aria-describedby="basic-addon1" readonly></td>
+						@else
+							<input onchange="calculateJasa({{$i}})" name="biayaJasa" id="biayaJasa{{$i}}" type="text" class="form-control col-medium harga" placeholder="Biaya Perbaikan" aria-describedby="basic-addon1"></td>
+						@endif
 				</tr>
 				@for($j=0;$j<sizeof($komponens[$i]);$j++)
 					<tr>
@@ -59,6 +64,14 @@ body {background-color:white}
 					<td style="font-weight: bold;">Rp </td>
 					<td><input id="subtotal{{$i}}" style="font-weight: bold; font-size: 16px" name="subtotal" type="text" class="form-control col-medium" aria-describedby="basic-addon1" readonly value="<?php echo array_sum(array_column($komponens[$i],'subtotal')) ?>"></input></td>
 					<!-- <td><b><input class="form-input" id="subtotal" value"" readonly >Rp. <?php echo array_sum(array_column($komponens[$i],'subtotal')) ?>,00</b></td> -->
+					<script>
+						function calculateJasa(i){
+						var sub = parseInt(document.getElementById("subtotal"+i).value);
+						var jasa = parseInt(document.getElementById("biayaJasa"+i).value);
+						// var temp = parseInt(document.getElementById("subtotal"+i).value); 
+					    document.getElementById("subtotal"+i).value = jasa+<?php echo array_sum(array_column($komponens[$i],'subtotal')) ?>;
+					}
+					</script>
 				</tr>
 			</table>
 		</div>
@@ -85,12 +98,12 @@ function calculatePerKomponen(i,j) {
     document.getElementById("total"+i+"-"+j).value = x*(document.getElementById("jml"+i+"-"+j).value);
     document.getElementById("subtotal"+i).value = temp_total+parseInt(document.getElementById("total"+i+"-"+j).value);
 }
-function calculateJasa(i){
-	var sub = parseInt(document.getElementById("subtotal"+i).value);
-	var jasa = parseInt(document.getElementById("biayaJasa"+i).value);
-	// var temp = parseInt(document.getElementById("subtotal"+i).value); 
-    document.getElementById("subtotal"+i).value = jasa+sub;
-}
+// function calculateJasa(i){
+// 	var sub = parseInt(document.getElementById("subtotal"+i).value);
+// 	var jasa = parseInt(document.getElementById("biayaJasa"+i).value);
+// 	// var temp = parseInt(document.getElementById("subtotal"+i).value); 
+//     document.getElementById("subtotal"+i).value = jasa+sub;
+// }
 </script>
 <script type="text/javascript">
 	function createPDF() {

@@ -13,6 +13,7 @@
 			<input class='form-control' type="text" name="nama_barang_rusak" placeholder="Nama Barang Rusak">
 			<input class='form-control' type="text" name="no_seri_barang_rusak" placeholder="No seri Barang Rusak">
 			<input class='form-control' type="text" name="no_surat_jalan" placeholder="No Surat Jalan">
+			<input type="checkbox" name="isRecheck" value="1">Recheck<br>
 			<br>
 			<button id="btnSub"  class="btn btn-primary" role="button"> Tambah Barang Baru </button>
 		</form>

@@ -77,6 +77,8 @@ Route::post('admin/barang-masuk','BarangRusakController@addBarang');
 
 Route::get('admin/barang-masuk/view','BarangRusakController@viewBarang');
 
+Route::get('admin/barang-selesai/view','SiteController@viewBarangSelesai_billed');
+
 Route::post('pilihBarangRusak','BarangRusakController@perbaiki');
 
 Route::post('admin/barang-masuk/selesai','BarangRusakController@selesai');
@@ -96,7 +98,7 @@ Route::get('admin/perusahaan-unbilled','SiteController@perusahaanUnbilled');
 Route::post('admin/invoice','SiteController@showInvoice'); //--> editable invoice
 Route::post('admin/showInvoice','SiteController@showInvoicePerusahaan');
 
-Route::get('admin/pilih-customer/pdf','SiteController@showInvoicePDF'); // bikin PDF
+// Route::get('admin/pilih-customer/pdf','SiteController@showInvoicePDF'); // bikin PDF
 
 // Route::get('admin/pilih-customer/pdf','PrintController@showPDF');
 // Route::post('admin/pilih-customer','SiteController@invoice');

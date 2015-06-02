@@ -387,4 +387,9 @@ class SiteController extends Controller {
 
 		return redirect('/admin');
 	}
+
+	public function viewBarangSelesai_billed(){
+		$barang_rusak = database::getBarangSelesai_Billed();
+		return view('barang-selesai-billed',compact('barang_rusak'));
+	}
 }
