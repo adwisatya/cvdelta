@@ -11,7 +11,7 @@ class TagihanSeeder extends Seeder {
         DB::statement("SET foreign_key_checks=1");
 
     	Tagihan::create( [
-            'no_seri_komponen' => 'k010203-1' ,
+            'id' => '1',
             'no_seri_barang_rusak' => '12345-1' ,
             'tgl' => '2015-04-13' ,
             'no_tagihan' => '234',
@@ -19,7 +19,7 @@ class TagihanSeeder extends Seeder {
         ] );
 
         Tagihan::create( [
-            'no_seri_komponen' => 'k010203-2' ,
+            'id' => '2',
             'no_seri_barang_rusak' => '12345-1' ,
             'tgl' => '2015-04-13' ,
             'no_tagihan' => '234',
@@ -27,7 +27,7 @@ class TagihanSeeder extends Seeder {
         ] );
 
         Tagihan::create( [
-            'no_seri_komponen' => 'k010203-3' ,
+            'id' => '3',
             'no_seri_barang_rusak' => '12345-2' ,
             'tgl' => '2015-04-13' ,
             'no_tagihan' => '234',
@@ -35,7 +35,7 @@ class TagihanSeeder extends Seeder {
         ] );
 
         Tagihan::create( [
-            'no_seri_komponen' => 'k010203-4' ,
+            'id' => '4',
             'no_seri_barang_rusak' => '12345-3' ,
             'tgl' => '2015-04-13' ,
             'no_tagihan' => '234',
@@ -43,7 +43,7 @@ class TagihanSeeder extends Seeder {
         ] );
 
         Tagihan::create( [
-            'no_seri_komponen' => 'k010203-5' ,
+            'id' => '5',
             'no_seri_barang_rusak' => '12345-4' ,
             'tgl' => '2015-04-13' ,
             'no_tagihan' => '234',
@@ -51,7 +51,7 @@ class TagihanSeeder extends Seeder {
         ] );
 
         Tagihan::create( [
-            'no_seri_komponen' => 'k010203-5' ,
+            'id' => '6',
             'no_seri_barang_rusak' => '12345-6' ,
             'tgl' => '2015-04-13' ,
             'no_tagihan' => '234',
@@ -59,7 +59,7 @@ class TagihanSeeder extends Seeder {
         ] );
         
         Tagihan::create( [
-            'no_seri_komponen' => 'k010203-5' ,
+            'id' => '7',
             'no_seri_barang_rusak' => '12345-7' ,
             'tgl' => '2015-04-13' ,
             'no_tagihan' => '234',
@@ -67,7 +67,7 @@ class TagihanSeeder extends Seeder {
         ] );
 
         Tagihan::create( [
-            'no_seri_komponen' => 'k010203-5' ,
+            'id' => '1',
             'no_seri_barang_rusak' => '12345-7' ,
             'tgl' => '2015-04-13' ,
             'no_tagihan' => '234',
@@ -75,7 +75,7 @@ class TagihanSeeder extends Seeder {
         ] );
 
         Tagihan::create( [
-            'no_seri_komponen' => 'k010203-5' ,
+            'id' => '2',
             'no_seri_barang_rusak' => '12345-7' ,
             'tgl' => '2015-04-13' ,
             'no_tagihan' => '234',
@@ -83,7 +83,7 @@ class TagihanSeeder extends Seeder {
         ] );
 
         Tagihan::create( [
-            'no_seri_komponen' => 'k010203-2' ,
+            'id' => '3',
             'no_seri_barang_rusak' => '12345-1' ,
             'tgl' => '2015-04-13' ,
             'no_tagihan' => '234',
@@ -91,7 +91,7 @@ class TagihanSeeder extends Seeder {
         ]);
 
         Tagihan::create( [
-            'no_seri_komponen' => 'k010203-5' ,
+            'id' => '5',
             'no_seri_barang_rusak' => '12345-6' ,
             'tgl' => '2015-04-13' ,
             'no_tagihan' => '234',
