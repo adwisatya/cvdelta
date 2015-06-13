@@ -288,6 +288,7 @@ class SiteController extends Controller {
 	}
 	public function showInvoicePerusahaan(){
 		$nama_perus = Input::get('namaPerus');
+
 		$barang_rusak = database::getUnbilledBarangSelesai($nama_perus);
 		
 		$i = 0;

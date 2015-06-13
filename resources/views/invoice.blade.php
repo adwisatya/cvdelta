@@ -68,7 +68,6 @@ body {background-color:white}
 					<td colspan="2"><b>Subtotal</b></td>
 					<td style="font-weight: bold;">Rp </td>
 					<td><input id="subtotal{{$i}}" style="font-weight: bold; font-size: 16px" name="subtotal" type="text" class="form-control col-medium" aria-describedby="basic-addon1" readonly value="<?php echo array_sum(array_column($komponens[$i],'subtotal')) ?>"></input></td>
-					<!-- <td><b><input class="form-input" id="subtotal" value"" readonly >Rp. <?php echo array_sum(array_column($komponens[$i],'subtotal')) ?>,00</b></td> -->
 					<script>
 						function calculateJasa(i){
 						var sub = parseInt(document.getElementById("subtotal"+i).value);
