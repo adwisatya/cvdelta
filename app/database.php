@@ -170,6 +170,13 @@ class database extends Model{
 				->get();
 	}	
 
+	public static function getBarangOnProgressByTeknisi($user){
+		return DB::table('barang_rusak')
+				->where('status','Onprogress')
+				->where('username',$user)
+				->get();
+	}
+
 	public static function perbaikiBarang($noseri, $username,$status,$tgl_diperbaiki){
 		DB::table('barang_rusak')
 			->where('no_seri_barang_rusak','=',$noseri)

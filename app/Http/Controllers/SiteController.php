@@ -57,8 +57,9 @@ class SiteController extends Controller {
 	public function requestKomponenPage(){
 		if (Session::get('role')=="teknisi"){
 			$komponen = Input::get('findComp');
+			$user = Input::get('user');
 			$komponen_hasil = database::getKomponenLike($komponen);
-			$barang_progress=database::getBarangOnProgress();
+			$barang_progress=database::getBarangOnProgressByTeknisi($user);
 			return view('request-komponen', compact('barang_progress','komponen_hasil'));
 		}else{
 			return view('index');
