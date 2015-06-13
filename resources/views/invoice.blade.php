@@ -37,7 +37,7 @@ body {background-color:white}
 	@foreach($barang_rusak as $barang)
 	<!-- diulang dari sini -->
 	<div class="invoiceBarang">
-		<div class="namabarang">{{$barang->no_seri_barang_rusak}}</div>
+		<div class="namabarang"><?php echo substr($barang->no_seri_barang_rusak, 0, strpos($barang->no_seri_barang_rusak, '|'));?></div>
 		<div class="komponen">
 			<input name="_token" hidden value="{!! csrf_token() !!}" />
 			<table>
@@ -68,7 +68,6 @@ body {background-color:white}
 					<td colspan="2"><b>Subtotal</b></td>
 					<td style="font-weight: bold;">Rp </td>
 					<td><input id="subtotal{{$i}}" style="font-weight: bold; font-size: 16px" name="subtotal" type="text" class="form-control col-medium" aria-describedby="basic-addon1" readonly value="<?php echo array_sum(array_column($komponens[$i],'subtotal')) ?>"></input></td>
-					<!-- <td><b><input class="form-input" id="subtotal" value"" readonly >Rp. <?php echo array_sum(array_column($komponens[$i],'subtotal')) ?>,00</b></td> -->
 					<script>
 						function calculateJasa(i){
 						var sub = parseInt(document.getElementById("subtotal"+i).value);
