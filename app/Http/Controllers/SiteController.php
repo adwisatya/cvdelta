@@ -215,7 +215,7 @@ class SiteController extends Controller {
 				$res = $val*(Currency::find(3)->IDR);
 				break;
 			default:
-				$res = 1;
+				$res = $val*1;
 		}
 		return $res;
 	}
@@ -317,6 +317,7 @@ class SiteController extends Controller {
 						$arr = database::getPrice($komp['no_seri_komponen']);
 						$komp['harga'] = $this->toIDR(json_decode(json_encode($arr), true)[0]["harga"]);
 						$komp['subtotal'] = $komp['jumlah']*$komp['harga'];
+						// echo $komp['harga'];
 					}
 				}
 
