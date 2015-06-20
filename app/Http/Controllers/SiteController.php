@@ -73,7 +73,7 @@ class SiteController extends Controller {
 		$i=0;
 		if($no_seri_barang_rusak != "" && $no_seri_komponen != ""){
 			while($i<$jumlah){
-				DB::table('tagihan')->insert(array('no_seri_komponen'=>$no_seri_komponen,'no_seri_barang_rusak'=>$no_seri_barang_rusak,'tgl'=>$tanggal,'status'=>'requested'));
+				DB::table('tagihan')->insert(array('no_seri_barang_rusak'=>$no_seri_barang_rusak,'id'=>database::getKomponenIDByNoSeri($no_seri_komponen),'tgl'=>$tanggal,'status'=>'requested'));
 				$i++;
 			}
 		}

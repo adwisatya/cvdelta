@@ -24,7 +24,8 @@
 				<select name="noBarangRusak" class="btn btn-default dropdown-toggle" style="width:250px;">
 					@foreach($barang_progress as $prog)
 					<!-- <option>{{$prog->no_seri_barang_rusak}}</option> -->
-					<option value={{$prog->no_seri_barang_rusak}}><?php echo substr($prog->no_seri_barang_rusak, 0, strpos($prog->no_seri_barang_rusak, '|'));?> </option>
+					<option value="{{$prog->no_seri_barang_rusak}}">{{ $prog->nama_barang_rusak }} ({{$prog->no_seri_barang_rusak}})</option>
+						{{-- // <?php echo substr($prog->no_seri_barang_rusak, 0, strpos($prog->no_seri_barang_rusak, '|'));?> </option> --}}
 					@endforeach
 				</select>
 			</td>

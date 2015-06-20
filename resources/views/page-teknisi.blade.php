@@ -2,9 +2,10 @@
 <head>
 <title>CV. Delta</title>
 <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> --}}
 <link rel="stylesheet" href="css/bootstrap.min.css" />
 <link rel="stylesheet" href="css/style.css" />
+<script src="{{ asset('/js/jquery-2.1.3.min.js') }}"></script>
 <script src="{{ asset('/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('/js/addRow.js') }}"></script>
 <script src="{{ asset('/js/fix.js') }}"></script>

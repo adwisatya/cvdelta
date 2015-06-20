@@ -83,11 +83,11 @@ Route::post('pilihBarangRusak','BarangRusakController@perbaiki');
 
 Route::post('admin/barang-masuk/selesai','BarangRusakController@selesai');
 
-Route::get('admin/tambah-stock/{noSeri}','ComponentController@tambahStokView');
+Route::get('admin/tambah-stock/{id}','ComponentController@tambahStokView');
 
 Route::post('admin/tambah-jumlah-stok','ComponentController@addStock');
 
-Route::get('admin/update-stock/{noSeri}','ComponentController@updateStockView');
+Route::get('admin/update-stock/{id}','ComponentController@updateStockView');
 
 Route::post('admin/updateStock', 'ComponentController@updateStock');
 

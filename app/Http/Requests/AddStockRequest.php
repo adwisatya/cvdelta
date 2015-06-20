@@ -23,7 +23,7 @@ class AddStockRequest extends Request {
 	{
 		return [
 			'nama_komponen' => 'required',
-			'no_seri_komponen' => 'required|unique:komponen',
+			'no_seri_komponen' => 'required',
 			'supplier' => 'required',
 			'harga' => 'required',
 			'jumlah' => 'required|integer',
