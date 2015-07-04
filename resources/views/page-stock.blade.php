@@ -110,8 +110,8 @@
 						<td>{{$data->supplier}}</td>
 						<td>{{$data->harga}}</td>
 						<td><input type="hidden" name="selectedNoSeri" value="{{$data->no_seri_komponen}}">
-							<a href="update-stock/{{$data->no_seri_komponen}}"><button id="updateStock" class="btn btn-primary" role="button">Update</button></a> 
-							<a href="tambah-stock/{{$data->no_seri_komponen}}"><button id="tambahStok" class="btn btn-warning " role="button">+</button></a>
+							<a href="update-stock/{{$data->id}}"><button id="updateStock" class="btn btn-primary" role="button">Update</button></a> 
+							<a href="tambah-stock/{{$data->id}}"><button id="tambahStok" class="btn btn-warning " role="button">+</button></a>
 						</td> 
 					</tr>
 				@endforeach

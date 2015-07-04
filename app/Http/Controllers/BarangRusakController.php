@@ -48,9 +48,10 @@ class BarangRusakController extends Controller {
 		$noseri=Input::get('idbarang');
 		$status="Done";
 		$tgl_selesai=Carbon::now()->toDateString();
-		
 
 		database::selesaiBarang($noseri,$tgl_selesai, $status);
+		database::deleteRequest($noseri);
+		
 		return redirect('/onprogress');
 	}
 

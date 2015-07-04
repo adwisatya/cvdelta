@@ -79,6 +79,7 @@ class SiteController extends Controller {
 				// $id_komponen = database::getIDKomponenBySupplier($no_seri_komponen, $supplier);
 				$id_komponen = database::getIDKomponenByNoSeri($no_seri_komponen)[0]->id;
 				DB::table('tagihan')->insert(array('id'=>$id_komponen,'no_seri_barang_rusak'=>$no_seri_barang_rusak,'tgl'=>$tanggal,'status'=>'requested'));
+
 				$i++;
 			}
 		}

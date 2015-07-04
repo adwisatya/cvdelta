@@ -81,7 +81,7 @@ class ComponentController extends Controller {
 		$keterangan = $request->keterangan;
 		$min_jumlah = $request->min_jumlah;
 
-		database::saveNewStock($nama_komponen, $no_seri_komponen, $supplier, $harga.$curr, $jumlah, $lokasi, $keterangan, $min_jumlah);
+		database::saveNewStock($nama_komponen, $no_seri_komponen, $supplier, $harga.'-'.$curr, $jumlah, $lokasi, $keterangan, $min_jumlah);
 		return redirect('/admin/stock');
 	}
 
@@ -120,6 +120,7 @@ class ComponentController extends Controller {
 		return redirect('/admin/request');
 	}
 
+// <<<<<<< HEAD
 	public function tambahStokView($noSeri){
 		$komponen = database::getKomponenByNoSeri($noSeri);
 		return view('tambah-stok', compact('komponen'));
@@ -127,6 +128,15 @@ class ComponentController extends Controller {
 
 	public function updateStockView($noSeri){
 		$komponen = database::getKomponenByNoSeri($noSeri);
+// =======
+// 	public function tambahStokView($id){
+// 		$komponen = database::getKomponenById($id);
+// 		return view('tambah-stok', compact('komponen'));
+// 	}
+
+// 	public function updateStockView($id){
+// 		$komponen = database::getKomponenById($id);
+// >>>>>>> 17be7a43042ffc557ccfcbc01ff1366936c436b1
 		return view('update-stock',compact('komponen'));
 	}
 

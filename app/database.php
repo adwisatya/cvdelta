@@ -295,6 +295,9 @@ class database extends Model{
 				->where('no_seri_komponen', '=', $komp)
 				->get();
 	}
+	// public static function getKomponenById($id){
+	// 	return Komponen::find($id);
+	// }
 	public static function getKomponenById($id){
 		return DB::table('komponen')
 				->where('id', '=', $id)
@@ -369,5 +372,17 @@ class database extends Model{
 		return DB::table('komponen')
 			->where('no_seri_komponen','=',$no_seri_komp)
 			->get();
+	}
+	public static function getKomponenIDByNoSeri($no_seri_komponen) {
+		return DB::table('komponen')
+			->where('no_seri_komponen','=', $no_seri_komponen)
+			->MIN('id'); // get minimum id
+	}
+
+	public static function deleteRequest($no_seri_barang_rusak) {
+		return DB::table('tagihan')
+			->where('no_seri_barang_rusak','=',$no_seri_barang_rusak)
+			->where('status','=','requested')
+			->delete();
 	}
 }

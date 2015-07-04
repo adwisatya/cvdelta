@@ -2,10 +2,11 @@
 <head>
 <title>CV. Delta</title>
 <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> --}}
 <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}" />
 <link rel="stylesheet" href="{{ asset('/css/style.css') }}" />
 <link rel="stylesheet" href="{{ asset('/css/amaran.min.css') }}">
+<script src="{{ asset('/js/jquery-2.1.3.min.js') }}"></script>
 <script src="{{ asset('/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('/js/jquery.amaran.min.js') }}"></script>
 <script src="{{ asset('/js/notification.js') }}"></script>
