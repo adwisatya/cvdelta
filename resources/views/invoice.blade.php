@@ -84,7 +84,7 @@ body {background-color:white}
 	<!-- diulang sampe sini -->
 
 	@endforeach
-
+	
 	<div class="sign">
 		Bandung, <?php echo date("d/m/Y"); ?> 
 		<br><br><br><br><br>

@@ -1,6 +1,7 @@
 @extends('page-admin')
 
 @section('content')
+<?php use App\database; ?>
 	<div class="row">
 		<form method="post" id="form_data" action="/admin/request/approval" >
 			<input name="_token" hidden value="{!! csrf_token() !!}" />
@@ -10,6 +11,7 @@
 			<input class='form-control' type="hidden" id="noseribarangrusak" name="noseribarangrusak">
 			<input class='form-control' type="hidden" id="username" name="username">
 			<input class='form-control' type="hidden" id="tombol" name="tombol">
+			<input class='form-control' type="hidden" id="supplier" name="supplier">
 		</form>
 		<table class="table table-hover table-responsive"> 
 			<caption><h2>Requested Component</h2></caption>
@@ -20,7 +22,8 @@
 					<th>Jumlah</th>
 					<th>Stok</th>
 					<th>Barang Terkait</th>
-					<th>Teknisi</th> 
+					<th>Teknisi</th>
+					<th>Supplier</th>
 					<th>Approve</th>
 				</tr> 
 			</thead> 
@@ -33,6 +36,15 @@
 						<td class="stok">{{$data['min']}}</td>
 						<td class="nobarang" >{{$data['no_seri_barang_rusak']}}</td>
 						<td class="user">{{$data['username']}}</td>
+						<td class="supplier">
+							<select form="form_data" class="form-control">
+								<?php $komponens = database::getSuppliersByNoSeriKomp($data['no_seri_komponen']);
+									foreach($komponens as $komponen){
+										echo "<option value=$komponen->supplier>$komponen->supplier</option>";
+									}
+								?>
+							</select>							
+						</td>
 						<td>
 							<button form="form_data" class="btn btn-success approve" role="button"> Approve </a>&nbsp;
 							<button form="form_data" class="btn btn-danger decline" role="button"> Decline </a>

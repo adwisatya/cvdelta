@@ -15,6 +15,7 @@ $(document).ready(function() {
                 $('#noseribarangrusak').val($(this).closest('tr').find('.nobarang').text());
                 $('#username').val($(this).closest('tr').find('.user').text());
                 $('#tombol').val("approved");
+                $('#supplier').val($(this).closest('tr').find('.supplier option:selected').text());
             }
         });
     });
@@ -23,6 +24,8 @@ $(document).ready(function() {
         $(".decline").click(function(){
             $('#noserikomponen').val($(this).closest('tr').find('.nokomponen').text());
             $('#noseribarangrusak').val($(this).closest('tr').find('.nobarang').text());
+            $('#username').val($(this).closest('tr').find('.user').text());
+            $('#supplier').val($(this).closest('tr').find('.supplier option:selected').text());
             $('#username').val($(this).closest('tr').find('.user').text());
             $('#tombol').val("decline");
         });

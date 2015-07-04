@@ -24,7 +24,7 @@ class TeknisiComponentRequest extends Request {
 		return [
 			'noBarangRusak' => 'required',
 			'noKomponen' => 'required',
-			'jumlah' => 'required|integer'
+			'jumlah' => 'required|integer',
 		];
 	}
 

@@ -10,10 +10,11 @@
 				<input name="_token" hidden value="{!! csrf_token() !!}" />
 				<input class='form-control' type="hidden" id="noseri" name="noseri">
 				<select name="nama_teknisi" class="btn btn-default dropdown-toggle">
-						<option disabled selected> -- Pilih nama Teknisi -- </option>
-					@foreach($teknisi as $tek)
+						<!-- <option disabled selected> -- Pilih nama Teknisi -- </option> -->
+						<option><?php echo Session::get('username') ?></option>
+					<!-- @foreach($teknisi as $tek)
 						<option>{{$tek->username}}</option>
-					@endforeach
+					@endforeach -->
 				</select>
 				<br><br>
 				<button id="btnSub"  class="btn btn-primary btn-group-sm" role="button"> Simpan </button>
@@ -47,7 +48,7 @@
 				@foreach($barangrusak as $barang)
 				<tr>
 		            <td>{{$barang->nama_barang_rusak}}</td>
-		            <td>{{$barang->no_seri_barang_rusak}}</td>
+		            <td><?php echo substr($barang->no_seri_barang_rusak, 0, strpos($barang->no_seri_barang_rusak, '|'));?></td>
 		            <td>{{$barang->nama_perusahaan}}</td>
 		            <td>{{$barang->tgl_datang}}</td>
 		            <td>{{$barang->status}}</td>

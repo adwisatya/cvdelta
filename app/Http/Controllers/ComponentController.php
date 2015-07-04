@@ -18,10 +18,9 @@ class ComponentController extends Controller {
 			$data['jumlah'] = database::getCountRequested($data['no_seri_komponen'], $data['no_seri_barang_rusak'], $data['username']);
 			$data['min'] = database::getItemStock($data['no_seri_komponen'])[0]->jumlah;
 			$data['min_stok'] = database::getItemStock($data['no_seri_komponen'])[0]->min_jumlah;
+			// $data['supplier'] = database::getSuppliersByNoSeriKomp($no_seri_komp);
 		}
-
 		$datas = $arr_datas;
-
 		return view('page-request')->with('datas', $datas);
 	}
 
@@ -98,28 +97,36 @@ class ComponentController extends Controller {
 		$no_seri_komponen = Input::get('noserikomponen');
 		$no_seri_barang_rusak = Input::get('noseribarangrusak');
 		$jumlah = Input::get('jumlahkomponen');
-		$stok = Input::get('stokkomponen');
+		$stok = Input::get('stokkomponen');  //ambil stok dari id nya. 
 		$username = Input::get('username');
 		$tombol = Input::get('tombol');
+		$supplier = Input::get('supplier');
+		$komponens = database::getIDKomponenBySupplier($no_seri_komponen,$supplier);
+		echo 'masuk yg ats';
+		echo $supplier;
+		foreach ($komponens as $komponen) {
+			database::approval($tombol, $no_seri_komponen, $no_seri_barang_rusak, $username, $supplier, $komponen->id);
+			$componentUsedStock = database::getKomponenById($komponen->id);
+			if ($tombol=="approved"){
+				foreach($componentUsedStock as $k_stock){
+					database::updateJumlahKomponen($komponen->id,$k_stock->jumlah-$jumlah);					
+				}
+			} else{
+				// echo $refused->tagihan.id;
+				database::delDeclined();
 
-		database::approval($tombol, $no_seri_komponen, $no_seri_barang_rusak, $username);
-		
-		if ($tombol=="approved"){
-			database::updateJumlahKomponen($no_seri_komponen,$stok-$jumlah);
-		} else{
-			database::delDeclined();
+			}
 		}
-
 		return redirect('/admin/request');
 	}
 
 	public function tambahStokView($noSeri){
-		$komponen = database::getKomponenById($noSeri);
+		$komponen = database::getKomponenByNoSeri($noSeri);
 		return view('tambah-stok', compact('komponen'));
 	}
 
 	public function updateStockView($noSeri){
-		$komponen = database::getKomponenById($noSeri);
+		$komponen = database::getKomponenByNoSeri($noSeri);
 		return view('update-stock',compact('komponen'));
 	}
 

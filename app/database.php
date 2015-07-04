@@ -9,18 +9,18 @@ use Carbon\Carbon;
 class database extends Model{
 	public static function getRequestedComponent(){
 		return DB::table('komponen')
-				->join('tagihan','komponen.no_seri_komponen','=','tagihan.no_seri_komponen')
+				->join('tagihan','komponen.id','=','tagihan.id')
 				->join('barang_rusak','tagihan.no_seri_barang_rusak','=','barang_rusak.no_seri_barang_rusak')
 				->join('teknisi','barang_rusak.username','=','teknisi.username')
 				->where('tagihan.status','=','requested')
-				->select('komponen.no_seri_komponen','komponen.nama_komponen','barang_rusak.no_seri_barang_rusak','teknisi.username')
+				->select('komponen.no_seri_komponen','komponen.nama_komponen','barang_rusak.no_seri_barang_rusak','teknisi.username','komponen.supplier')
 				->distinct()
 				->get();
 	}
 
 	public static function getUnnotifiedRequestedComponent(){
 		return DB::table('komponen')
-				->join('tagihan','komponen.no_seri_komponen','=','tagihan.no_seri_komponen')
+				->join('tagihan','komponen.id','=','tagihan.id')
 				->join('barang_rusak','tagihan.no_seri_barang_rusak','=','barang_rusak.no_seri_barang_rusak')
 				->join('teknisi','barang_rusak.username','=','teknisi.username')
 				->where('tagihan.status','=','requested')
@@ -38,7 +38,7 @@ class database extends Model{
 
 	public static function getCountRequested($no_seri_komponen, $no_seri_barang_rusak, $teknisi){
 		return DB::table('komponen')
-				->join('tagihan','komponen.no_seri_komponen','=','tagihan.no_seri_komponen')
+				->join('tagihan','komponen.id','=','tagihan.id')
 				->join('barang_rusak','tagihan.no_seri_barang_rusak','=','barang_rusak.no_seri_barang_rusak')
 				->join('teknisi','barang_rusak.username','=','teknisi.username')
 				->where('tagihan.status','=','requested')
@@ -110,7 +110,7 @@ class database extends Model{
 
 	public static function getNKomponen($id_barang,$id_komp){
 		return DB::table('tagihan')
-					->where('no_seri_komponen',$id_komp)
+					->where('id',$id_komp)
 					->where('no_seri_barang_rusak',$id_barang)
 					->count();
 	}
@@ -187,30 +187,69 @@ class database extends Model{
 					'tgl_diperbaiki' => $tgl_diperbaiki,
 				]);
 	}
-
-	public static function approval($status, $no_seri_komponen, $no_seri_barang_rusak, $username){
+	public static function getIDKomponenBySupplier($no_seri_komponen,$supplier){
+		return DB::table('komponen')
+			->where('no_seri_komponen',$no_seri_komponen)
+			->where('supplier',$supplier)
+			->get();
+	}
+	public static function approval($status, $no_seri_komponen, $no_seri_barang_rusak, $username, $supplier, $id_komponen){
 		if ($status=="approved"){
-			DB::table('komponen')
-				->join('tagihan','komponen.no_seri_komponen','=','tagihan.no_seri_komponen')
-				->join('barang_rusak','tagihan.no_seri_barang_rusak','=','barang_rusak.no_seri_barang_rusak')
-				->join('teknisi','barang_rusak.username','=','teknisi.username')
-				->where('komponen.no_seri_komponen','=', $no_seri_komponen)
-				->where('barang_rusak.no_seri_barang_rusak','=', $no_seri_barang_rusak)
-				->where('teknisi.username','=',$username)
-				->update([
-						'tagihan.status' => $status
-					]);
+			// DB::table('komponen')
+			// 	->join('tagihan','komponen.id','=','tagihan.id')
+			// 	->join('barang_rusak','tagihan.no_seri_barang_rusak','=','barang_rusak.no_seri_barang_rusak')
+			// 	->join('teknisi','barang_rusak.username','=','teknisi.username')
+			// 	->where('komponen.no_seri_komponen','=', $no_seri_komponen)
+			// 	->where('barang_rusak.no_seri_barang_rusak','=', $no_seri_barang_rusak)
+			// 	->where('teknisi.username','=',$username)
+			// 	->where('komponen.supplier',$supplier)
+			// 	->update([
+			// 			'tagihan.status' => $status,
+			// 			'tagihan.id' => $id_komponen
+			// 		]);
+
+			$komponens = database::getIDKomponenBySupplier($no_seri_komponen,$supplier);
+			foreach($komponens as $komponen){
+				DB::table('tagihan')
+					->join('komponen','komponen.id','=','tagihan.id')
+					->join('barang_rusak','tagihan.no_seri_barang_rusak','=','barang_rusak.no_seri_barang_rusak')
+					->join('teknisi','barang_rusak.username','=','teknisi.username')
+					->where('komponen.no_seri_komponen','=', $no_seri_komponen)
+					->where('barang_rusak.no_seri_barang_rusak','=', $no_seri_barang_rusak)
+					->where('tagihan.status' ,'=', 'requested')
+					->where('teknisi.username','=',$username)
+					->update([
+							'tagihan.status' => 'approved',
+							'tagihan.id' => $komponen->id
+						]);	
+			}
+			
 		} else{
-			DB::table('komponen')
-				->join('tagihan','komponen.no_seri_komponen','=','tagihan.no_seri_komponen')
-				->join('barang_rusak','tagihan.no_seri_barang_rusak','=','barang_rusak.no_seri_barang_rusak')
-				->join('teknisi','barang_rusak.username','=','teknisi.username')
-				->where('komponen.no_seri_komponen','=', $no_seri_komponen)
-				->where('barang_rusak.no_seri_barang_rusak','=', $no_seri_barang_rusak)
-				->where('teknisi.username','=',$username)
-				->update([
-						'tagihan.status' => 'declined'
-					]);
+			$komponens = database::getIDKomponenBySupplier($no_seri_komponen,$supplier);
+			foreach($komponens as $komponen){
+				DB::table('tagihan')
+					->join('komponen','komponen.id','=','tagihan.id')
+					->join('barang_rusak','tagihan.no_seri_barang_rusak','=','barang_rusak.no_seri_barang_rusak')
+					->join('teknisi','barang_rusak.username','=','teknisi.username')
+					->where('komponen.no_seri_komponen','=', $no_seri_komponen)
+					->where('barang_rusak.no_seri_barang_rusak','=', $no_seri_barang_rusak)
+					->where('tagihan.status' ,'=', 'requested')
+					->where('teknisi.username','=',$username)
+					->update([
+							'tagihan.status' => 'declined',
+						]);	
+			}
+
+			// DB::table('komponen')
+			// 	->join('tagihan','komponen.no_seri_komponen','=','tagihan.id')
+			// 	->join('barang_rusak','tagihan.no_seri_barang_rusak','=','barang_rusak.no_seri_barang_rusak')
+			// 	->join('teknisi','barang_rusak.username','=','teknisi.username')
+			// 	->where('komponen.no_seri_komponen','=', $no_seri_komponen)
+			// 	->where('barang_rusak.no_seri_barang_rusak','=', $no_seri_barang_rusak)
+			// 	->where('teknisi.username','=',$username)
+			// 	->update([
+			// 			'tagihan.status' => 'declined'
+			// 		]);
 		}
 	}
 
@@ -230,9 +269,9 @@ class database extends Model{
 				]);
 	}
 
-	public static function updateJumlahKomponen($nokomponen, $jumlah){
+	public static function updateJumlahKomponen($id_komponen, $jumlah){
 		DB::table('komponen')
-			->where('no_seri_komponen','=',$nokomponen)
+			->where('id','=',$id_komponen)
 			->update(['jumlah' => $jumlah]);
 	}
 
@@ -251,10 +290,15 @@ class database extends Model{
 				->orWhere('no_seri_komponen', 'LIKE', '%'.$komp.'%')
 				->get();
 	}
-	public static function getKomponenById($komp){
+	public static function getKomponenByNoSeri($komp){
 		return DB::table('komponen')
 				->where('no_seri_komponen', '=', $komp)
 				->get();
+	}
+	public static function getKomponenById($id){
+		return DB::table('komponen')
+				->where('id', '=', $id)
+				->get();	
 	}
 	public static function deleteCustomer($namaPerusahaan){
 		DB::table('customer')
@@ -315,4 +359,15 @@ class database extends Model{
 		$barang->save();
 	}
 
+	public static function getIDKomponenByNoSeri($no_seri){
+		return DB::table('komponen')
+			->where('no_seri_komponen','=',$no_seri)
+			->select('id')
+			->get();
+	}
+	public static function getSuppliersByNoSeriKomp($no_seri_komp){
+		return DB::table('komponen')
+			->where('no_seri_komponen','=',$no_seri_komp)
+			->get();
+	}
 }
