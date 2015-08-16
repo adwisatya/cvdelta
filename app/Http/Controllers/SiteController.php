@@ -323,7 +323,18 @@ class SiteController extends Controller {
 				foreach ($komponen as &$komp) {
 					// echo $komp['id'];
 					$komp['jumlah'] = database::getNKomponen($komp['no_seri_barang_rusak'], $komp['id']);
+					// echo $komp['jumlah'];
+					// echo $komp['id'];
 					$arr = database::getPrice($komp['id']);
+					// echo $arr[0];
+					$arr2 = database::getNoSeriByIDKomponen($komp['id']);
+					// echo $arr2[0];
+					// $komp['no_seri_komponen'] = $arr2[0]->no_seri_komponen;
+					// echo $komp['no_seri_komponen'];
+					
+
+					$komp['no_seri_komponen'] = database::getNoSeriByIDKomponen($komp['id'])[0]->no_seri_komponen;
+					// echo $komp['no_seri_komponen'];
 					$komp['harga'] = $this->toIDR(json_decode(json_encode($arr), true)[0]['harga']);
 					$komp['subtotal'] = $komp['jumlah']*$komp['harga'];
 				}

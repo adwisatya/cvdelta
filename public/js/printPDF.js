@@ -5,7 +5,7 @@ function createPDF() {
 $(document).ready(function() {
 	var base = "http://localhost:8000"
     $(function(){
-    	$(".images").on("click", function() {
+    	$(".kop").on("click", function() {
 		    var res = confirm("Yakin ingin diprint? Aksi tidak dapat di-undo setelah 'OK'");
 		    if (res) {
 		    	var no_seri = $( '.namabarang' ).map(function () { return $( this ).text(); }).get();

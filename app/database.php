@@ -118,7 +118,7 @@ class database extends Model{
 	public static function getPrice($id_komponen){
 		return DB::table('komponen')
 					->select('harga')
-					->where('no_seri_komponen','=',$id_komponen)
+					->where('id','=',$id_komponen)
 					->get();
 	}
 
@@ -366,6 +366,12 @@ class database extends Model{
 		return DB::table('komponen')
 			->where('no_seri_komponen','=',$no_seri)
 			->select('id')
+			->get();
+	}
+	public static function getNoSeriByIDKomponen($id){
+		return DB::table('komponen')
+			->where('id','=',$id)
+			->select('no_seri_komponen')
 			->get();
 	}
 	public static function getSuppliersByNoSeriKomp($no_seri_komp){

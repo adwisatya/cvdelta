@@ -91,24 +91,22 @@ body {background-color:white}
 		Sonny Tjahjadi
 	</div>
 
-
-<script>
-function calculatePerKomponen(i,j) {
-	// window.alert(i+","+j);
-	var sub = parseInt(document.getElementById("subtotal"+i).value);
-	var temp_total = sub - document.getElementById("total"+i+"-"+j).value;
-	// var subtotal = document.getElementById("subtotal"+i).value;
-    var x = document.getElementById("hargaKomponen"+i+"-"+j).value;
-    document.getElementById("total"+i+"-"+j).value = x*(document.getElementById("jml"+i+"-"+j).value);
-    document.getElementById("subtotal"+i).value = temp_total+parseInt(document.getElementById("total"+i+"-"+j).value);
-}
-// function calculateJasa(i){
-// 	var sub = parseInt(document.getElementById("subtotal"+i).value);
-// 	var jasa = parseInt(document.getElementById("biayaJasa"+i).value);
-// 	// var temp = parseInt(document.getElementById("subtotal"+i).value); 
-//     document.getElementById("subtotal"+i).value = jasa+sub;
-// }
-</script>
-
+		<script>
+		function calculatePerKomponen(i,j) {
+			// window.alert(i+","+j);
+			var sub = parseInt(document.getElementById("subtotal"+i).value);
+			var temp_total = sub - document.getElementById("total"+i+"-"+j).value;
+			// var subtotal = document.getElementById("subtotal"+i).value;
+		    var x = document.getElementById("hargaKomponen"+i+"-"+j).value;
+		    document.getElementById("total"+i+"-"+j).value = x*(document.getElementById("jml"+i+"-"+j).value);
+		    document.getElementById("subtotal"+i).value = temp_total+parseInt(document.getElementById("total"+i+"-"+j).value);
+		}
+		// function calculateJasa(i){
+		// 	var sub = parseInt(document.getElementById("subtotal"+i).value);
+		// 	var jasa = parseInt(document.getElementById("biayaJasa"+i).value);
+		// 	// var temp = parseInt(document.getElementById("subtotal"+i).value); 
+		//     document.getElementById("subtotal"+i).value = jasa+sub;
+		// }
+		</script>
 </body>
 </html>
