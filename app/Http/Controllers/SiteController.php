@@ -200,6 +200,10 @@ class SiteController extends Controller {
 		$teknisi=database::getTeknisi();
 		return view('user', compact('admin','teknisi'));
 	}
+	public function editCustomerView($nama_perus){
+		$cust = database::getCustomerByNamaPerusahaan($nama_perus);
+		return view('edit-customer',compact('cust'));
+	}
 	public function deleteCustomer($id){
 		database::deleteCustomer($id);
 		$customer = database::customer();

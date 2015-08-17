@@ -24,8 +24,8 @@ class AddCustomerRequest extends Request {
 		return [
 			'nama_perusahaan' => 'required|unique:customer',
 			'alamat' => 'required',
-			'telepon' => 'required',
-			'contact_person' => 'required',
+			// 'telepon' => 'required',
+			// 'contact_person' => 'required',
 		];
 	}
 

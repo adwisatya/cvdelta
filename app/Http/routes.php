@@ -73,6 +73,8 @@ Route::get('admin/customer','ComponentController@customer');
 
 Route::post('admin/customer','ComponentController@addCustomer');
 
+Route::get('admin/customer/edit/{nama_perus}','SiteController@editCustomerView');
+
 Route::get('admin/customer/delete/{id}','SiteController@deleteCustomer');
 
 Route::post('admin/barang-masuk','BarangRusakController@addBarang');

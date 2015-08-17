@@ -6,7 +6,7 @@ $(document).ready(function() {
             var jumlah = $(this).closest('tr').find('.jumlah').text();
             var min = $(this).closest('tr').find('.jumlahminkomponen').text();
             
-            if (stok-jumlah <= min){
+            if (stok-jumlah <= jumlah){
                 alert('Stok kurang! Tidak dapat memproses permintaan');
             } else{
                 $('#noserikomponen').val($(this).closest('tr').find('.nokomponen').text());

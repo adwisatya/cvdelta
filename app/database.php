@@ -329,8 +329,8 @@ class database extends Model{
 			->get();
 	}
 	public static function getPerusahaanUnbilledTagihan(){
-		return DB::table('tagihan')
-			->join('barang_rusak','tagihan.no_seri_barang_rusak','=','barang_rusak.no_seri_barang_rusak')
+		return DB::table('barang_rusak')
+			->join('tagihan','barang_rusak.no_seri_barang_rusak','=','tagihan.no_seri_barang_rusak')
 			->select('nama_perusahaan')
 			->where('barang_rusak.status','=','Done')
 			->distinct()
@@ -390,5 +390,10 @@ class database extends Model{
 			->where('no_seri_barang_rusak','=',$no_seri_barang_rusak)
 			->where('status','=','requested')
 			->delete();
+	}
+	public static function getCustomerByNamaPerusahaan($nama_perus){
+		return DB::table('customer')
+			->where('nama_perusahaan','=',$nama_perus)
+			->get();
 	}
 }

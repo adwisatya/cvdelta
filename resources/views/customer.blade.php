@@ -40,7 +40,8 @@
 		            <td>{{$cust->alamat}}</td>
 		            <td>{{$cust->telepon}}</td>
 		            <td>{{$cust->contact_person}}</td>
-		            <td><a href="/admin/customer/delete/{{$cust->nama_perusahaan}}"><button form="deleteCust" class="btn btn-danger" title="hapus" role="button" type="submit">x</button></a></td>
+		            <!-- <td><a href="/admin/customer/edit/{{$cust->nama_perusahaan}}"><button form="editCust" class="btn btn-success" title="edit" role="button" type="submit">edit</button></a> -->
+		            <!-- <td><a href="/admin/customer/delete/{{$cust->nama_perusahaan}}"><button form="deleteCust" class="btn btn-danger" title="hapus" role="button" type="submit">x</button></a></td> -->
 	            </tr>
 	            @endforeach
 			</tbody>

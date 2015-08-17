@@ -8,6 +8,7 @@
 <script src="{{ asset('/js/printPDF.js') }}"></script>
 <style>
 body {background-color:white}
+input{border:none;}
 </style>
 <style type="text/css">
 @media print{
@@ -15,6 +16,9 @@ body {background-color:white}
   #ad{ display:none;}
   #leftbar{ display:none;}
   #contentarea{ width:100%;}
+  input{
+  	border:none;
+  }
 }
 </style>
 </head>
@@ -63,14 +67,14 @@ body {background-color:white}
 						<td>Rp</td>
 						<td><input onchange="calculatePerKomponen({{$i}},{{$j}})" id="hargaKomponen{{$i}}-{{$j}}" name="hargaKomponen" type="text" class="form-control col-medium" aria-describedby="basic-addon1" value="{{$komponens[$i][$j]['harga']}}"></input></td>
 						<td>Rp</td>
-						<td><input id="total{{$i}}-{{$j}}" value="{{$komponens[$i][$j]['subtotal']}}" class="form-control col-medium" readonly></td>
+						<td><input id="total{{$i}}-{{$j}}" value="{{$komponens[$i][$j]['subtotal']}}" class="form-control col-medium subtotalPerComponent" readonly></td>
 					</tr>
 				@endfor
 				<tr>
 					<td colspan="4"> 
 					<td colspan="2"><b>Subtotal</b></td>
 					<td style="font-weight: bold;">Rp </td>
-					<td><input id="subtotal{{$i}}" style="font-weight: bold; font-size: 16px" name="subtotal" type="text" class="form-control col-medium subtotal-barang-rusak" aria-describedby="basic-addon1" readonly value="<?php echo array_sum(array_column($komponens[$i],'subtotal')) ?>"></input></td>
+					<td><input id="subtotal{{$i}}" style="font-weight: bold; font-size: 16px" onchange="calculateGrandTotal()" name="subtotal" type="text" class="form-control col-medium subtotal-barang-rusak" aria-describedby="basic-addon1" readonly value="<?php echo array_sum(array_column($komponens[$i],'subtotal')) ?>"></input></td>
 						<!-- subtotal original untuk bantu perhitungan sama javascriptnya -->
 						<td><input id="subtotal-original{{$i}}" style="font-weight: bold; font-size: 16px" name="subtotal" type="hidden" class="form-control col-medium" aria-describedby="basic-addon1" readonly value="<?php echo array_sum(array_column($komponens[$i],'subtotal')) ?>"></input></td>
 					<script>
@@ -89,6 +93,8 @@ body {background-color:white}
 	<!-- diulang sampe sini -->
 
 	@endforeach
+
+	<h3>Total : <input id="grandtotal" value="lala" readonly></input></h3>
 	
 	<div class="sign">
 		Bandung, <?php echo date("d/m/Y"); ?> 
@@ -97,7 +103,7 @@ body {background-color:white}
 	</div>
 	
 
-
+	
 	<script>
 		function calculatePerKomponen(i,j) {
 			// window.alert(i+","+j);
@@ -107,20 +113,37 @@ body {background-color:white}
 		    var x = document.getElementById("hargaKomponen"+i+"-"+j).value;
 		    document.getElementById("total"+i+"-"+j).value = x*(document.getElementById("jml"+i+"-"+j).value);
 		    document.getElementById("subtotal"+i).value = temp_total+parseInt(document.getElementById("total"+i+"-"+j).value);
+		    calculateGrandTotal();
 		}
 		function calculateJasa(i){
 			var sub = parseInt(document.getElementById("subtotal-original"+i).value);
 			var jasa = parseInt(document.getElementById("biayaJasa"+i).value);
 		    document.getElementById("subtotal"+i).value = jasa+sub;
+		    calculateGrandTotal();
 		}
+		
+	</script>
+	<script type="text/javascript">
+		$(window).load(function(){
+			calculateGrandTotal();		
+		});
 
-		function calculateGrandTotal(){
+		function calculateGrandTotal(){			
+			var $grandtotal = 0;
 			$('.subtotal-barang-rusak').each(function(){
-				// grandTotal =+ parseInt(document.getElementsByClass(".subtotal-barang-rusak").value);
-				// alert(grandTotal);
+			    $grandtotal += parseInt(this.value);
 			});
+			$('#grandtotal').val($grandtotal);
+		}
+		function calculateSubtotal(){
+			var $subtotal = 0;
+			$('.subtotalPerComponent').each(function(){
+				$subtotal += parseInt(this.value);
+			});
+			$('.subtotal-barang-rusak').val($subtotal);
 		}
 	</script>
+	
 
 </body>
 </html>
