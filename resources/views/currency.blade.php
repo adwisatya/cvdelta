@@ -8,10 +8,6 @@
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 			<table>
-				<th>
-					<td>Mata uang</td>
-					<td>Kurs</td>
-				</th>
 				<tr>
 					<td>USD</td>
 					<td><input type="text" class="form-control" name="usd" placeholder="IDR" value="{{ $currency[0]->IDR }}"></td>

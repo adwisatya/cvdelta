@@ -26,10 +26,7 @@ body {background-color:white}
 		Telp/fax (022) 5415768
 		<hr>
 	</div>
-
 	<div class="invoiceHeader">
-		No Tagihan: <input class="col-medium" value="" placeholder="no tagihan"></input></td>
-		<br><br>
 		Kepada Yth. <br>
 		{{$nama_perus}} <br>
 		<br><br><br><br>
@@ -70,16 +67,14 @@ body {background-color:white}
 					<td colspan="4"> 
 					<td colspan="2"><b>Subtotal</b></td>
 					<td style="font-weight: bold;">Rp </td>
-					<td><input id="subtotal{{$i}}" style="font-weight: bold; font-size: 16px" name="subtotal" type="text" class="form-control col-medium subtotal-barang-rusak" aria-describedby="basic-addon1" readonly value="<?php echo array_sum(array_column($komponens[$i],'subtotal')) ?>"></input></td>
-						<!-- subtotal original untuk bantu perhitungan sama javascriptnya -->
-						<td><input id="subtotal-original{{$i}}" style="font-weight: bold; font-size: 16px" name="subtotal" type="hidden" class="form-control col-medium" aria-describedby="basic-addon1" readonly value="<?php echo array_sum(array_column($komponens[$i],'subtotal')) ?>"></input></td>
+					<td><input id="subtotal{{$i}}" style="font-weight: bold; font-size: 16px" name="subtotal" type="text" class="form-control col-medium" aria-describedby="basic-addon1" readonly value="<?php echo array_sum(array_column($komponens[$i],'subtotal')) ?>"></input></td>
 					<script>
-					// 	function calculateJasa(i){
-					// 	var sub = parseInt(document.getElementById("subtotal"+i).value);
-					// 	var jasa = parseInt(document.getElementById("biayaJasa"+i).value);
-					// 	// var temp = parseInt(document.getElementById("subtotal"+i).value); 
-					//     document.getElementById("subtotal"+i).value = jasa+<?php echo array_sum(array_column($komponens[$i],'subtotal')) ?>;
-					// }
+						function calculateJasa(i){
+						var sub = parseInt(document.getElementById("subtotal"+i).value);
+						var jasa = parseInt(document.getElementById("biayaJasa"+i).value);
+						// var temp = parseInt(document.getElementById("subtotal"+i).value); 
+					    document.getElementById("subtotal"+i).value = jasa+<?php echo array_sum(array_column($komponens[$i],'subtotal')) ?>;
+					}
 					</script>
 				</tr>
 			</table>
@@ -95,10 +90,8 @@ body {background-color:white}
 		<br><br><br><br><br>
 		Sonny Tjahjadi
 	</div>
-	
-
-
-	<script>
+@foreach()
+		<script>
 		function calculatePerKomponen(i,j) {
 			// window.alert(i+","+j);
 			var sub = parseInt(document.getElementById("subtotal"+i).value);
@@ -108,19 +101,13 @@ body {background-color:white}
 		    document.getElementById("total"+i+"-"+j).value = x*(document.getElementById("jml"+i+"-"+j).value);
 		    document.getElementById("subtotal"+i).value = temp_total+parseInt(document.getElementById("total"+i+"-"+j).value);
 		}
-		function calculateJasa(i){
-			var sub = parseInt(document.getElementById("subtotal-original"+i).value);
-			var jasa = parseInt(document.getElementById("biayaJasa"+i).value);
-		    document.getElementById("subtotal"+i).value = jasa+sub;
-		}
-
-		function calculateGrandTotal(){
-			$('.subtotal-barang-rusak').each(function(){
-				// grandTotal =+ parseInt(document.getElementsByClass(".subtotal-barang-rusak").value);
-				// alert(grandTotal);
-			});
-		}
-	</script>
-
+		// function calculateJasa(i){
+		// 	var sub = parseInt(document.getElementById("subtotal"+i).value);
+		// 	var jasa = parseInt(document.getElementById("biayaJasa"+i).value);
+		// 	// var temp = parseInt(document.getElementById("subtotal"+i).value); 
+		//     document.getElementById("subtotal"+i).value = jasa+sub;
+		// }
+		</script>
+@endforeach
 </body>
 </html>

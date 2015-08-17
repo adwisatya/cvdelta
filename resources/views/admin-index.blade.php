@@ -1,21 +1,64 @@
 @extends('page-admin')
 
 @section('content')
-	<h2>Tambahkan Barang Masuk</h2>
-		<form method="post" action="/admin/barang-masuk" >
-			<input name="_token" hidden value="{!! csrf_token() !!}" />
-			<select class='form-control' name="nama_perusahaan">
-					<option disabled selected>--Pilih nama perusahaan--</option>
-				@foreach($customer as $cust)
-					<option value="{{$cust->nama_perusahaan}}" >{{$cust->nama_perusahaan}}</option>
-				@endforeach
-			</select>
-			<input class='form-control' type="text" name="nama_barang_rusak" placeholder="Nama Barang Rusak">
-			<input class='form-control' type="text" name="no_seri_barang_rusak" placeholder="No seri Barang Rusak">
-			<input class='form-control' type="text" name="no_surat_jalan" placeholder="No Surat Jalan">
-			<input type="checkbox" name="isRecheck" value="1">Recheck<br>
-			<br>
-			<button id="btnSub"  class="btn btn-primary" role="button"> Tambah Barang Baru </button>
-		</form>
+	<div class="row">
+		<div class="col-xs-6 col-sm-3">
+			<a href="{{ url('/admin/request') }}">
+				<div class="square">
+					<span>Permintaan Komponen</span>
+				</div>
+			</a>
+		</div>
+		<div class="col-xs-6 col-sm-3">
+			<a href="{{ url('/admin/stock') }}">
+				<div class="square">
+					<span>Stok</span>
+				</div>
+			</a>
+		</div>
+		<div class="col-xs-6 col-sm-3">
+			<a href="{{ url('/admin/minimum') }}">
+				<div class="square">
+					<span>Stok Habis</span>
+				</div>
+			</a>
+		</div>
+		<div class="col-xs-6 col-sm-3">
+			<a href="{{ url('/admin/perusahaan-unbilled') }}">
+				<div class="square">
+					<span>Buat Invoice</span>
+				</div>
+			</a>
+		</div>
+		<div class="col-xs-6 col-sm-3">
+			<a href="{{ url('/admin/customer') }}">
+				<div class="square">
+					<span>Data Customer</span>
+				</div>
+			</a>
+		</div>
+		<div class="col-xs-6 col-sm-3">
+			<a href="{{ url('/admin/barang-masuk/view') }}">
+				<div class="square">
+					<span>Barang Rusak</span>
+				</div>
+			</a>
+		</div>
+		<div class="col-xs-6 col-sm-3">
+			<a href="{{ url('/admin/barang-selesai/view') }}">
+				<div class="square">
+					<span>Lihat History</span>
+				</div>
+			</a>
+		</div>
+		<div class="col-xs-6 col-sm-3">
+			<a href="/admin/currency">
+				<div class="square">
+					<span>Ubah Kurs</span>
+				</div>
+			</a>
+		</div>
+
+	</div>
 		
 @endsection

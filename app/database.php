@@ -292,7 +292,7 @@ class database extends Model{
 	}
 	public static function getKomponenByNoSeri($komp){
 		return DB::table('komponen')
-				->where('no_seri_komponen', '=', $komp)
+				->where('id', '=', $komp)
 				->get();
 	}
 	// public static function getKomponenById($id){

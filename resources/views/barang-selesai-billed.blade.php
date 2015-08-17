@@ -25,7 +25,8 @@
 				@foreach($barang_rusak as $barang)
 				<tr>
 		            <td>{{$barang->nama_barang_rusak}}</td>
-		            <td>{{$barang->no_seri_barang_rusak}}</td>
+		            <!-- <td>{{$barang->no_seri_barang_rusak}}</td> -->
+		            <td><?php echo substr($barang->no_seri_barang_rusak, 0, strpos($barang->no_seri_barang_rusak, '|'));?></td>
 		            <td>{{$barang->nama_perusahaan}}</td>
 		            <td>{{$barang->no_surat_jalan}}</td>
 		            <td>{{$barang->tgl_datang}}</td>

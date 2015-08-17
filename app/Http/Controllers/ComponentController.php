@@ -54,6 +54,11 @@ class ComponentController extends Controller {
 		return redirect('/admin');
 	}
 
+	public function addBarangRusak(){
+		$customer=database::customer();
+		return view('add-barang-rusak', compact('customer'));
+	}
+
 	public function customer(){
 		$customer=database::customer();
 		return view('customer', compact('customer'));
@@ -121,22 +126,15 @@ class ComponentController extends Controller {
 	}
 
 // <<<<<<< HEAD
-	public function tambahStokView($noSeri){
-		$komponen = database::getKomponenByNoSeri($noSeri);
+	public function tambahStokView($id){
+		$komponen = database::getKomponenByNoSeri($id);
 		return view('tambah-stok', compact('komponen'));
 	}
 
-	public function updateStockView($noSeri){
-		$komponen = database::getKomponenByNoSeri($noSeri);
-// =======
-// 	public function tambahStokView($id){
-// 		$komponen = database::getKomponenById($id);
-// 		return view('tambah-stok', compact('komponen'));
-// 	}
-
-// 	public function updateStockView($id){
-// 		$komponen = database::getKomponenById($id);
-// >>>>>>> 17be7a43042ffc557ccfcbc01ff1366936c436b1
+	public function updateStockView($id){
+		$ids = $id;
+		$komponen = database::getKomponenByNoSeri($id);
+		// return view('debug',compact('komponen'));
 		return view('update-stock',compact('komponen'));
 	}
 

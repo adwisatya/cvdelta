@@ -7,5 +7,9 @@ $(document).ready(function() {
         $(".selesai").click(function(){
         	$('#idbarang').val($(this).closest('td').attr('id'));
         });
+
+        $(".unrepairable").click(function(){
+        	$('#idbarang-unrepairable').val($(this).closest('td').attr('id'));
+        });
     });
 });

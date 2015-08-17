@@ -14,7 +14,7 @@
 			<input class='form-control' type="hidden" id="supplier" name="supplier">
 		</form>
 		<table class="table table-hover table-responsive"> 
-			<caption><h2>Requested Component</h2></caption>
+			<caption><h2>Permintaan Komponen</h2></caption>
 			<thead> 
 				<tr> 
 					<th>No Seri Komponen</th> 
@@ -34,7 +34,8 @@
 						<td class="namakomponen">{{$data['nama_komponen']}}</td>
 						<td class="jumlah">{{$data['jumlah']}}</td>
 						<td class="stok">{{$data['min']}}</td>
-						<td class="nobarang" >{{$data['no_seri_barang_rusak']}}</td>
+						<td class="nobarang"><?php echo substr($data['no_seri_barang_rusak'], 0, strpos($data['no_seri_barang_rusak'], '|'));?></td>
+
 						<td class="user">{{$data['username']}}</td>
 						<td class="supplier">
 							<select form="form_data" class="form-control">
@@ -46,8 +47,8 @@
 							</select>							
 						</td>
 						<td>
-							<button form="form_data" class="btn btn-success approve" role="button"> Approve </a>&nbsp;
-							<button form="form_data" class="btn btn-danger decline" role="button"> Decline </a>
+							<button form="form_data" class="btn btn-success approve" role="button"> Approve</button>
+							<button form="form_data" class="btn btn-danger decline" role="button"> Decline </button>
 						</td>
 					</tr>
 				@endforeach
@@ -55,4 +56,17 @@
 		</table><br>	
 	</div>
 	
+@endsection
+
+@section('scripts')
+	<script type="text/javascript">
+		window.onload = setupRefresh;
+
+		function setupRefresh() {
+		  setTimeout("refreshPage();", 10000);
+		}
+		function refreshPage() {
+		   window.location = location.href;
+		}
+	</script>
 @endsection

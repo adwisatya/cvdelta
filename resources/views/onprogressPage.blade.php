@@ -26,6 +26,11 @@
 		<input name="_token" hidden value="{!! csrf_token() !!}" />
 		<input class='form-control' type="hidden" id="idbarang" name="idbarang">
 	</form>
+
+	<form method="post" id="form_unrepairable" action="/teknisi/barang-masuk/unrepairable">
+		<input name="_token" hidden value="{!! csrf_token() !!}" />
+		<input type="hidden" id="idbarang-unrepairable" name="idbarang-unrepairable">
+	</form>
 {{-- end modal --}}
 	<div class="row">
 		<table class="table table-hover table-responsive" id="tblData"> 
@@ -41,6 +46,7 @@
 					<th>Tgl Diperbaiki</th> 
 					<th>Teknisi</th> 
 					<th></th> 
+					<th></th>
 					<th></th>
 				</tr>
 			</thead>
@@ -79,6 +85,12 @@
 		            	@endif
 		            	
 		            </td> -->
+		            <td id="{{$barang->no_seri_barang_rusak}}">@if($barang->username=="")
+
+		            	@else
+		            		<button form="form_unrepairable" class="btn btn-danger unrepairable" role="button" type="submit">X</button>
+		            	@endif
+		            </td>
 	            </tr>
 	            @endforeach
 			</tbody>

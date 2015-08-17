@@ -55,6 +55,17 @@ class BarangRusakController extends Controller {
 		return redirect('/onprogress');
 	}
 
+	public function unrepairable(){
+		$noseri=Input::get('idbarang-unrepairable');
+		$status="unrepairable";
+		$tgl_selesai=Carbon::now()->toDateString();
+
+		database::selesaiBarang($noseri,$tgl_selesai, $status);
+		database::deleteRequest($noseri);
+		
+		return redirect('/onprogress');
+	}
+
 	public function changeStatusBarang() {
 		$barangs = Input::get('no_seri_barang_rusak');
 

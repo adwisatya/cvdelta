@@ -90,4 +90,21 @@
       </div>
     </footer>
 </body>
+	<script type="text/javascript">
+        $(window).load(function(){
+            var squareElWidth = $(".square");
+            $.each(squareElWidth,function() {
+                var elWidth = $(this).width();
+                $(this).height(elWidth);
+            });
+        }); 
+        $(window).resize(function(){
+            var squareElWidth = $(".square");
+            $.each(squareElWidth,function() {
+                var elWidth = $(this).width();
+                $(this).height(elWidth);
+            });
+        }); 
+    </script>
+@yield('scripts')
 </html>

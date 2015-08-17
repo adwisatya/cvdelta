@@ -10,6 +10,15 @@
   @page { margin: 0; }
   body { margin: 1.6cm; }
 }
+a{
+	font-style: inherit;
+	color: inherit;
+	text-decoration: inherit;
+}
+a:hover{
+	opacity: 0.9;
+	text-decoration: none;
+}
 h2,h3{
 	font-family: arial;
 }
@@ -157,6 +166,18 @@ fontsmall .btn{
 	margin-bottom : -50;
 	color:  black;
 	border: none;
+}
+.square{
+	background-color: #1EA8D6;
+	text-align: center;
+	font-size: 30px;
+	position: relative;
+	margin-bottom: 15px;
+}
+.square span{
+	vertical-align: middle;
+	position: relative;
+	top: 30%;
 }
 
 /*-------------invoice-------------*/

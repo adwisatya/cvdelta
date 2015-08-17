@@ -1,7 +1,7 @@
 @extends('page-admin')
 
 @section('content')
-<a href="/admin"><button id="addBarangRusak" class="btn btn-primary" role="button"> Tambah Barang Rusak</button></a>
+<a href="/admin/add-barang-rusak"><button id="addBarangRusak" class="btn btn-primary" role="button"> Tambah Barang Rusak</button></a>
 {{-- modal --}}
 	<div id="perbaiki" class="modalDialog">
 		<div>
@@ -48,7 +48,7 @@
 				@foreach($barang_rusak as $barang)
 				<tr>
 		            <td>{{$barang->nama_barang_rusak}}</td>
-		            <td>{{$barang->no_seri_barang_rusak}}</td>
+		            <td><?php echo substr($barang->no_seri_barang_rusak, 0, strpos($barang->no_seri_barang_rusak, '|'));?></td>
 		            <td>{{$barang->nama_perusahaan}}</td>
 		            <td>{{$barang->no_surat_jalan}}</td>
 		            <td>{{$barang->tgl_datang}}</td>

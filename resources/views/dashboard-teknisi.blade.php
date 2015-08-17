@@ -1,6 +1,25 @@
 @extends('page-teknisi')
 @section('content')
-	<h2>Selamat datang di dashboard teknisi</h2>
+	<div class="row">
+		<div class="col-xs-6 col-sm-3">
+			<a href="/onprogress">
+				<div class="square">
+					<span>Lihat Barang</span>
+				</div>
+			</a>
+		</div>
+		<div class="col-xs-6 col-sm-3">
+			<a href="/find-komponen">
+				<div class="square">
+					<span>Request Komponen</span>
+				</div>
+			</a>
+		</div>
+	</div>
+
+
+
+	<!-- <h2>Selamat datang di dashboard teknisi</h2>
 	<h4>Silahkan gunakan menu pada navigasi untuk menggunakan layanan yang ada.</h4>
 	<hr/>
 	<h4>Daftar Layanan</h4>
@@ -45,5 +64,5 @@
 				Keluar dari sistem
 			</td>
 		</tr>
-	</table>
+	</table> -->
 @stop
