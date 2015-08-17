@@ -136,9 +136,9 @@ class database extends Model{
 			]);
 	}
 
-	public static function saveStock($no_seri_komponen, $jumlah){
+	public static function saveStock($id, $jumlah){
 		DB::table('komponen')
-			->where('no_seri_komponen',$no_seri_komponen)
+			->where('id',$id)
 			->increment('jumlah', $jumlah);
 	}
 
@@ -308,9 +308,9 @@ class database extends Model{
 				->where('nama_perusahaan','=',$namaPerusahaan)
 				->delete();
 	}
-	public static function updateStock($noSeri, $namaKomponen, $lokasi, $supplier, $harga, $minJum, $ket){
+	public static function updateStock($id, $noSeri, $namaKomponen, $lokasi, $supplier, $harga, $minJum, $ket){
 		DB::table('komponen')
-			->where('no_seri_komponen','=',$noSeri)
+			->where('id','=',$id)
 			->update(
 				[
 					'nama_komponen' => $namaKomponen,

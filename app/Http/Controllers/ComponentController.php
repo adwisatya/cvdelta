@@ -92,9 +92,11 @@ class ComponentController extends Controller {
 
 	public function addStock(AddCountRequest $request){
 		$no_seri_komponen = Input::get('noSeri');
+		$supplier = Input::get('supplier');
 		$jumlah = $request->jumlah;
 
-		database::saveStock($no_seri_komponen, $jumlah);
+		$id_komponen = database::getIDKomponenBySupplier($no_seri_komponen, $supplier)[0]->id;
+		database::saveStock($id_komponen, $jumlah);
 		return redirect('/admin/stock');
 	}
 
@@ -139,6 +141,8 @@ class ComponentController extends Controller {
 	}
 
 	public function updateStock(UpdateStockRequest $request){
+		$id = Input::get('id');
+
 		$noSeri = $request->noSeri;
 		$namaKomponen = $request->namaKomponen;
 		$lokasi = $request->lokasi;
@@ -148,7 +152,9 @@ class ComponentController extends Controller {
 		$jumlah = $request->jumlah;
 		$ket = $request->ket;
 
-		database::updateStock($noSeri, $namaKomponen, $lokasi, $supplier, $harga, $minJum, $ket);
+
+
+		database::updateStock($id, $noSeri, $namaKomponen, $lokasi, $supplier, $harga, $minJum, $ket);
 		return redirect('admin/stock');
 	}
 

@@ -4,6 +4,7 @@
 		<form id="updateStok" method="post" action="/admin/updateStock">
 			<input name="_token" hidden value="{!! csrf_token() !!}" />
 			<table style="width:100%;">
+				<input name="id" type="hidden" value="{{$komp->id}}">
 				<tr>	
 					<td style="width:15%;">No Komponen</td>
 					<td><input class='form-control' type="text" name="noSeri" value="{{$komp->no_seri_komponen}}" readonly ></td>
@@ -36,7 +37,6 @@
 							</select>
 						</div>
 					</div>
-					<!-- Masukkan dengan format : harga-mata_uang. <b>contoh : 10000-IDR   10000-USG</b> -->
 					</td>
 				</tr>
 				<tr>
