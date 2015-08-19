@@ -8,7 +8,7 @@ $(document).ready(function() {
     	$(".kop").on("click", function() {
 		    var res = confirm("Yakin ingin diprint? Aksi tidak dapat di-undo setelah 'OK'");
 		    if (res) {
-		    	var no_seri = $( '.namabarang' ).map(function () { return $( this ).text(); }).get();
+		    	var no_seri = $('.namabarang_full').map(function () { return $( this ).text(); }).get();
 		    	$.ajaxSetup({
 				   headers: { 'X-CSRF-TOKEN' : $('input[name=_token]').val() }
 				});

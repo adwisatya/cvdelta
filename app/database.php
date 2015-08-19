@@ -358,8 +358,25 @@ class database extends Model{
 	}
 	public static function changeToBilled($no_seri_barang_rusak) {
 		$barang = Barang::find($no_seri_barang_rusak);
+		// echo "yang ini".$no_seri_barang_rusak;
+		// print_r($barang);
+		// echo $barang->status;
 		$barang->status = "billed";
 		$barang->save();
+
+		// echo "no seri barang rusak : " .$no_seri_barang_rusak."-";
+		// echo "l = ". strlen($no_seri_barang_rusak);
+		
+
+		// DB::table('barang_rusak')
+		// 	->where('no_seri_barang_rusak','=',$no_seri_barang_rusak)
+		// 	->update(
+		// 		[
+		// 			'status' => "billed"
+		// 		]);
+
+		// DB::statement("UPDATE barang_rusak SET status = 'billed' where no_seri_barang_rusak = ".$no_seri_barang_rusak);
+		// -- echo "UPDATE barang_rusak SET status = 'billed' where no_seri_barang_rusak = '".$no_seri_barang_rusak."'";
 	}
 
 	public static function getIDKomponenByNoSeri($no_seri){

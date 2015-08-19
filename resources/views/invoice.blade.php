@@ -44,6 +44,7 @@ input{border:none;}
 	@foreach($barang_rusak as $barang)
 	<!-- diulang dari sini -->
 	<div class="invoiceBarang">
+		<div class="namabarang_full hidden">{{$barang->no_seri_barang_rusak}}</div>
 		<div class="namabarang"><?php echo substr($barang->no_seri_barang_rusak, 0, strpos($barang->no_seri_barang_rusak, '|'));?></div>
 		<div class="komponen">
 			<input name="_token" hidden value="{!! csrf_token() !!}" />

@@ -68,7 +68,9 @@ class BarangRusakController extends Controller {
 
 	public function changeStatusBarang() {
 		$barangs = Input::get('no_seri_barang_rusak');
-
+		// echo "lalala".$barangs;
+		// echo "baraaang";
+		// print_r($barangs);
 		foreach ($barangs as $barang) {
 			database::changeToBilled($barang);
 		}
