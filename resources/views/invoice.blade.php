@@ -32,7 +32,7 @@ input{border:none;}
 	</div>
 
 	<div class="invoiceHeader">
-		No Tagihan: <input class="col-medium" value="" placeholder="no tagihan"></input></td>
+		No Tagihan: <input class="col-medium" value="" placeholder="no tagihan" id="no_tagihan"></input></td>
 		<br><br>
 		Kepada Yth. <br>
 		{{$nama_perus}} <br>

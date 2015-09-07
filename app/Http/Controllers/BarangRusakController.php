@@ -68,12 +68,15 @@ class BarangRusakController extends Controller {
 
 	public function changeStatusBarang() {
 		$barangs = Input::get('no_seri_barang_rusak');
-		// echo "lalala".$barangs;
-		// echo "baraaang";
-		// print_r($barangs);
+		$no_tagihan = Input::get('no_tagihan');
 		foreach ($barangs as $barang) {
 			database::changeToBilled($barang);
 		}
+
+		// Tambah Nomor Tagihan
+		foreach ($barangs as $barang) {
+			database::addNomorTagihan($barang, $no_tagihan);
+		}		
 
 		echo "finish";
 	}
