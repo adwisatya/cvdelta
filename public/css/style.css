@@ -228,5 +228,8 @@ table{
 	margin-top: 20%;
 	text-align: right;
 }
-
+.invoice-input--large{
+	font-size: 20px;
+	font-weight: bold;
+}
 /*-------------invoice-------------*/

@@ -75,7 +75,7 @@ input{border:none;}
 					<td colspan="4"> 
 					<td colspan="2"><b>Subtotal</b></td>
 					<td style="font-weight: bold;">Rp </td>
-					<td><input id="subtotal{{$i}}" style="font-weight: bold; font-size: 16px" onchange="calculateGrandTotal()" name="subtotal" type="text" class="form-control col-medium subtotal-barang-rusak" aria-describedby="basic-addon1" readonly value="<?php echo array_sum(array_column($komponens[$i],'subtotal')) ?>"></input></td>
+					<td><input id="subtotal{{$i}}" style="font-weight: bold; font-size: 16px" onchange="calculateGrandTotal()" name="subtotal" type="text" class="form-control col-medium subtotal-barang-rusak num-separator" aria-describedby="basic-addon1" readonly value="<?php echo array_sum(array_column($komponens[$i],'subtotal')) ?>"></input></td>
 						<!-- subtotal original untuk bantu perhitungan sama javascriptnya -->
 						<td><input id="subtotal-original{{$i}}" style="font-weight: bold; font-size: 16px" name="subtotal" type="hidden" class="form-control col-medium" aria-describedby="basic-addon1" readonly value="<?php echo array_sum(array_column($komponens[$i],'subtotal')) ?>"></input></td>
 					<script>
@@ -94,8 +94,10 @@ input{border:none;}
 	<!-- diulang sampe sini -->
 
 	@endforeach
-
-	<h3>Total : <input id="grandtotal" value="lala" readonly></input></h3>
+	<br><br>
+	<h3>Total Pembayaran
+	<br>
+	Rp <input id="grandtotal" class="invoice-input--large num-separator" value="-" readonly></input></h3>
 	
 	<div class="sign">
 		Bandung, <?php echo date("d/m/Y"); ?> 
@@ -115,12 +117,14 @@ input{border:none;}
 		    document.getElementById("total"+i+"-"+j).value = x*(document.getElementById("jml"+i+"-"+j).value);
 		    document.getElementById("subtotal"+i).value = temp_total+parseInt(document.getElementById("total"+i+"-"+j).value);
 		    calculateGrandTotal();
+		    // separatingNumber();
 		}
 		function calculateJasa(i){
 			var sub = parseInt(document.getElementById("subtotal-original"+i).value);
 			var jasa = parseInt(document.getElementById("biayaJasa"+i).value);
 		    document.getElementById("subtotal"+i).value = jasa+sub;
 		    calculateGrandTotal();
+		    // separatingNumber();
 		}
 		
 	</script>
@@ -144,7 +148,22 @@ input{border:none;}
 			$('.subtotal-barang-rusak').val($subtotal);
 		}
 	</script>
-	
+	<script type="text/javascript">
+		// function separatingNumber(){
+		// 	$(".num-separator").each(function(){
+		// 		var price = $(this).val();
+		// 		var separator = '.';
+		// 		var position = price.length - 3;
+		// 		if(price.length > 3){
+		// 			if(price.charAt(position)-1!='.'){
+		// 				var separated = [price.slice(0, position), separator, price.slice(position)].join('');
+		// 				// var separated = price+'aa';
+		// 				$(this).val(separated);						
+		// 			}
+		// 		}
+		// 	});
+		// }
+	</script>
 
 </body>
 </html>
