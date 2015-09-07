@@ -35,6 +35,9 @@ html{
 .content{
 	padding-top: 10%;
 }
+.hidden{
+	display: none;
+}
 
 body{
 	/*background-image: url("../images/bg.jpg");*/
