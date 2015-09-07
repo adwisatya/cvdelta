@@ -34,7 +34,8 @@
 						<td class="namakomponen">{{$data['nama_komponen']}}</td>
 						<td class="jumlah">{{$data['jumlah']}}</td>
 						<td class="stok">{{$data['min']}}</td>
-						<td class="nobarang"><?php echo substr($data['no_seri_barang_rusak'], 0, strpos($data['no_seri_barang_rusak'], '|'));?></td>
+						<td><?php echo substr($data['no_seri_barang_rusak'], 0, strpos($data['no_seri_barang_rusak'], '|'));?></td>
+						<td class="nobarang hidden">{{$data['no_seri_barang_rusak']}}</td>
 
 						<td class="user">{{$data['username']}}</td>
 						<td class="supplier">
@@ -60,13 +61,13 @@
 
 @section('scripts')
 	<script type="text/javascript">
-		window.onload = setupRefresh;
+		// window.onload = setupRefresh;
 
-		function setupRefresh() {
-		  setTimeout("refreshPage();", 10000);
-		}
-		function refreshPage() {
-		   window.location = location.href;
-		}
+		// function setupRefresh() {
+		//   setTimeout("refreshPage();", 30000);
+		// }
+		// function refreshPage() {
+		//    window.location = location.href;
+		// }
 	</script>
 @endsection

@@ -5,7 +5,6 @@ $(document).ready(function() {
             var stok = $(this).closest('tr').find('.stok').text();
             var jumlah = $(this).closest('tr').find('.jumlah').text();
             var min = $(this).closest('tr').find('.jumlahminkomponen').text();
-            
             if (stok-jumlah <= jumlah){
                 alert('Stok kurang! Tidak dapat memproses permintaan');
             } else{

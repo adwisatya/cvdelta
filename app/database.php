@@ -207,9 +207,11 @@ class database extends Model{
 			// 			'tagihan.status' => $status,
 			// 			'tagihan.id' => $id_komponen
 			// 		]);
+			// yang di atas salah
 
 			$komponens = database::getIDKomponenBySupplier($no_seri_komponen,$supplier);
 			foreach($komponens as $komponen){
+				// echo ($komponen->id);
 				DB::table('tagihan')
 					->join('komponen','komponen.id','=','tagihan.id')
 					->join('barang_rusak','tagihan.no_seri_barang_rusak','=','barang_rusak.no_seri_barang_rusak')

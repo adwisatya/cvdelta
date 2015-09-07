@@ -109,9 +109,9 @@ class ComponentController extends Controller {
 		$tombol = Input::get('tombol');
 		$supplier = Input::get('supplier');
 		$komponens = database::getIDKomponenBySupplier($no_seri_komponen,$supplier);
-		echo 'masuk yg ats';
-		echo $supplier;
+
 		foreach ($komponens as $komponen) {
+			// echo $komponen->id;
 			database::approval($tombol, $no_seri_komponen, $no_seri_barang_rusak, $username, $supplier, $komponen->id);
 			$componentUsedStock = database::getKomponenById($komponen->id);
 			if ($tombol=="approved"){
@@ -121,7 +121,6 @@ class ComponentController extends Controller {
 			} else{
 				// echo $refused->tagihan.id;
 				database::delDeclined();
-
 			}
 		}
 		return redirect('/admin/request');
