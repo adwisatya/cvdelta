@@ -88,7 +88,7 @@
 		            <td id="{{$barang->no_seri_barang_rusak}}">@if($barang->username=="")
 
 		            	@else
-		            		<button form="form_unrepairable" class="btn btn-danger unrepairable" role="button" type="submit">X</button>
+		            		<button form="form_unrepairable" class="btn btn-danger unrepairable" title="tidak bisa diperbaiki" role="button" type="submit">X</button>
 		            	@endif
 		            </td>
 	            </tr>

@@ -24,6 +24,7 @@ $(document).ready(function() {
 					    	if (data=="finish") {
 					    		createPDF();
 					    		$.amaran({content:{'message':'Status Barang telah diubah'}});
+					    		window.location = "/admin/perusahaan-unbilled";
 					    	}
 					    },
 					    error: function(data) {
