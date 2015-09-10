@@ -5,7 +5,7 @@ function createPDF() {
 $(document).ready(function() {
 	var base = "http://localhost:8000"
     $(function(){
-    	$(".kop").on("click", function() {
+    	$(".print-button").on("click", function() {
 		    var res = confirm("Yakin ingin diprint? Aksi tidak dapat di-undo setelah 'OK'");
 		    var tagihan = $('#no_tagihan').val();
 		    if (res) {

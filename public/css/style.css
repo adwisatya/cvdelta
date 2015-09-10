@@ -233,3 +233,11 @@ table{
 	font-weight: bold;
 }
 /*-------------invoice-------------*/
+
+@media print
+{    
+    .no-print
+    {
+        display: none !important;
+    }
+}

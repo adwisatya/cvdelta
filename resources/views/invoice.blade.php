@@ -23,6 +23,9 @@ input{border:none;}
 </style>
 </head>
 <body>
+	<div class="print-button no-print">
+		<button>print</button>
+	</div>
 	<!-- <a href="{{ url('admin/pilih-customer/pdf', $nama_perus, $barang_rusak) }}"<button id="btnSub"  class="btn" role="button"> pdf</button></a> -->
 	<div class="kop">
 		<a><img src="{{url('images/logo_biru.png')}}" class="images"><br></a>
@@ -54,38 +57,30 @@ input{border:none;}
 					<td>Rp</td>						
 					<td>
 						@if($barang->recheck)
-							<input onchange="calculateJasa({{$i}})" name="biayaJasa" id="biayaJasa{{$i}}" type="text" class="form-control col-medium harga" placeholder="Biaya Perbaikan" value=0 aria-describedby="basic-addon1" readonly></td>
+							<input name="biayaJasa" id="biayaJasa{{$i}}" type="text" class="form-control col-medium harga" placeholder="Biaya Perbaikan" value=0 aria-describedby="basic-addon1" readonly></td>
 						@else
-							<input onchange="calculateJasa({{$i}})" name="biayaJasa" id="biayaJasa{{$i}}" type="text" class="form-control col-medium harga" placeholder="Biaya Perbaikan" aria-describedby="basic-addon1"></td>
+							<input onchange="calculateAll({{$i}})" name="biayaJasa" id="biayaJasa{{$i}}" type="text" class="form-control col-medium harga numseparator" placeholder="Biaya Perbaikan" aria-describedby="basic-addon1"></td>
 						@endif
 				</tr>
 				@for($j=0;$j<sizeof($komponens[$i]);$j++)
 					<tr>
-						<td><input onchange="calculatePerKomponen({{$i}},{{$j}})" class="form-control unborder col-kecil" id="jml{{$i}}-{{$j}}" value="{{$komponens[$i][$j]['jumlah']}}"></td>
+						<td><input onchange="calculateTotalPerKomponen({{$i}},{{$j}})" class="form-control unborder col-kecil" id="jml{{$i}}-{{$j}}" value="{{$komponens[$i][$j]['jumlah']}}"></td>
 						<td><input class="col-kecil" value="pcs"></input></td>
-						<td><input class="col-medium" value="{{$komponens[$i][$j]['no_seri_komponen']}}"></input></td>
+						<td><input class="col-medium numseparator" value="{{$komponens[$i][$j]['no_seri_komponen']}}"></input></td>
 						<td>@</td>
 						<td>Rp</td>
-						<td><input onchange="calculatePerKomponen({{$i}},{{$j}})" id="hargaKomponen{{$i}}-{{$j}}" name="hargaKomponen" type="text" class="form-control col-medium" aria-describedby="basic-addon1" value="{{$komponens[$i][$j]['harga']}}"></input></td>
+						<td><input onchange="calculateTotalPerKomponen({{$i}},{{$j}})" id="hargaKomponen{{$i}}-{{$j}}" name="hargaKomponen" type="text" class="form-control col-medium numseparator" aria-describedby="basic-addon1" value="{{$komponens[$i][$j]['harga']}}"></input></td>
 						<td>Rp</td>
-						<td><input id="total{{$i}}-{{$j}}" value="{{$komponens[$i][$j]['subtotal']}}" class="form-control col-medium subtotalPerComponent" readonly></td>
+						<td><input id="total{{$i}}-{{$j}}" value="{{$komponens[$i][$j]['subtotal']}}" class="form-control col-medium subtotalPerComponent numseparator" readonly></td>
 					</tr>
 				@endfor
 				<tr>
 					<td colspan="4"> 
 					<td colspan="2"><b>Subtotal</b></td>
 					<td style="font-weight: bold;">Rp </td>
-					<td><input id="subtotal{{$i}}" style="font-weight: bold; font-size: 16px" onchange="calculateGrandTotal()" name="subtotal" type="text" class="form-control col-medium subtotal-barang-rusak num-separator" aria-describedby="basic-addon1" readonly value="<?php echo array_sum(array_column($komponens[$i],'subtotal')) ?>"></input></td>
+					<td><input id="subtotal{{$i}}" style="font-weight: bold; font-size: 16px" name="subtotal" type="text" class="form-control col-medium subtotal-barang-rusak numseparator" aria-describedby="basic-addon1" readonly value="<?php echo array_sum(array_column($komponens[$i],'subtotal')) ?>"></input></td>
 						<!-- subtotal original untuk bantu perhitungan sama javascriptnya -->
-						<td><input id="subtotal-original{{$i}}" style="font-weight: bold; font-size: 16px" name="subtotal" type="hidden" class="form-control col-medium" aria-describedby="basic-addon1" readonly value="<?php echo array_sum(array_column($komponens[$i],'subtotal')) ?>"></input></td>
-					<script>
-					// 	function calculateJasa(i){
-					// 	var sub = parseInt(document.getElementById("subtotal"+i).value);
-					// 	var jasa = parseInt(document.getElementById("biayaJasa"+i).value);
-					// 	// var temp = parseInt(document.getElementById("subtotal"+i).value); 
-					//     document.getElementById("subtotal"+i).value = jasa+<?php echo array_sum(array_column($komponens[$i],'subtotal')) ?>;
-					// }
-					</script>
+						<!-- <td><input id="subtotal-original{{$i}}" style="font-weight: bold; font-size: 16px" name="subtotal" type="hidden" class="form-control col-medium" aria-describedby="basic-addon1" readonly value="<?php echo array_sum(array_column($komponens[$i],'subtotal')) ?>"></input></td> -->
 				</tr>
 			</table>
 		</div>
@@ -97,7 +92,7 @@ input{border:none;}
 	<br><br>
 	<h3>Total Pembayaran
 	<br>
-	Rp <input id="grandtotal" class="invoice-input--large num-separator" value="-" readonly></input></h3>
+	Rp <input id="grandtotal" class="invoice-input--large numseparator" value="-" readonly></input></h3>
 	
 	<div class="sign">
 		Bandung, <?php echo date("d/m/Y"); ?> 
@@ -105,65 +100,74 @@ input{border:none;}
 		Sonny Tjahjadi
 	</div>
 	
+<script type="text/javascript">
+	$(window).load(function(){
+		// calculateAll(i);
+		calculateGrandTotal();
+	});
 
-	
-	<script>
-		function calculatePerKomponen(i,j) {
-			// window.alert(i+","+j);
-			var sub = parseInt(document.getElementById("subtotal"+i).value);
-			var temp_total = sub - document.getElementById("total"+i+"-"+j).value;
-			// var subtotal = document.getElementById("subtotal"+i).value;
-		    var x = document.getElementById("hargaKomponen"+i+"-"+j).value;
-		    document.getElementById("total"+i+"-"+j).value = x*(document.getElementById("jml"+i+"-"+j).value);
-		    document.getElementById("subtotal"+i).value = temp_total+parseInt(document.getElementById("total"+i+"-"+j).value);
-		    calculateGrandTotal();
-		    // separatingNumber();
-		}
-		function calculateJasa(i){
-			var sub = parseInt(document.getElementById("subtotal-original"+i).value);
-			var jasa = parseInt(document.getElementById("biayaJasa"+i).value);
-		    document.getElementById("subtotal"+i).value = jasa+sub;
-		    calculateGrandTotal();
-		    // separatingNumber();
-		}
-		
-	</script>
-	<script type="text/javascript">
-		$(window).load(function(){
-			calculateGrandTotal();		
+	function calculateTotalPerKomponen(i,j){
+		delNumSeparator();
+		var sub = parseInt(document.getElementById("subtotal"+i).value);
+		var temp_total = sub - document.getElementById("total"+i+"-"+j).value;
+	    var x = document.getElementById("hargaKomponen"+i+"-"+j).value;
+	    document.getElementById("total"+i+"-"+j).value = x*(document.getElementById("jml"+i+"-"+j).value);
+	    document.getElementById("subtotal"+i).value = temp_total+parseInt(document.getElementById("total"+i+"-"+j).value);
+		calculateGrandTotal();
+		addNumSeparator();
+	}
+	function calculateAll(i){
+		delNumSeparator();
+		calculateSubTotal(i);
+		calculateGrandTotal();
+		addNumSeparator();
+	}
+	function calculateSubTotal(i){
+		var temp_total_per_komponen = 0; 
+		$('[id^=total'+i+']').each(function(){
+			temp_total_per_komponen = temp_total_per_komponen + parseInt($(this).val()); 
 		});
 
-		function calculateGrandTotal(){			
-			var $grandtotal = 0;
-			$('.subtotal-barang-rusak').each(function(){
-			    $grandtotal += parseInt(this.value);
-			});
-			$('#grandtotal').val($grandtotal);
-		}
-		function calculateSubtotal(){
-			var $subtotal = 0;
-			$('.subtotalPerComponent').each(function(){
-				$subtotal += parseInt(this.value);
-			});
-			$('.subtotal-barang-rusak').val($subtotal);
-		}
-	</script>
-	<script type="text/javascript">
-		// function separatingNumber(){
-		// 	$(".num-separator").each(function(){
-		// 		var price = $(this).val();
-		// 		var separator = '.';
-		// 		var position = price.length - 3;
-		// 		if(price.length > 3){
-		// 			if(price.charAt(position)-1!='.'){
-		// 				var separated = [price.slice(0, position), separator, price.slice(position)].join('');
-		// 				// var separated = price+'aa';
-		// 				$(this).val(separated);						
-		// 			}
-		// 		}
-		// 	});
-		// }
-	</script>
+		temp_total_per_komponen = parseInt(document.getElementById("biayaJasa"+i).value) + temp_total_per_komponen;
+		document.getElementById("subtotal"+i).value = temp_total_per_komponen;
+	}
+	function calculateGrandTotal(){
+		var grandTotalTemp = 0;
+		$('.subtotal-barang-rusak').each(function(){
+			if($(this).val().length!=0){
+				grandTotalTemp = grandTotalTemp + parseInt($(this).val()); 
+			}
+		});
+		$('#grandtotal').val(grandTotalTemp);
+	}
+	function addNumSeparator(){
+		delNumSeparator();
+		$('.numseparator').each(function(){
+			var price = $(this).val();
+			if(price.length > 6){
+				var slice1 = price.slice(-3);
+				var slice2 = price.slice(-6,-3);
+				var sisa = price.slice(0,-6);				
+				$(this).val(sisa+"."+slice2+"."+slice1);
+			}
+			else if(price.length > 3 && price.length < 7 ){
+				var slice1 = price.slice(-3);
+				var sisa = price.slice(0,-3);				
+				$(this).val(sisa+"."+slice1);
+			}
+		});
+	}
+	function delNumSeparator(){
+		$('.numseparator').each(function(){
+			$(this).val($(this).val().replace('.',''));
+			$(this).val($(this).val().replace('.',''));
+		});
+	}
+
+	
+</script>
+	
+
 
 </body>
 </html>
