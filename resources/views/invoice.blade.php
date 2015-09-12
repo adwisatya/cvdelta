@@ -40,8 +40,8 @@ input{border:none;}
 	<div class="invoiceHeader">
 		No Tagihan: <input class="col-medium" value="" placeholder="no tagihan" id="no_tagihan"></input></td>
 		<br><br>
-		Kepada Yth. <br>
-		{{$nama_perus}} <br>
+		Kepada Yth.
+		<div id="nama_cust">{{$nama_perus}}</div>
 		<br><br><br>
 		Perincian Biaya Perbaikan PCB, sebagai berikut:
 	</div>
