@@ -23,12 +23,15 @@ input{border:none;}
 </style>
 </head>
 <body>
+	<div class="print-preview-button no-print">
+		<button>print preview</button>
+	</div>
 	<div class="print-button no-print">
 		<button>print</button>
 	</div>
 	<!-- <a href="{{ url('admin/pilih-customer/pdf', $nama_perus, $barang_rusak) }}"<button id="btnSub"  class="btn" role="button"> pdf</button></a> -->
 	<div class="kop">
-		<a><img src="{{url('images/logo_biru.png')}}" class="images"><br></a>
+		<a><img src="{{url('images/logo_biru.png')}}" class="images logo-img"><br></a>
 		Taman Kopo Indah II 1A no. 10 Bandung <br>
 		Telp/fax (022) 5415768
 		<hr>
@@ -39,7 +42,7 @@ input{border:none;}
 		<br><br>
 		Kepada Yth. <br>
 		{{$nama_perus}} <br>
-		<br><br><br><br>
+		<br><br><br>
 		Perincian Biaya Perbaikan PCB, sebagai berikut:
 	</div>
 	
@@ -48,7 +51,7 @@ input{border:none;}
 	<!-- diulang dari sini -->
 	<div class="invoiceBarang">
 		<div class="namabarang_full hidden">{{$barang->no_seri_barang_rusak}}</div>
-		<div class="namabarang"><?php echo substr($barang->no_seri_barang_rusak, 0, strpos($barang->no_seri_barang_rusak, '|'));?></div>
+		<div class="namabarang">{{$barang->nama_barang_rusak}} &nbsp;&nbsp;&nbsp;<normal-text class="font--small">sn: <?php echo substr($barang->no_seri_barang_rusak, 0, strpos($barang->no_seri_barang_rusak, '|'));?> &nbsp;&nbsp;&nbsp;sj: {{$barang->no_surat_jalan}}</normal-text></div>
 		<div class="komponen">
 			<input name="_token" hidden value="{!! csrf_token() !!}" />
 			<table>
@@ -90,7 +93,7 @@ input{border:none;}
 
 	@endforeach
 	<br><br>
-	<h3>Total Pembayaran
+	<h4>Total Pembayaran
 	<br>
 	Rp <input id="grandtotal" class="invoice-input--large numseparator" value="-" readonly></input></h3>
 	

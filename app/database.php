@@ -404,4 +404,8 @@ class database extends Model{
 			->where('nama_perusahaan','=',$nama_perus)
 			->get();
 	}
+	public static function getAllPerusahaan(){
+		return DB::table('customer')
+			->get();
+	}
 }
