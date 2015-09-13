@@ -105,8 +105,8 @@ input{border:none;}
 	
 <script type="text/javascript">
 	$(window).load(function(){
-		addNumSeparator();
 		calculateGrandTotal();
+		addNumSeparator();
 	});
 
 	function calculateTotalPerKomponen(i,j){
@@ -164,11 +164,6 @@ input{border:none;}
 		$('.numseparator').each(function(){
 			$(this).val($(this).val().replace('.',''));
 			$(this).val($(this).val().replace('.',''));
-		});
-	}
-	function calculateKomponenPrice(){
-		$('.harga-komponen').each(function(){
-			$(this).val(parseInt($(this).val())+1);
 		});
 	}
 
