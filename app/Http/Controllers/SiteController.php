@@ -298,6 +298,8 @@ class SiteController extends Controller {
 		}
 	}
 	public function showInvoicePerusahaan(){
+
+		$konst_profit = 1.6;
 		$nama_perus = Input::get('namaPerus');
 
 		$barang_rusak = database::getUnbilledBarangSelesai($nama_perus);
@@ -339,7 +341,7 @@ class SiteController extends Controller {
 
 					$komp['no_seri_komponen'] = database::getNoSeriByIDKomponen($komp['id'])[0]->no_seri_komponen;
 					// echo $komp['no_seri_komponen'];
-					$komp['harga'] = $this->toIDR(json_decode(json_encode($arr), true)[0]['harga']);
+					$komp['harga'] = $this->toIDR(json_decode(json_encode($arr), true)[0]['harga'])*$konst_profit;
 					$komp['subtotal'] = $komp['jumlah']*$komp['harga'];
 				}
 			}

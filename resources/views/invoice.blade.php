@@ -72,7 +72,7 @@ input{border:none;}
 						<td><input class="col-medium numseparator" value="{{$komponens[$i][$j]['no_seri_komponen']}}"></input></td>
 						<td>@</td>
 						<td>Rp</td>
-						<td><input onchange="calculateTotalPerKomponen({{$i}},{{$j}})" id="hargaKomponen{{$i}}-{{$j}}" name="hargaKomponen" type="text" class="form-control col-medium numseparator" aria-describedby="basic-addon1" value="{{$komponens[$i][$j]['harga']}}"></input></td>
+						<td><input onchange="calculateTotalPerKomponen({{$i}},{{$j}})" id="hargaKomponen{{$i}}-{{$j}}" name="hargaKomponen" type="text" class="form-control col-medium numseparator harga-komponen" aria-describedby="basic-addon1" value="{{$komponens[$i][$j]['harga']}}"></input></td>
 						<td>Rp</td>
 						<td><input id="total{{$i}}-{{$j}}" value="{{$komponens[$i][$j]['subtotal']}}" class="form-control col-medium subtotalPerComponent numseparator" readonly></td>
 					</tr>
@@ -105,7 +105,7 @@ input{border:none;}
 	
 <script type="text/javascript">
 	$(window).load(function(){
-		// calculateAll(i);
+		addNumSeparator();
 		calculateGrandTotal();
 	});
 
@@ -164,6 +164,11 @@ input{border:none;}
 		$('.numseparator').each(function(){
 			$(this).val($(this).val().replace('.',''));
 			$(this).val($(this).val().replace('.',''));
+		});
+	}
+	function calculateKomponenPrice(){
+		$('.harga-komponen').each(function(){
+			$(this).val(parseInt($(this).val())+1);
 		});
 	}
 
