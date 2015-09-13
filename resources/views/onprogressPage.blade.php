@@ -72,28 +72,25 @@
 		            		{{$barang->username}}
 		            	@endif		            	
 		            </td>
-		            <td id="{{$barang->no_seri_barang_rusak}}">@if($barang->username=="")
-		            		
-		            	@else
-		            		<button form="form_selesai" class="btn btn-success selesai" role="button"> selesai</button>
-		            	@endif		            	
-		            </td>
-		          <!--    <td id="{{$barang->no_seri_barang_rusak}}">@if($barang->tgl_selesai=="")
-		            		<button form="form_selesai" class="btn btn-success selesai" role="button"> selesai</button>
-		            	@else
-		            		{{$barang->tgl_selesai}}
-		            	@endif
-		            	
-		            </td> -->
-		            <td id="{{$barang->no_seri_barang_rusak}}">@if($barang->username=="")
-
-		            	@else
-		            		<button form="form_unrepairable" class="btn btn-danger unrepairable" title="tidak bisa diperbaiki" role="button" type="submit">X</button>
-		            	@endif
-		            </td>
+		            <?php $userlogin = Session::get('username'); ?>
+		            @if($barang->username=="$userlogin")
+			            <td id="{{$barang->no_seri_barang_rusak}}">
+			            	@if($barang->username!="")
+			            		<button form="form_selesai" class="btn btn-success selesai" role="button"> selesai</button>
+			            		<!-- "{{Session::get('username')}}" -->
+			            	@endif		            	
+			            </td>
+			            <td id="{{$barang->no_seri_barang_rusak}}">
+			            	@if($barang->username!="")
+			            		<button form="form_unrepairable" class="btn btn-danger unrepairable" title="tidak bisa diperbaiki" role="button" type="submit">X</button>
+			            	@endif
+			            </td>
+			        @endif
 	            </tr>
 	            @endforeach
 			</tbody>
 		</table>
 	</div>
+
 @endsection
+
