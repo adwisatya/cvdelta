@@ -39,7 +39,6 @@ class BarangRusakController extends Controller {
 		$username=Input::get('nama_teknisi');
 		$status="Onprogress";
 		$tgl_diperbaiki=Carbon::now()->toDateString();
-
 		database::perbaikiBarang($noseri, $username,$status,$tgl_diperbaiki);
 		return redirect('/onprogress');
 	}

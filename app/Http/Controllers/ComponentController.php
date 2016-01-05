@@ -26,7 +26,9 @@ class ComponentController extends Controller {
 
 	public function stock(){
 		$datas = database::getStock();
-		return view('page-stock')->with('datas', $datas);
+		$minStockCount = database::countMinGoods();
+		// $minStockCount = "10";
+		return view('page-stock', compact('minStockCount','datas'));
 	}
 
 	public function min(){
@@ -137,6 +139,14 @@ class ComponentController extends Controller {
 		$komponen = database::getKomponenByNoSeri($id);
 		// return view('debug',compact('komponen'));
 		return view('update-stock',compact('komponen'));
+	}
+
+	public function deleteStock($id){
+		$ids = $id;
+		// $komponen = database::getKomponenByNoSeri($id);
+		database::deleteStock($id);
+		// return view('debug',compact('komponen'));
+		return redirect('admin/stock');
 	}
 
 	public function updateStock(UpdateStockRequest $request){

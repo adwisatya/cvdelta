@@ -18,6 +18,17 @@ class database extends Model{
 				->get();
 	}
 
+	public static function getRequestedComponentNumber(){
+		return DB::table('komponen')
+				->join('tagihan','komponen.id','=','tagihan.id')
+				->join('barang_rusak','tagihan.no_seri_barang_rusak','=','barang_rusak.no_seri_barang_rusak')
+				->join('teknisi','barang_rusak.username','=','teknisi.username')
+				->where('tagihan.status','=','requested')
+				->select('komponen.no_seri_komponen','komponen.nama_komponen','barang_rusak.no_seri_barang_rusak','teknisi.username','komponen.supplier')
+				->distinct()
+				->count();
+	}
+
 	public static function getUnnotifiedRequestedComponent(){
 		return DB::table('komponen')
 				->join('tagihan','komponen.id','=','tagihan.id')
@@ -323,6 +334,11 @@ class database extends Model{
 					'keterangan' => $ket,
 				]);
 	}
+	public static function deleteStock($id){
+		DB::table('komponen')
+				->where('id','=',$id)
+				->delete();
+	}
 	public static function getBarangSelesaionMonth($nama_perus,$month){
 		return DB::table('barang_rusak')
 			->where('nama_perusahaan','=',$nama_perus)
@@ -408,4 +424,9 @@ class database extends Model{
 		return DB::table('customer')
 			->get();
 	}
+	public static function countMinGoods(){
+		return Komponen::whereRaw('jumlah <= min_jumlah')
+				->count();
+	}
+
 }

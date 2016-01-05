@@ -1,35 +1,11 @@
 @extends('page-admin')
 
 @section('content')
-<a href="/admin/add-barang-rusak"><button id="addBarangRusak" class="btn btn-primary" role="button"> Tambah Barang Rusak</button></a>
-{{-- modal --}}
-	<div id="perbaiki" class="modalDialog">
-		<div>
-			<a href="#close" title="Close" class="close">X</a>
-			<h3>Perbaiki Barang</h3>
-			<form method="post" action="/admin/barang-masuk/perbaiki" >
-				<input name="_token" hidden value="{!! csrf_token() !!}" />
-				<input class='form-control' type="hidden" id="noseri" name="noseri">
-				<select name="nama_teknisi" class="btn btn-default dropdown-toggle">
-						<option disabled selected> -- Pilih nama Teknisi -- </option>
-					@foreach($teknisi as $tek)
-						<option>{{$tek->username}}</option>
-					@endforeach
-				</select>
-				<br><br>
-				<button id="btnSub"  class="btn btn-primary btn-group-sm" role="button"> Simpan </button>
-			</form>
-		</div>
-	</div>
+<a href="/admin/add-barang-rusak"><button id="addBarangRusak" class="btn btn-primary" role="button"> Tambah Barang Perbaikan</button></a>
 
-	<form method="post" id="form_selesai" action="/admin/barang-masuk/selesai" >
-		<input name="_token" hidden value="{!! csrf_token() !!}" />
-		<input class='form-control' type="hidden" id="idbarang" name="idbarang">
-	</form>
-{{-- end modal --}}
 	<div class="row">
 		<table class="table table-hover table-responsive" id="tblData"> 
-			<caption><h2>Barang Rusak</h2></caption>
+			<caption><h2>Barang Perbaikan</h2></caption>
 			<thead>
 				<tr>
 					<th>Nama Barang</th> 

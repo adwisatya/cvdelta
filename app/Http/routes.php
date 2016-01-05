@@ -95,6 +95,8 @@ Route::post('admin/tambah-jumlah-stok','ComponentController@addStock');
 
 Route::get('admin/update-stock/{id}','ComponentController@updateStockView');
 
+Route::get('admin/delete-stock/{id}','ComponentController@deleteStock');
+
 Route::post('admin/updateStock', 'ComponentController@updateStock');
 
 Route::get('admin/perusahaan-unbilled','SiteController@perusahaanUnbilled');

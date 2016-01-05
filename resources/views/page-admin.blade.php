@@ -17,7 +17,8 @@
 
 </head>
 <body>	
-	<div class="navbar navbar-inverse navbar-fixed-top headroom" >
+	<!-- <div class="navbar navbar-inverse navbar-fixed-top headroom" > -->
+	<div class="main-header" >
 		<div class="container">
 			<div class="navbar-header">
 				<!-- Button for smallest screens -->
@@ -26,36 +27,12 @@
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav pull-right">
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Component <span class="badge" id="notifCount"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="{{ url('/admin/request') }}">Requested Component</a></li>
-							<li><a href="{{ url('/admin/stock') }}">stocks</a></li>
-							<li><a href="{{ url('/admin/minimum') }}">stocks run out</a></li>
-						</ul>
-					</li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Invoice<b class="caret"></b></a>
-						<ul class="dropdown-menu">
-							<li><a href="{{ url('/admin/invoice-per-customer') }}">Per Customer</a></li>
-							<li><a href="{{ url('/admin/perusahaan-unbilled') }}">Customer Belum ditagih</a></li>							
-							<!-- <li><a href="#">Per Month</a></li>
-							<li><a href="#">All</a></li> -->
-						</ul>
-					</li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Customer<b class="caret"></b></a>
-						<ul class="dropdown-menu">
-							<li><a href="{{ url('/admin/customer') }}">Data Customer</a></li>
-							<li><a href="{{ url('/admin/barang-masuk/view') }}">Barang Rusak</a></li>
-							<li><a href="{{ url('/admin/barang-selesai/view') }}">History Barang Perbaikan</a></li>
-						</ul>
-					</li>
+					
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Hi <?php echo Session::get('username'); ?> <b class="caret login-name"></b></a>
 						<ul class="dropdown-menu">
-							<li><a href="/admin/currency">ubah kurs</a></li>
-							<li><a href="/adminprofile">profil</a></li>
+							<!-- <li><a href="/admin/currency">ubah kurs</a></li> -->
+							<!-- <li><a href="/adminprofile">profil</a></li> -->
 							<li><a href="/logout">logout</a></li>
 						</ul>
 					</li>
@@ -64,8 +41,6 @@
 		</div>
 	</div> 
 	<div class="container">
-
-
 		<div class="content">
 			<div class="pagetitle">
 				@yield('pagetitle')

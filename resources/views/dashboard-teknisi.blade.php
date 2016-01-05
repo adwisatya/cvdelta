@@ -1,6 +1,6 @@
 @extends('page-teknisi')
 @section('content')
-	<div class="row">
+	<!-- <div class="row">
 		<div class="col-xs-6 col-sm-3">
 			<a href="/onprogress">
 				<div class="square">
@@ -12,6 +12,33 @@
 			<a href="/find-komponen">
 				<div class="square">
 					<span>Request Komponen</span>
+				</div>
+			</a>
+		</div>
+	</div> -->
+
+	<div class="row">
+		<div class="col-md-6">
+			<a href="/onprogress">
+				<div class="box">
+					<div class="box-image">
+						<img src="{{url('images/service.jpg')}}" alt="Barang Perbaikan">
+					</div>
+					<div class="box-title">
+						Barang Perbaikan
+					</div>
+				</div>
+			</a>
+		</div>
+		<div class="col-md-6">
+			<a href="/find-komponen">
+				<div class="box">
+					<div class="box-image">
+						<img src="{{url('images/request.jpg')}}" alt="Request Komponen">
+					</div>
+					<div class="box-title">
+						Request Komponen
+					</div>
 				</div>
 			</a>
 		</div>

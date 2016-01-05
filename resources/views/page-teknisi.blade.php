@@ -13,7 +13,8 @@
 </head>
 
 <body>	
-	<div class="navbar navbar-inverse navbar-fixed-top headroom" >
+	<!-- <div class="navbar navbar-inverse navbar-fixed-top headroom" > -->
+	<div class="main-header" >
 		<div class="container">
 			<div class="navbar-header">
 				<!-- Button for smallest screens -->
@@ -22,13 +23,13 @@
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav pull-right">
-					<li><a href="/find-komponen">Request Komponen</a></li>
-					<li><a href="/onprogress">Barang Rusak</a></li>
+					<!-- <li><a href="/find-komponen">Request Komponen</a></li> -->
+					<!-- <li><a href="/onprogress">Barang Rusak</a></li> -->
 					<!-- <li><a href="/history">History</a></li> -->
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Hi, <?php echo Session::get('username'); ?> <b class="caret"></b></a>
 						<ul class="dropdown-menu">
-							<li><a href="/profile">profil</a></li>
+							<!-- <li><a href="/profile">profil</a></li> -->
 							<li><a href="/logout">logout</a></li>
 						</ul>
 					</li>

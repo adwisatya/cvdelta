@@ -89,7 +89,8 @@ class SiteController extends Controller {
 	public function adminPage(){
 		if (Session::get('role')=="admin"){
 			$customer = database::customer();
-			return view('admin-index', compact('customer'));
+			$notifNum = database::getRequestedComponentNumber();
+			return view('admin-index', compact('customer','notifNum'));
 		}else{
 			return view('index');
 		}
