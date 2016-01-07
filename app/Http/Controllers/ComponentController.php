@@ -66,6 +66,11 @@ class ComponentController extends Controller {
 		return view('customer', compact('customer'));
 	}
 
+	public function customerBySearch($query){
+		$customer=database::customerByName($query);
+		return view('customer', compact('customer'));
+	}
+
 	public function addCustomer(AddCustomerRequest $request){
 		$nama = $request->nama_perusahaan;
 		$alamat = $request->alamat;

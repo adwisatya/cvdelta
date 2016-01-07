@@ -110,6 +110,12 @@ class database extends Model{
 		return DB::table('customer')->get();
 	}
 
+	public static function customerByName($query){
+		return DB::table('customer')
+			->where("nama_perusahaan", 'LIKE', '%'.$query.'%')
+			->get();
+	}
+
 	public static function saveCustomer($nama,$alamat,$telepon,$cp){
 		$customer = new Customer;
 		$customer->nama_perusahaan = $nama;

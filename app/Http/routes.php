@@ -71,6 +71,8 @@ Route::get('admin/add-barang-rusak', 'ComponentController@addBarangRusak');
 
 Route::get('admin/customer','ComponentController@customer');
 
+Route::get('admin/customer-search/{query}','ComponentController@customerBySearch');
+
 Route::post('admin/customer','ComponentController@addCustomer');
 
 Route::get('admin/customer/edit/{nama_perus}','SiteController@editCustomerView');

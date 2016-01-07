@@ -44,6 +44,13 @@
 </div>
 
 {{-- end modal --}}
+<div class="row">
+		<div class="col-sm-4 pull-right">
+			<div class="pull-right">
+				<input id="customerSearch" class="form-control" placeholder="cari..." ></input>
+			</div>
+		</div>
+	</div>
 <br><br>
 	<table class="table table-hover table-responsive" id="tblData"> 
 		<thead>
@@ -68,4 +75,19 @@
             @endforeach
 		</tbody>
 	</table>
+
+	<script type="text/javascript">
+		// search on top
+		$("#customerSearch").keyup(function(event){
+		    if(event.keyCode == 13){
+		    	$searchQuery = $("#customerSearch").val();
+		    	if($searchQuery == ""){
+					window.location.replace("/admin/customer");	
+		    	}
+		    	else{			    	
+					window.location.replace("/admin/customer-search/"+$searchQuery);	
+		    	}
+		    }
+		});
+	</script>
 @endsection
