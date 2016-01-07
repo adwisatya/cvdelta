@@ -83,6 +83,19 @@ Route::get('admin/barang-masuk/view','BarangRusakController@viewBarang');
 
 Route::get('admin/barang-selesai/view','SiteController@viewBarangSelesai_billed');
 
+Route::get('admin/barang-selesai/viewbySearch/{query}','SiteController@viewBarangSelesai_billed_bySearch');
+
+Route::get('admin/barang-selesai/viewbyCustomer','SiteController@viewBarangSelesai_billed_byCustomer');
+
+Route::get('admin/barang-selesai/viewbyTglDatang','SiteController@viewBarangSelesai_billed_byTglDatang');
+
+Route::get('admin/barang-selesai/viewbyTglSelesai','SiteController@viewBarangSelesai_billed_byTglSelesai');
+
+Route::get('admin/barang-selesai/viewbyTeknisi','SiteController@viewBarangSelesai_billed_byTeknisi');
+
+Route::get('admin/barang-selesai/viewbyStatus','SiteController@viewBarangSelesai_billed_byStatus');
+
+
 Route::post('pilihBarangRusak','BarangRusakController@perbaiki');
 
 Route::post('admin/barang-masuk/selesai','BarangRusakController@selesai');

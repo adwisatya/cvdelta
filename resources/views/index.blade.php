@@ -20,10 +20,15 @@
 			</div>
 		</div> 
 	<div class="container">
+		<div class="align-center">
+			@if($errormessage != "")
+				<div class="alert alert-danger alert-login" role="alert">{{$errormessage}}</div>
+			@endif
+		</div>
 		<div class="indexpage">
 			<div class="col-md-7">
 				<h2>Selamat datang!</h2><br>
-				<h3>Silahkan login menggunakan akun yang sudah terdaftar untuk mengakses layanan aplikasi</h3>
+				<h3>Silakan login menggunakan akun yang sudah terdaftar untuk mengakses layanan aplikasi</h3>
 			</div>
 			<div class="col-md-5">
 				<form method="post" action="/index">

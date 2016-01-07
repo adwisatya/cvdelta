@@ -19,14 +19,18 @@ use App\Http\Requests\TeknisiComponentRequest;
 class SiteController extends Controller {
 	public function index(){
 		if (Session::get('role')=="admin"){
+			$errormessage = "";
 			return view('page-admin');
 		}
-		if (Session::get('role')=="teknisi"){
+		else if (Session::get('role')=="teknisi"){
+			$errormessage = "";
 			return view('dashboard-teknisi');
 		}
-		return view('index');
+		else{
+			$errormessage = "";
+			return view('index',compact('errormessage'));
+		}
 	}
-
 	public function teknisiPage(){
 		if (Session::get('role')=="teknisi"){
 			return view('request-komponen');
@@ -417,6 +421,30 @@ class SiteController extends Controller {
 
 	public function viewBarangSelesai_billed(){
 		$barang_rusak = database::getBarangSelesai_Billed();
+		return view('barang-selesai-billed',compact('barang_rusak'));
+	}
+	public function viewBarangSelesai_billed_bySearch($query){
+		$barang_rusak = database::getBarangSelesai_BilledSearch($query);
+		return view('barang-selesai-billed',compact('barang_rusak'));
+	}
+	public function viewBarangSelesai_billed_byCustomer(){
+		$barang_rusak = database::getBarangSelesai_Billed_byCustomer();
+		return view('barang-selesai-billed',compact('barang_rusak'));
+	}
+	public function viewBarangSelesai_billed_byTglDatang(){
+		$barang_rusak = database::getBarangSelesai_Billed_byTglDatang();
+		return view('barang-selesai-billed',compact('barang_rusak'));
+	}
+	public function viewBarangSelesai_billed_byTglSelesai(){
+		$barang_rusak = database::getBarangSelesai_Billed_byTglSelesai();
+		return view('barang-selesai-billed',compact('barang_rusak'));
+	}
+	public function viewBarangSelesai_billed_byTeknisi(){
+		$barang_rusak = database::getBarangSelesai_Billed_byTeknisi();
+		return view('barang-selesai-billed',compact('barang_rusak'));
+	}
+	public function viewBarangSelesai_billed_byStatus(){
+		$barang_rusak = database::getBarangSelesai_Billed_byStatus();
 		return view('barang-selesai-billed',compact('barang_rusak'));
 	}
 }

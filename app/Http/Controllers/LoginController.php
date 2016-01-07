@@ -55,12 +55,14 @@ class LoginController extends Controller {
 				Session::put('role', 'teknisi');
 				return redirect('/');
 			}
+			return redirect('/');
 		}elseif($userAdministrasi != NULL){
 			if($userAdministrasi->password == $inputPassword){
 				Session::put('username', $inputUsername);
 				Session::put('role', 'admin');
 				return redirect('/admin');
 			}
+			return redirect('/');
 		}else{
 			return redirect('/');
 		}

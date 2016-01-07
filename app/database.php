@@ -372,6 +372,68 @@ class database extends Model{
 	public static function getBarangSelesai_Billed(){
 		return DB::table('barang_rusak')
 			->where('status','=','billed')
+			->orWhere('status','unrepairable')
+			->orWhere('status','done')
+			->get();
+	}
+
+	public static function getBarangSelesai_BilledSearch($query){
+		return DB::table('barang_rusak')
+			->where('nama_barang_rusak','LIKE', '%'.$query.'%')
+			->orWhere('nama_perusahaan','LIKE', '%'.$query.'%')
+			->orWhere('no_seri_barang_rusak','LIKE', '%'.$query.'%')
+			->orWhere('no_surat_jalan','LIKE', '%'.$query.'%')
+			->orWhere('no_surat_jalan','LIKE', '%'.$query.'%')
+			->orWhere('tgl_datang','LIKE', '%'.$query.'%')
+			->orWhere('tgl_diperbaiki','LIKE', '%'.$query.'%')
+			->orWhere('tgl_selesai','LIKE', '%'.$query.'%')
+			->orWhere('username','LIKE', '%'.$query.'%')
+			->orWhere('status','LIKE', '%'.$query.'%')
+			->get();
+	}
+
+	public static function getBarangSelesai_Billed_byCustomer(){
+		return DB::table('barang_rusak')
+			->where('status','=','billed')
+			->orWhere('status','unrepairable')
+			->orWhere('status','done')
+			->orderBy('nama_perusahaan')
+			->get();
+	}
+
+	public static function getBarangSelesai_Billed_byTglDatang(){
+		return DB::table('barang_rusak')
+			->where('status','=','billed')
+			->orWhere('status','unrepairable')
+			->orWhere('status','done')
+			->orderBy('tgl_datang')
+			->get();
+	}
+
+	public static function getBarangSelesai_Billed_byTglSelesai(){
+		return DB::table('barang_rusak')
+			->where('status','=','billed')
+			->orWhere('status','unrepairable')
+			->orWhere('status','done')
+			->orderBy('tgl_selesai')
+			->get();
+	}
+
+	public static function getBarangSelesai_Billed_byTeknisi(){
+		return DB::table('barang_rusak')
+			->where('status','=','billed')
+			->orWhere('status','unrepairable')
+			->orWhere('status','done')
+			->orderBy('username')
+			->get();
+	}
+
+	public static function getBarangSelesai_Billed_byStatus(){
+		return DB::table('barang_rusak')
+			->where('status','=','billed')
+			->orWhere('status','unrepairable')
+			->orWhere('status','done')
+			->orderBy('status')
 			->get();
 	}
 
